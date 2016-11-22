@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 var app = express();
 var db = lowdb("db.json", {storage: fileAsync});
 
-app.use(bodyParser);
+app.use(bodyParser());
 
 db.defaults({
 	//Any default collections (arrays	)
@@ -20,7 +20,5 @@ var port = 3000;
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/dist"));
 app.use(express.static(__dirname + "/lib"));
-// Remove this wehen we start building our Sass.
-app.use(express.static(__dirname + "/src/css"));
 
 app.listen(port);

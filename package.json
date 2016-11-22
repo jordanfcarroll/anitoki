@@ -4,11 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build:js": "webpack",
     "watch:js": "webpack --watch",
-    "dev": "npm run watch:js & npm start",
-    "postinstall": "cp node_modules/normalize.css/normalize.css lib/"
+    "dev": "npm run watch:js & npm run watch:css & npm start",
+    "postinstall": "cp node_modules/normalize.css/normalize.css lib/",
+    "test": "mocha --require ./test/setup.js ./test/*.spec.js",
+    "test:watch": "npm run test --watch",
+    "css": "node-sass src/scss/main.scss -o dist",
+    "watch:css": "node-sass src/scss/main.scss -wo dist"
   },
   "author": "",
   "license": "ISC",
@@ -16,17 +19,23 @@
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
     "babel-preset-react": "^6.16.0",
+    "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
+    "enzyme": "^2.6.0",
     "event-emitter": "^0.3.4",
     "eventemitter3": "^2.0.2",
     "express": "^4.14.0",
     "jquery": "^3.1.1",
+    "jsdom": "^9.8.3",
     "lodash": "^4.16.6",
     "lowdb": "^0.14.0",
+    "node-sass": "^3.13.0",
     "normalize.css": "^5.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",
     "shortid": "^2.2.6",
+    "sinon": "^1.17.6",
     "webpack": "^1.13.3"
   }
 }
