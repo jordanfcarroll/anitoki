@@ -6,7 +6,7 @@
   "scripts": {
     "build:js": "webpack",
     "watch:js": "webpack --watch",
-    "dev": "npm run watch:js & npm run watch:css &  npm run serve & npm start",
+    "dev": "npm run watch:js & npm run watch:css & npm start",
     "postinstall": "cp node_modules/normalize.css/normalize.css lib/",
     "test": "mocha --require ./test/setup.js ./test/*.spec.js",
     "test:watch": "npm run test -- --watch",
