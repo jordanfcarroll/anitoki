@@ -49,6 +49,8 @@
 	// 1. Error checking for Login/Register
 
 
+	// Text notifications : test text on signup 
+
 	// Wishful thinking: Basic functionality is available when not logged in 
 	// Cookies look doable
 
