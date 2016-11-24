@@ -5,17 +5,40 @@ var Login = React.createClass({
 	getInitialState: function () {
 		return {
 			emailText: "",
-			passwordText: ""
+			passwordText: "",
+			emailError: "",
+			passwordError: ""
 		}
+	},
+
+	componentWillMount: function () {
+		var _this = this;
+		userStore.on("error", function () {
+			var errors = userStore.getErrors();
+			_this.setState({
+				emailError: errors.emailError,
+				passwordError: errors.passwordError
+			})
+		})
 	},
 
 
 	render: function () {
 		return (
 			<div>
-				<input type="text" value={this.state.emailText} onChange={this.emailChange}/>
-				<input type="password" value={this.state.passwordText} onChange={this.passwordChange}/>
-				<button>Submit</button>
+				<input 
+					onKeyDown={this.keySubmit} 
+					type="text" 
+					value={this.state.emailText} 
+					onChange={this.emailChange}/>
+				<p>{this.state.emailError}</p>
+				<input 
+					onKeyDown={this.keySubmit} 
+					type="password" 
+					value={this.state.passwordText} 
+					onChange={this.passwordChange}/>
+				<p>{this.state.passwordError}</p>
+				<button onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);
 	},
@@ -30,6 +53,20 @@ var Login = React.createClass({
 		this.setState({
 			passwordText: event.target.value
 		})
+	},
+
+	handleSubmit: function () {
+		userStore.logIn(this.state.emailText, this.state.passwordText);
+		this.setState({
+			emailText: "",
+			passwordText: ""
+		})
+	},
+
+	keySubmit: function (event) {
+		if (event.keyCode === 13) {
+			this.handleSubmit();
+		}
 	}
 
 

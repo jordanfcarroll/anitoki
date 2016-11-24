@@ -9,6 +9,11 @@ EventEmitter.call(userStore);
 // Collection
 var currentUser = null;
 
+var errors = {
+	emailError: "",
+	passwordError: ""
+}
+
 userStore.getUser = function () {
 	return currentUser; 	
 };
@@ -21,11 +26,55 @@ userStore.isAuth = function () {
 	}
 };
 
-userStore.logIn = function (name, pw) {
-	currentUser = {
-		name: name,
-		pw: pw
+userStore.register = function (email, pw) {
+	errors = {
+		emailError: "",
+		passwordError: ""
 	}
+	var _this = this;
+	$.ajax({
+		url: "/api/register",
+		method: "POST",
+		data: {
+			email: email,
+			pw: pw
+		},
+		success: function (result) {
+			currentUser = result;
+			return currentUser;
+		},
+		error: function (result) {
+			errors.emailError = result.responseJSON.emailError;
+			errors.passwordError = result.responseJSON.passwordError;
+			_this.emit("error");
+		}
+	})
+}
+
+userStore.logIn = function (email, pw) {
+	errors = {
+		emailError: "",
+		passwordError: ""
+	}
+	var _this = this;
+	$.ajax({
+		url: "/api/login",
+		method: "POST",
+		data: {
+			email: email,
+			pw: pw
+		},
+		success: function (result) {
+			currentUser = result;
+			return currentUser;
+		},
+		error: function (result) {
+			errors.emailError = result.responseJSON.emailError;
+			errors.passwordError = result.responseJSON.passwordError;
+			_this.emit("error");
+		}
+	})
+	return null; 
 };
 
 userStore.logOut = function () {
@@ -39,8 +88,9 @@ userStore.fake = function () {
 	}
 }
 
-
-
+userStore.getErrors = function () {
+	return errors;
+}
 
 window.userStore = userStore;
 

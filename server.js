@@ -33,7 +33,7 @@ db.defaults({
 	users: []
 }).value();
 
-app.post("/register", function (req, res) {
+app.post("/api/register", function (req, res) {
 
 	var userData = req.body;
 
@@ -41,7 +41,8 @@ app.post("/register", function (req, res) {
 
 	var email = db.get("users").find({email: userData.email});
 	if (email.value()) {
-		res.json("That email has already been registered");
+		res.status(401);
+		res.json({emailError: "That email has already been registered", passwordError: ""});
 	} else {
 		var newUser = {
 			email: userData.email,
@@ -55,16 +56,18 @@ app.post("/register", function (req, res) {
 
 })
 
-app.post("/login", function (req, res) {
+app.post("/api/login", function (req, res) {
 
 	var query = req.body;
 	var match = db.get("users").find({email: query.email});
 	if (!match.value()) {
-		res.json("Could not find that email.");
+		res.status(404);
+		res.json({emailError: "Could not find email", passwordError: ""});
 	} else if (match.value().pw === query.pw) {
 		res.json(match);
 	} else {
-		res.json("Incorrect Password");
+		res.status(401);
+		res.json({emailError: "", passwordError: "Password does not match"});
 	}
 
 })
