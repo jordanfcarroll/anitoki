@@ -46,7 +46,7 @@
 
 	"use strict";
 
-	// 1. Error checking for Login/Register
+	// 1. Error checking Password characters
 
 
 	// Text notifications : test text on signup 
@@ -26781,6 +26781,11 @@
 	// Collection
 	var currentUser = null;
 
+	var errors = {
+		emailError: "",
+		passwordError: ""
+	};
+
 	userStore.getUser = function () {
 		return currentUser;
 	};
@@ -26793,11 +26798,55 @@
 		}
 	};
 
-	userStore.logIn = function (name, pw) {
-		currentUser = {
-			name: name,
-			pw: pw
+	userStore.register = function (email, pw) {
+		errors = {
+			emailError: "",
+			passwordError: ""
 		};
+		var _this = this;
+		$.ajax({
+			url: "/api/register",
+			method: "POST",
+			data: {
+				email: email,
+				pw: pw
+			},
+			success: function success(result) {
+				currentUser = result;
+				return currentUser;
+			},
+			error: function error(result) {
+				errors.emailError = result.responseJSON.emailError;
+				errors.passwordError = result.responseJSON.passwordError;
+				_this.emit("error");
+			}
+		});
+	};
+
+	userStore.logIn = function (email, pw) {
+		errors = {
+			emailError: "",
+			passwordError: ""
+		};
+		var _this = this;
+		$.ajax({
+			url: "/api/login",
+			method: "POST",
+			data: {
+				email: email,
+				pw: pw
+			},
+			success: function success(result) {
+				currentUser = result;
+				return currentUser;
+			},
+			error: function error(result) {
+				errors.emailError = result.responseJSON.emailError;
+				errors.passwordError = result.responseJSON.passwordError;
+				_this.emit("error");
+			}
+		});
+		return null;
 	};
 
 	userStore.logOut = function () {
@@ -26809,6 +26858,10 @@
 			name: "Rannah or Jordan",
 			pw: "123"
 		};
+	};
+
+	userStore.getErrors = function () {
+		return errors;
 	};
 
 	window.userStore = userStore;
@@ -28829,19 +28882,50 @@
 		getInitialState: function getInitialState() {
 			return {
 				emailText: "",
-				passwordText: ""
+				passwordText: "",
+				emailError: "",
+				passwordError: ""
 			};
+		},
+
+		componentWillMount: function componentWillMount() {
+			var _this = this;
+			userStore.on("error", function () {
+				var errors = userStore.getErrors();
+				_this.setState({
+					emailError: errors.emailError,
+					passwordError: errors.passwordError
+				});
+			});
 		},
 
 		render: function render() {
 			return React.createElement(
 				"div",
 				null,
-				React.createElement("input", { type: "text", value: this.state.emailText, onChange: this.emailChange }),
-				React.createElement("input", { type: "password", value: this.state.passwordText, onChange: this.passwordChange }),
+				React.createElement("input", {
+					onKeyDown: this.keySubmit,
+					type: "text",
+					value: this.state.emailText,
+					onChange: this.emailChange }),
+				React.createElement(
+					"p",
+					null,
+					this.state.emailError
+				),
+				React.createElement("input", {
+					onKeyDown: this.keySubmit,
+					type: "password",
+					value: this.state.passwordText,
+					onChange: this.passwordChange }),
+				React.createElement(
+					"p",
+					null,
+					this.state.passwordError
+				),
 				React.createElement(
 					"button",
-					null,
+					{ onClick: this.handleSubmit },
 					"Submit"
 				)
 			);
@@ -28857,6 +28941,20 @@
 			this.setState({
 				passwordText: event.target.value
 			});
+		},
+
+		handleSubmit: function handleSubmit() {
+			userStore.logIn(this.state.emailText, this.state.passwordText);
+			this.setState({
+				emailText: "",
+				passwordText: ""
+			});
+		},
+
+		keySubmit: function keySubmit(event) {
+			if (event.keyCode === 13) {
+				this.handleSubmit();
+			}
 		}
 
 	});
@@ -28870,6 +28968,7 @@
 	"use strict";
 
 	var React = __webpack_require__(1);
+
 	var userStore = __webpack_require__(235);
 
 	var Register = React.createClass({
@@ -28879,20 +28978,60 @@
 			return {
 				emailText: "",
 				passwordText: "",
-				passwordConfirmText: ""
+				passwordConfirmText: "",
+				emailError: "",
+				passwordError: "",
+				passwordConfirmError: ""
 			};
+		},
+
+		componentWillMount: function componentWillMount() {
+			var _this = this;
+			userStore.on("error", function () {
+				var errors = userStore.getErrors();
+				_this.setState({
+					emailError: errors.emailError,
+					passwordError: errors.passwordError
+				});
+			});
 		},
 
 		render: function render() {
 			return React.createElement(
 				"div",
 				null,
-				React.createElement("input", { type: "text", onChange: this.emailChange, value: this.state.emailText }),
-				React.createElement("input", { type: "password", onChange: this.passwordChange, value: this.state.passwordText }),
-				React.createElement("input", { type: "password", onChange: this.passwordConfirmChange, value: this.state.passwordConfirmText }),
+				React.createElement("input", { type: "text",
+					onChange: this.emailChange,
+					onKeyDown: this.keySubmit,
+					value: this.state.emailText }),
+				React.createElement(
+					"span",
+					null,
+					this.state.emailError
+				),
+				React.createElement("input", {
+					type: "password",
+					onChange: this.passwordChange,
+					onKeyDown: this.keySubmit,
+					value: this.state.passwordText }),
+				React.createElement(
+					"span",
+					null,
+					this.state.passwordError
+				),
+				React.createElement("input", {
+					type: "password",
+					onChange: this.passwordConfirmChange,
+					onKeyDown: this.keySubmit,
+					value: this.state.passwordConfirmText }),
+				React.createElement(
+					"span",
+					null,
+					this.state.passwordConfirmError
+				),
 				React.createElement(
 					"button",
-					null,
+					{ onClick: this.handleSubmit },
 					"Submit"
 				)
 			);
@@ -28914,6 +29053,63 @@
 			this.setState({
 				passwordConfirmText: event.target.value
 			});
+		},
+
+		handleSubmit: function handleSubmit() {
+			this.setState({
+				emailError: "",
+				passwordError: "",
+				passwordConfirmError: ""
+			});
+			if (!this.hasErrors()) {
+				userStore.register(this.state.emailText, this.state.passwordText);
+				this.setState({
+					emailText: "",
+					passwordText: "",
+					passwordConfirmText: ""
+				});
+				userStore.getErrors();
+			}
+		},
+
+		keySubmit: function keySubmit(event) {
+			if (event.keyCode === 13) {
+				this.handleSubmit();
+			}
+		},
+
+		hasErrors: function hasErrors() {
+			var hasErrors = false;
+			// Check email field for errors
+			if (this.state.emailText.indexOf("@") === -1) {
+				this.setState({
+					emailError: "Please enter a valid email"
+				});
+				hasErrors = true;
+			}
+			if (this.state.emailText.indexOf(".") === -1) {
+				this.setState({
+					emailError: "Please enter a valid email"
+				});
+				hasErrors = true;
+			}
+
+			// Check password fields for errors
+			if (this.state.passwordText !== this.state.passwordConfirmText) {
+				this.setState({
+					passwordError: "Passwords do not match"
+				});
+				hasErrors = true;
+			}
+
+			if (this.state.passwordText.length < 8) {
+				this.setState({
+					passwordError: "Password must contain at least 8 characters"
+				});
+				hasErrors = true;
+			}
+
+			return hasErrors;
 		}
 	});
 

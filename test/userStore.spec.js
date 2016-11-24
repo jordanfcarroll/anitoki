@@ -22,15 +22,15 @@ describe("userStore", () => {
 
 
   it("Should load user when logIn returns a user", () => {
-    userStore.logIn("Jordan", "conduit");
+    userStore.fake();
     const user = userStore.getUser();
-    expect(user).to.eql({"name": "Jordan", "pw":"conduit"});
+    expect(user).to.eql({"name": "Rannah or Jordan", "pw":"123"});
   })
 
   it("Should have a null user after a logOut call", () => {
-    userStore.logIn("Jordan", "conduit");
+    userStore.fake();
     const user = userStore.getUser();
-    expect(user).to.eql({"name": "Jordan", "pw":"conduit"});
+    expect(user).to.eql({"name": "Rannah or Jordan", "pw":"123"});
     userStore.logOut();
     expect(userStore.getUser()).to.equal(null);
   })

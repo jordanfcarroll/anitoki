@@ -1,4 +1,4 @@
-// 1. Error checking for Login/Register
+// 1. Error checking Password characters
 
 
 // Text notifications : test text on signup 

@@ -17,7 +17,7 @@ describe("Nav", () => {
 	})
 
 	it("should render three links when a user is logged in", () => {
-		userStore.logIn("Jordan", "conduit");
+		userStore.fake();
 
 		const wrapper = shallow(<Nav/>);
 		expect(wrapper.find("li").length).to.equal(3);
@@ -25,7 +25,7 @@ describe("Nav", () => {
 	})
 
 	it("should render three anchors when a user is logged in", () => {
-		userStore.logIn("Jordan", "conduit");
+		userStore.fake();
 
 		const wrapper = mount(<Nav/>);
 		expect(wrapper.find("a").length).to.equal(3);
