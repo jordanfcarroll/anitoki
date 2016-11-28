@@ -54,6 +54,4 @@ describe("Login", () => {
      	expect(input.prop("value")).to.equal("conduit");
     });
 
-    
-
 });

@@ -47,7 +47,18 @@
 	"use strict";
 
 	// 1. Error checking Password characters
+	// 2. Write tests for password field clearing
+	// 3. API 
+	// 4. Handle Auth token refreshing timer
+	// 5. Use Anilist for everything, poll tvdb when you need descriptions?
 
+	// send this : 
+
+	// {
+	//   "apikey": "1205F191EB0365DE",
+	//   "username": "nehima99",
+	//   "userkey": "308E1AE189D54C27"
+	// }
 
 	// Text notifications : test text on signup 
 
@@ -69,7 +80,7 @@
 	var Login = __webpack_require__(240);
 	var Register = __webpack_require__(241);
 	var Home = __webpack_require__(242);
-	var Settings = __webpack_require__(243);
+	var Settings = __webpack_require__(247);
 
 	var jsx = React.createElement(
 		Router,
@@ -26864,6 +26875,18 @@
 		return errors;
 	};
 
+	userStore.sendText = function () {
+		$.ajax({
+			url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/Messages",
+			method: "POST",
+			data: {
+				To: "+18036400682",
+				From: "+18033355829",
+				Body: "This is a test message from your computer."
+			}
+		});
+	};
+
 	window.userStore = userStore;
 
 	module.exports = userStore;
@@ -28894,7 +28917,8 @@
 				var errors = userStore.getErrors();
 				_this.setState({
 					emailError: errors.emailError,
-					passwordError: errors.passwordError
+					passwordError: errors.passwordError,
+					passwordText: ""
 				});
 			});
 		},
@@ -28945,10 +28969,6 @@
 
 		handleSubmit: function handleSubmit() {
 			userStore.logIn(this.state.emailText, this.state.passwordText);
-			this.setState({
-				emailText: "",
-				passwordText: ""
-			});
 		},
 
 		keySubmit: function keySubmit(event) {
@@ -28991,7 +29011,9 @@
 				var errors = userStore.getErrors();
 				_this.setState({
 					emailError: errors.emailError,
-					passwordError: errors.passwordError
+					passwordError: errors.passwordError,
+					passwordText: "",
+					passwordConfirmText: ""
 				});
 			});
 		},
@@ -29063,12 +29085,7 @@
 			});
 			if (!this.hasErrors()) {
 				userStore.register(this.state.emailText, this.state.passwordText);
-				this.setState({
-					emailText: "",
-					passwordText: "",
-					passwordConfirmText: ""
-				});
-				userStore.getErrors();
+				// userStore.getErrors();
 			}
 		},
 
@@ -29124,6 +29141,11 @@
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(178);
 	var userStore = __webpack_require__(235);
+	var showStore = __webpack_require__(243);
+
+	var Searchpane = __webpack_require__(244);
+	var Showpane = __webpack_require__(245);
+	var WeeklyView = __webpack_require__(246);
 
 	var Home = React.createClass({
 		displayName: "Home",
@@ -29135,7 +29157,13 @@
 		},
 
 		render: function render() {
-			return React.createElement("div", null);
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(WeeklyView, null),
+				React.createElement(Showpane, null),
+				React.createElement(Searchpane, null)
+			);
 		}
 	});
 
@@ -29143,6 +29171,111 @@
 
 /***/ },
 /* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var EventEmitter = __webpack_require__(236);
+	var $ = __webpack_require__(237);
+
+	var showStore = Object.create(EventEmitter.prototype);
+	EventEmitter.call(showStore);
+
+	// Collection
+	var shows = [];
+
+	showStore.getShows = function () {
+		return shows;
+	};
+
+	showStore.fetchShows = function () {
+		$.ajax({
+			url: "/api/getshows",
+			method: "POST",
+			success: function success(results) {
+				shows = results;
+			}
+		});
+		return null;
+	};
+
+	window.showStore = showStore;
+
+	module.exports = showStore;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var userStore = __webpack_require__(235);
+
+	var Searchpane = React.createClass({
+		displayName: "Searchpane",
+
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				null,
+				React.createElement("input", {
+					type: "text",
+					onKey: this.handleSearch }),
+				React.createElement("div", null)
+			);
+		},
+
+		handleSearch: function handleSearch() {
+			// Search function
+		}
+	});
+
+	module.exports = Searchpane;
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var userStore = __webpack_require__(235);
+
+	var Showpane = React.createClass({
+		displayName: "Showpane",
+
+
+		render: function render() {
+			return React.createElement("div", null);
+		}
+	});
+
+	module.exports = Showpane;
+
+/***/ },
+/* 246 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var userStore = __webpack_require__(235);
+
+	var WeeklyView = React.createClass({
+		displayName: "WeeklyView",
+
+
+		render: function render() {
+			return React.createElement("div", null);
+		}
+	});
+
+	module.exports = WeeklyView;
+
+/***/ },
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

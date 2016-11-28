@@ -21,7 +21,9 @@ var Register = React.createClass({
 			var errors = userStore.getErrors();
 			_this.setState({
 				emailError: errors.emailError,
-				passwordError: errors.passwordError
+				passwordError: errors.passwordError,
+				passwordText: "",
+				passwordConfirmText: ""
 			})
 		})
 	},
@@ -77,13 +79,8 @@ var Register = React.createClass({
 		})
 		if(!this.hasErrors()) {
 			userStore.register(this.state.emailText, this.state.passwordText);
-			this.setState({
-				emailText: "",
-				passwordText: "",
-				passwordConfirmText: ""
-			})
-			userStore.getErrors();
-		}
+			// userStore.getErrors();
+		} 
 	},
 
 	keySubmit: function (event) {

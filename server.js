@@ -1,3 +1,4 @@
+var request = require("request");
 var express = require("express");
 var lowdb = require("lowdb");
 var fileAsync = require("lowdb/lib/file-async");
@@ -10,6 +11,7 @@ var db = lowdb("db.json", {storage: fileAsync});
 var port = 8000;
 
 app.use(bodyParser());
+// app.use('jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 
 // {
@@ -67,10 +69,55 @@ app.post("/api/login", function (req, res) {
 		res.json(match);
 	} else {
 		res.status(401);
-		res.json({emailError: "", passwordError: "Password does not match"});
+		res.json({emailError: "", passwordError: "Incorrect password"});
 	}
-
 })
 
+app.post("/api/getshows", function (req, res) {
+	// request.post('https://anilist.co/api/auth/access_token?grant_type=client_credentials&client_id=nehima99-gjdk3&client_secret=lRRcrrDkMtZttGF8GNn', function (error, response, body) {
+	// 	res.json(body);
+	// })
+
+	// request.post({
+	// 	url: "https://api.thetvdb.com/login", 
+	// 	json: true,
+	// 	body: {"apikey": "1205F191EB0365DE"}
+	// 	}, 
+	// 	function (error, response, body) {
+	// 		var token = body.token;
+	// 		request({
+	// 			url: "https://api.thetvdb.com/search/series?name=cowboy%20bebop",
+	// 			headers: {Authorization: "Bearer " + token},
+	// 			},
+	// 			function (error, response, body) {
+	// 				res.json(body)
+	// 			}
+	// 		)
+	// 	}
+	// )
+
+	request.post("https://anilist.co/api/auth/access_token?grant_type=client_credentials&client_id=nehima99-gjdk3&client_secret=lRRcrrDkMtZttGF8GNn", 
+		function (error, response, body) {
+			// var token = body["access_token"];
+			var token = JSON.parse(body)["access_token"];
+			request("https://anilist.co/api/browse/anime?status=currently%20airing&airing_data=true&type=Tv&page=1&access_token=" + token,
+				function (error, response, body) {
+					var results = [];
+					var shows = JSON.parse(body);
+					results = results.concat(shows);
+					request("https://anilist.co/api/browse/anime?status=currently%20airing&airing_data=true&type=Tv&page=2&access_token=" + token,
+						function (error, response, body) {
+							shows = JSON.parse(body);
+							results = results.concat(shows);
+							res.json(results);
+						}
+					)
+				}
+			)
+		}
+	)
+
+	
+})
 
 app.listen(port);

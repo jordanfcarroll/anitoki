@@ -9,14 +9,15 @@ var userStore = require("../src/js/stores/userStore.js");
 
 
 describe("Nav", () => {
-	it("should render two links when no user is logged in", () => {
+	it("Renders two links when no user is logged in", () => {
 		userStore.logOut();
 
 		const wrapper = shallow(<Nav/>);
 		expect(wrapper.find("li").length).to.equal(2);
 	})
 
-	it("should render three links when a user is logged in", () => {
+	it("Renders three links when a user is logged in", () => {
+		userStore.logOut();
 		userStore.fake();
 
 		const wrapper = shallow(<Nav/>);
@@ -24,7 +25,7 @@ describe("Nav", () => {
 		userStore.logOut();
 	})
 
-	it("should render three anchors when a user is logged in", () => {
+	it("Renders three anchors when a user is logged in", () => {
 		userStore.fake();
 
 		const wrapper = mount(<Nav/>);
