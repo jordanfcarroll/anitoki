@@ -76,11 +76,12 @@
 	var hashHistory = ReactRouter.hashHistory;
 
 	var App = __webpack_require__(233);
+	var Index = __webpack_require__(249);
 	var Landing = __webpack_require__(239);
 	var Login = __webpack_require__(240);
 	var Register = __webpack_require__(241);
 	var Home = __webpack_require__(242);
-	var Settings = __webpack_require__(247);
+	var Settings = __webpack_require__(248);
 
 	var jsx = React.createElement(
 		Router,
@@ -88,13 +89,14 @@
 		React.createElement(
 			Route,
 			{ path: "/", component: App },
+			React.createElement(IndexRoute, { component: Index }),
 			React.createElement(
 				Route,
 				{ path: "landing", component: Landing },
 				React.createElement(IndexRoute, { component: Register }),
 				React.createElement(Route, { path: "login", component: Login })
 			),
-			React.createElement(IndexRoute, { component: Home }),
+			React.createElement(Route, { path: "/home", component: Home }),
 			React.createElement(Route, { path: "/settings", component: Settings })
 		)
 	);
@@ -26720,7 +26722,7 @@
 						null,
 						React.createElement(
 							Link,
-							{ to: "/" },
+							{ to: "/home" },
 							"Home"
 						)
 					),
@@ -26752,7 +26754,7 @@
 						null,
 						React.createElement(
 							Link,
-							{ to: "/" },
+							{ to: "/home" },
 							"Home"
 						)
 					),
@@ -28879,6 +28881,12 @@
 	var Landing = React.createClass({
 		displayName: "Landing",
 
+		componentWillMount: function componentWillMount() {
+			if (userStore.isAuth()) {
+				ReactRouter.hashHistory.push("/home");
+			}
+		},
+
 		render: function render() {
 			return React.createElement(
 				"div",
@@ -29144,16 +29152,28 @@
 	var showStore = __webpack_require__(243);
 
 	var Searchpane = __webpack_require__(244);
-	var Showpane = __webpack_require__(245);
-	var WeeklyView = __webpack_require__(246);
+	var Showpane = __webpack_require__(246);
+	var WeeklyView = __webpack_require__(247);
 
 	var Home = React.createClass({
 		displayName: "Home",
 
+		getInitialState: function getInitialState() {
+			return {
+				// shows: showStore.pollForUpdate()	
+			};
+		},
+
 		componentWillMount: function componentWillMount() {
+			var _this = this;
 			if (!userStore.isAuth()) {
 				ReactRouter.hashHistory.push("/landing");
 			}
+			// showStore.on("update", function() {
+			// 	_this.setState({
+			// 		shows: showStore.getShows()
+			// 	})
+			// })
 		},
 
 		render: function render() {
@@ -29162,7 +29182,7 @@
 				null,
 				React.createElement(WeeklyView, null),
 				React.createElement(Showpane, null),
-				React.createElement(Searchpane, null)
+				React.createElement(Searchpane, { shows: [] })
 			);
 		}
 	});
@@ -29212,19 +29232,51 @@
 	var React = __webpack_require__(1);
 	var userStore = __webpack_require__(235);
 
+	var SearchResult = __webpack_require__(245);
+
 	var Searchpane = React.createClass({
 		displayName: "Searchpane",
 
+		getInitialState: function getInitialState() {
+			return {
+				searchText: ""
+			};
+		},
 
 		render: function render() {
+			var _this = this;
+			var results;
+
+			var filtered = this.props.shows.filter(function (show) {
+				if (show.english_title.indexOf(_this.state.searchText) >= 0) {
+					return true;
+				} else {
+					return false;
+				}
+			});
+			results = filtered.map(function (show) {
+				return React.createElement(SearchResult, { key: show.id, englishTitle: show.title_english });
+			});
 			return React.createElement(
 				"div",
 				null,
 				React.createElement("input", {
 					type: "text",
-					onKey: this.handleSearch }),
-				React.createElement("div", null)
+					value: this.state.searchText,
+					onChange: this.handleChange,
+					onKeyDown: this.handleSearch }),
+				React.createElement(
+					"ul",
+					null,
+					results
+				)
 			);
+		},
+
+		handleChange: function handleChange(event) {
+			this.setState({
+				searchText: event.target.value
+			});
 		},
 
 		handleSearch: function handleSearch() {
@@ -29236,6 +29288,25 @@
 
 /***/ },
 /* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var SearchResult = React.createClass({
+		displayName: "SearchResult",
+
+
+		render: function render() {
+			return React.createElement("div", null);
+		}
+	});
+
+	module.exports = SearchResult;
+
+/***/ },
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29255,7 +29326,7 @@
 	module.exports = Showpane;
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29275,7 +29346,7 @@
 	module.exports = WeeklyView;
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29300,6 +29371,37 @@
 	});
 
 	module.exports = Settings;
+
+/***/ },
+/* 249 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(178);
+
+	var Index = React.createClass({
+		displayName: "Index",
+
+		componentWillMount: function componentWillMount() {
+			if (userStore.isAuth()) {
+				ReactRouter.hashHistory.push("/home");
+			} else {
+				ReactRouter.hashHistory.push("/landing");
+			}
+		},
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				null,
+				this.props.children
+			);
+		}
+	});
+
+	module.exports = Index;
 
 /***/ }
 /******/ ]);

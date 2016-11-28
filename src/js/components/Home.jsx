@@ -8,10 +8,23 @@ var Showpane = require("./Showpane.jsx");
 var WeeklyView = require("./WeeklyView.jsx");
 
 var Home = React.createClass({
+	getInitialState: function () {
+		return {
+			// shows: showStore.pollForUpdate()	
+		}
+	},
+
+
 	componentWillMount: function () {
+		var _this = this;
 		if (!userStore.isAuth()) {
 			ReactRouter.hashHistory.push("/landing");
 		}
+		// showStore.on("update", function() {
+		// 	_this.setState({
+		// 		shows: showStore.getShows()
+		// 	})
+		// })
 	},
 
 	render: function () {
@@ -19,7 +32,7 @@ var Home = React.createClass({
 			<div>
 				<WeeklyView />
 				<Showpane />
-				<Searchpane />
+				<Searchpane shows={[]}/>
 			</div>
 		);
 	}
