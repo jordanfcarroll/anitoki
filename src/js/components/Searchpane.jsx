@@ -14,17 +14,18 @@ var Searchpane = React.createClass({
 		var _this = this;
 		var results;
 
-
-		var filtered = this.props.shows.filter(function(show) {
-			if (show.title_romaji.indexOf(_this.state.searchText) >= 0) {
-				return true;
-			} else {
-				return false;
-			}
-		})
-		results = filtered.map(function (show) {
-			return <SearchResult key={show.id} show={show} />
-		})
+		if (this.props.shows) {
+			var filtered = this.props.shows.filter(function(show) {
+				if (show.title_romaji.indexOf(_this.state.searchText) >= 0 || show.title_english.indexOf(_this.state.searchText) >= 0) {
+					return true;
+				} else {
+					return false;
+				}
+			})
+			results = filtered.map(function (show) {
+				return <SearchResult key={show.id} show={show} />
+			})
+		}
 
 
 		return (
