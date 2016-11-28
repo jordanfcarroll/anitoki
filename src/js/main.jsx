@@ -28,6 +28,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
 var App = require("./components/App.jsx");
+var Index = require("./components/Index.jsx");
 var Landing = require("./components/Landing.jsx");
 var Login = require("./components/Login.jsx");
 var Register = require("./components/Register.jsx");
@@ -38,11 +39,12 @@ var Settings = require("./components/Settings.jsx");
 var jsx = (
 	<Router history={hashHistory}>
 		<Route path="/" component={App}>
+			<IndexRoute component={Index} />
 			<Route path="landing" component={Landing}>
 				<IndexRoute component={Register} />
 				<Route path="login" component={Login} />
 			</Route>
-			<IndexRoute component={Home} />
+			<Route path="/home" component={Home} />
 			<Route path="/settings" component={Settings} />
 		</Route>
 	</Router>

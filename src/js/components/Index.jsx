@@ -1,11 +1,14 @@
 var React = require("react");
+var ReactRouter = require("react-router");
 
 
 
-var Landing = React.createClass({
+var Index = React.createClass({
 	componentWillMount: function () {
 		if (userStore.isAuth()) {
 			ReactRouter.hashHistory.push("/home");
+		} else {
+			ReactRouter.hashHistory.push("/landing");
 		}
 	},
 	
@@ -18,4 +21,4 @@ var Landing = React.createClass({
 	}
 });
 
-module.exports = Landing;
+module.exports = Index;
