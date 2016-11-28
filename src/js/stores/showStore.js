@@ -18,10 +18,10 @@ showStore.getShows = function () {
 },
 
 showStore.pollForUpdate = function () {
-	console.log("Polling for update...")
+	// console.log("Polling for update...")
 	let currentTime = new Date().getTime();
 	if (currentTime - lastUpdate > UPDATE_TIME) {
-		console.log("Update required. Updating...")
+		// console.log("Update required. Updating...")
 		lastUpdate = currentTime;
 		return showStore.fetchShows();
 	} else {

@@ -16,14 +16,15 @@ var Searchpane = React.createClass({
 
 		if (this.props.shows) {
 			var filtered = this.props.shows.filter(function(show) {
-				if (show.title_romaji.indexOf(_this.state.searchText) >= 0 || show.title_english.indexOf(_this.state.searchText) >= 0) {
+				if (show.title_romaji.toUpperCase().indexOf(_this.state.searchText.toUpperCase()) >= 0 || 
+					show.title_english.toUpperCase().indexOf(_this.state.searchText.toUpperCase()) >= 0) {
 					return true;
 				} else {
 					return false;
 				}
 			})
 			results = filtered.map(function (show) {
-				return <SearchResult key={show.id} show={show} />
+				return <SearchResult key={show.id} show={show} onChoose={_this.addTracking}/>
 			})
 		}
 
@@ -48,8 +49,8 @@ var Searchpane = React.createClass({
 		})
 	},
 
-	handleSearch: function () {
-		// Search function
+	addTracking: function (id) {
+		userStore.track(id);
 	}
 });
 

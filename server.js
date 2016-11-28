@@ -11,7 +11,6 @@ var db = lowdb("db.json", {storage: fileAsync});
 var port = 8000;
 
 app.use(bodyParser());
-// app.use('jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 
 // {
@@ -116,8 +115,30 @@ app.post("/api/getshows", function (req, res) {
 			)
 		}
 	)
+})
 
+app.put("/api/track", function(req, res) {
+	let body = req.body;
 	
+	// let currentTracking = db.get("users")
+	// 						.find({email: body.email})
+	// 						.get("tracking")
+	// 						.value();
+
+	var user = db.get("users")
+				.find({email: body.email})
+				.value();
+
+	db.get("users")
+		.find({email: body.email})
+		.get("tracking")
+		.push(body.id)
+		.value();
+
+	res.json(user);
+		
+
+
 })
 
 app.listen(port);

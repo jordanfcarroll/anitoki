@@ -1,6 +1,8 @@
 var EventEmitter = require("eventemitter3");
 var $ = require("jquery");
 
+var ReactRouter = require("react-router");
+
 var userStore = Object.create(EventEmitter.prototype);
 EventEmitter.call(userStore);
 
@@ -41,6 +43,9 @@ userStore.register = function (email, pw) {
 		},
 		success: function (result) {
 			currentUser = result;
+
+			ReactRouter.hashHistory.push("/home");
+
 			return currentUser;
 		},
 		error: function (result) {
@@ -66,6 +71,7 @@ userStore.logIn = function (email, pw) {
 		},
 		success: function (result) {
 			currentUser = result;
+			ReactRouter.hashHistory.push("/home");
 			return currentUser;
 		},
 		error: function (result) {
@@ -84,7 +90,9 @@ userStore.logOut = function () {
 userStore.fake = function () {
 	currentUser = {
 		name: "Rannah or Jordan",
-		pw: "123"
+		pw: "123",
+		tracking: [],
+		settings: []
 	}
 }
 
@@ -92,17 +100,32 @@ userStore.getErrors = function () {
 	return errors;
 }
 
-userStore.sendText = function () {
-	$.ajax({
-		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/Messages",
-		method: "POST",
-		data: {
-			To: "+18036400682",
-			From: "+18033355829",
-			Body: "This is a test message from your computer."
-		}
-	})
+userStore.track = function (id) {
+	if (currentUser.tracking.indexOf(id) === -1) {
+		$.ajax({
+			url: "/api/track",
+			data: {
+				email: currentUser.email,
+				id: id
+			},
+			method: "PUT",
+			success: function (result) {
+				currentUser = result;
+			}
+		})
+	}
 }
+// userStore.sendText = function () {
+// 	$.ajax({
+// 		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/Messages",
+// 		method: "POST",
+// 		data: {
+// 			To: "+18036400682",
+// 			From: "+18033355829",
+// 			Body: "This is a test message from your computer."
+// 		}
+// 	})
+// }
 
 window.userStore = userStore;
 

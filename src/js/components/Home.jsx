@@ -14,7 +14,6 @@ var Home = React.createClass({
 		}
 	},
 
-
 	componentWillMount: function () {
 		var _this = this;
 		if (!userStore.isAuth()) {
@@ -41,6 +40,15 @@ var Home = React.createClass({
 				</div>
 			</div>
 		);
+	},
+
+	componentWillUnmount: function () {
+		var _this = this;
+		showStore.removeListener("update", function() {
+			_this.setState({
+				shows: showStore.getShows()
+			})
+		})
 	}
 });
 
