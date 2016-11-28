@@ -17,7 +17,8 @@ var Login = React.createClass({
 			var errors = userStore.getErrors();
 			_this.setState({
 				emailError: errors.emailError,
-				passwordError: errors.passwordError
+				passwordError: errors.passwordError,
+				passwordText: ""
 			})
 		})
 	},
@@ -57,10 +58,6 @@ var Login = React.createClass({
 
 	handleSubmit: function () {
 		userStore.logIn(this.state.emailText, this.state.passwordText);
-		this.setState({
-			emailText: "",
-			passwordText: ""
-		})
 	},
 
 	keySubmit: function (event) {

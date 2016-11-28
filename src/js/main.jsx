@@ -1,5 +1,16 @@
 // 1. Error checking Password characters
+// 2. Write tests for password field clearing
+// 3. API 
+// 4. Handle Auth token refreshing timer
+// 5. Use Anilist for everything, poll tvdb when you need descriptions?
 
+// send this : 
+
+// {
+//   "apikey": "1205F191EB0365DE",
+//   "username": "nehima99",
+//   "userkey": "308E1AE189D54C27"
+// }
 
 // Text notifications : test text on signup 
 

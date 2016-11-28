@@ -1,6 +1,11 @@
 var React = require("react");
 var ReactRouter = require("react-router");
 var userStore = require("../stores/userStore");	
+var showStore = require("../stores/showStore");	
+
+var Searchpane = require("./Searchpane.jsx");
+var Showpane = require("./Showpane.jsx");
+var WeeklyView = require("./WeeklyView.jsx");
 
 var Home = React.createClass({
 	componentWillMount: function () {
@@ -11,7 +16,11 @@ var Home = React.createClass({
 
 	render: function () {
 		return (
-			<div></div>
+			<div>
+				<WeeklyView />
+				<Showpane />
+				<Searchpane />
+			</div>
 		);
 	}
 });

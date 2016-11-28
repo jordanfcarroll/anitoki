@@ -21,7 +21,7 @@ describe("Register", () => {
 
 		const wrapper = shallow(<Register/>);
 		expect(wrapper.containsAllMatchingElements([
-			// <button>Submit</button>
+			<button>Submit</button>
 		])).to.equal(true);	
 	})
 
@@ -161,28 +161,4 @@ describe("Register", () => {
       button.simulate("click");
       expect(wrapper.state("passwordError")).to.equal("");
     });
-
-    // it("should empty fields after a successful submit", () => {
-    //   const wrapper = shallow(<Register/>);
-    //   const button = wrapper.find("button");
-    //   const emailInput = wrapper.find("input").at(0);
-    //   const passwordInput = wrapper.find("input").at(1);
-    //   const passwordConfirmInput = wrapper.find("input").at(2);
-
-    //   emailInput.simulate("change", {target: {value: "bob@bob.com"}});
-    //   passwordInput.simulate("change", {target: {value: "12345678"}});
-    //   passwordConfirmInput.simulate("change", {target: {value: "12345678"}});
-
-    //   button.simulate("click");
-
-    //   expect(wrapper.state("emailError")).to.equal("");
-    //   expect(wrapper.state("passwordError")).to.equal("");
-
-    //   expect(wrapper.state("emailText")).to.equal("");
-    //   expect(wrapper.state("passwordText")).to.equal("");
-    //   expect(wrapper.state("passwordConfirmText")).to.equal("");
-    //   expect(emailInput.prop("value")).to.equal("");
-    //   expect(passwordInput.prop("value")).to.equal("");
-    //   expect(passwordConfirmInput.prop("value")).to.equal("");
-    // })
 });
