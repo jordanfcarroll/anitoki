@@ -30,14 +30,17 @@ showStore.pollForUpdate = function () {
 }
 
 showStore.fetchShows = function () {
+	var _this = this;
 	$.ajax({
 		url: "/api/getshows",
 		method: "POST",
 		success: function (results) {
 			shows = results;
+			_this.emit("update");
+			console.log(shows);
 		}
 	})
-	return shows;
+	return null;
 }
 
 

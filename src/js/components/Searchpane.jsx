@@ -14,16 +14,19 @@ var Searchpane = React.createClass({
 		var _this = this;
 		var results;
 
+
 		var filtered = this.props.shows.filter(function(show) {
-			if (show.english_title.indexOf(_this.state.searchText) >= 0) {
+			if (show.title_romaji.indexOf(_this.state.searchText) >= 0) {
 				return true;
 			} else {
 				return false;
 			}
 		})
 		results = filtered.map(function (show) {
-			return <SearchResult key={show.id} englishTitle={show.title_english} />
+			return <SearchResult key={show.id} show={show} />
 		})
+
+
 		return (
 			<div>
 				<input 

@@ -20,19 +20,25 @@ var Home = React.createClass({
 		if (!userStore.isAuth()) {
 			ReactRouter.hashHistory.push("/landing");
 		}
-		// showStore.on("update", function() {
-		// 	_this.setState({
-		// 		shows: showStore.getShows()
-		// 	})
-		// })
+		showStore.on("update", function() {
+			_this.setState({
+				shows: showStore.getShows()
+			})
+		})
 	},
 
 	render: function () {
+		var searchpane = <div>Waiting for data...</div>;
+		if (this.state.shows) {
+			searchpane = <Searchpane shows={this.state.shows} />;
+		}
 		return (
 			<div>
 				<WeeklyView />
 				<Showpane />
-				<Searchpane shows={[]}/>
+				<div>
+					{searchpane}
+				</div>
 			</div>
 		);
 	}

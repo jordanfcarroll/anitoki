@@ -76,12 +76,12 @@
 	var hashHistory = ReactRouter.hashHistory;
 
 	var App = __webpack_require__(233);
-	var Index = __webpack_require__(239);
-	var Landing = __webpack_require__(240);
-	var Login = __webpack_require__(241);
-	var Register = __webpack_require__(242);
-	var Home = __webpack_require__(243);
-	var Settings = __webpack_require__(249);
+	var Index = __webpack_require__(250);
+	var Landing = __webpack_require__(239);
+	var Login = __webpack_require__(240);
+	var Register = __webpack_require__(241);
+	var Home = __webpack_require__(242);
+	var Settings = __webpack_require__(247);
 
 	var jsx = React.createElement(
 		Router,
@@ -28877,37 +28877,6 @@
 	"use strict";
 
 	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(178);
-
-	var Index = React.createClass({
-		displayName: "Index",
-
-		componentWillMount: function componentWillMount() {
-			if (userStore.isAuth()) {
-				ReactRouter.hashHistory.push("/home");
-			} else {
-				ReactRouter.hashHistory.push("/landing");
-			}
-		},
-
-		render: function render() {
-			return React.createElement(
-				"div",
-				null,
-				this.props.children
-			);
-		}
-	});
-
-	module.exports = Index;
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
 
 	var Landing = React.createClass({
 		displayName: "Landing",
@@ -28930,7 +28899,7 @@
 	module.exports = Landing;
 
 /***/ },
-/* 241 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29021,7 +28990,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 242 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29172,7 +29141,7 @@
 	module.exports = Register;
 
 /***/ },
-/* 243 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29180,11 +29149,11 @@
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(178);
 	var userStore = __webpack_require__(235);
-	var showStore = __webpack_require__(244);
+	var showStore = __webpack_require__(243);
 
-	var Searchpane = __webpack_require__(245);
-	var Showpane = __webpack_require__(247);
-	var WeeklyView = __webpack_require__(248);
+	var Searchpane = __webpack_require__(244);
+	var Showpane = __webpack_require__(245);
+	var WeeklyView = __webpack_require__(246);
 
 	var Home = React.createClass({
 		displayName: "Home",
@@ -29200,20 +29169,32 @@
 			if (!userStore.isAuth()) {
 				ReactRouter.hashHistory.push("/landing");
 			}
-			// showStore.on("update", function() {
-			// 	_this.setState({
-			// 		shows: showStore.getShows()
-			// 	})
-			// })
+			showStore.on("update", function () {
+				_this.setState({
+					shows: showStore.getShows()
+				});
+			});
 		},
 
 		render: function render() {
+			var searchpane = React.createElement(
+				"div",
+				null,
+				"Waiting for data..."
+			);
+			if (this.state.shows) {
+				searchpane = React.createElement(Searchpane, { shows: this.state.shows });
+			}
 			return React.createElement(
 				"div",
 				null,
 				React.createElement(WeeklyView, null),
 				React.createElement(Showpane, null),
-				React.createElement(Searchpane, { shows: [] })
+				React.createElement(
+					"div",
+					null,
+					searchpane
+				)
 			);
 		}
 	});
@@ -29221,7 +29202,7 @@
 	module.exports = Home;
 
 /***/ },
-/* 244 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29254,14 +29235,17 @@
 	};
 
 	showStore.fetchShows = function () {
+		var _this = this;
 		$.ajax({
 			url: "/api/getshows",
 			method: "POST",
 			success: function success(results) {
 				shows = results;
+				_this.emit("update");
+				console.log(shows);
 			}
 		});
-		return shows;
+		return null;
 	};
 
 	window.showStore = showStore;
@@ -29269,7 +29253,7 @@
 	module.exports = showStore;
 
 /***/ },
-/* 245 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29277,7 +29261,7 @@
 	var React = __webpack_require__(1);
 	var userStore = __webpack_require__(235);
 
-	var SearchResult = __webpack_require__(246);
+	var SearchResult = __webpack_require__(249);
 
 	var Searchpane = React.createClass({
 		displayName: "Searchpane",
@@ -29293,15 +29277,16 @@
 			var results;
 
 			var filtered = this.props.shows.filter(function (show) {
-				if (show.english_title.indexOf(_this.state.searchText) >= 0) {
+				if (show.title_romaji.indexOf(_this.state.searchText) >= 0) {
 					return true;
 				} else {
 					return false;
 				}
 			});
 			results = filtered.map(function (show) {
-				return React.createElement(SearchResult, { key: show.id, englishTitle: show.title_english });
+				return React.createElement(SearchResult, { key: show.id, show: show });
 			});
+
 			return React.createElement(
 				"div",
 				null,
@@ -29332,26 +29317,7 @@
 	module.exports = Searchpane;
 
 /***/ },
-/* 246 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-
-	var SearchResult = React.createClass({
-		displayName: "SearchResult",
-
-
-		render: function render() {
-			return React.createElement("div", null);
-		}
-	});
-
-	module.exports = SearchResult;
-
-/***/ },
-/* 247 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29371,7 +29337,7 @@
 	module.exports = Showpane;
 
 /***/ },
-/* 248 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29391,7 +29357,7 @@
 	module.exports = WeeklyView;
 
 /***/ },
-/* 249 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29416,6 +29382,70 @@
 	});
 
 	module.exports = Settings;
+
+/***/ },
+/* 248 */,
+/* 249 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var SearchResult = React.createClass({
+		displayName: "SearchResult",
+
+
+		render: function render() {
+			return React.createElement(
+				"li",
+				null,
+				React.createElement(
+					"p",
+					null,
+					this.props.show.title_romaji
+				),
+				React.createElement(
+					"button",
+					null,
+					"Here's some text for Rannah to think about later"
+				)
+			);
+		}
+	});
+
+	module.exports = SearchResult;
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(178);
+
+	var Index = React.createClass({
+		displayName: "Index",
+
+		componentWillMount: function componentWillMount() {
+			if (userStore.isAuth()) {
+				ReactRouter.hashHistory.push("/home");
+			} else {
+				ReactRouter.hashHistory.push("/landing");
+			}
+		},
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				null,
+				this.props.children
+			);
+		}
+	});
+
+	module.exports = Index;
 
 /***/ }
 /******/ ]);
