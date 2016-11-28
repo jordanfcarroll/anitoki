@@ -10,7 +10,7 @@ var WeeklyView = require("./WeeklyView.jsx");
 var Home = React.createClass({
 	getInitialState: function () {
 		return {
-			// shows: showStore.pollForUpdate()	
+			shows: showStore.pollForUpdate()	
 		}
 	},
 

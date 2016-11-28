@@ -76,12 +76,12 @@
 	var hashHistory = ReactRouter.hashHistory;
 
 	var App = __webpack_require__(233);
-	var Index = __webpack_require__(249);
-	var Landing = __webpack_require__(239);
-	var Login = __webpack_require__(240);
-	var Register = __webpack_require__(241);
-	var Home = __webpack_require__(242);
-	var Settings = __webpack_require__(248);
+	var Index = __webpack_require__(239);
+	var Landing = __webpack_require__(240);
+	var Login = __webpack_require__(241);
+	var Register = __webpack_require__(242);
+	var Home = __webpack_require__(243);
+	var Settings = __webpack_require__(249);
 
 	var jsx = React.createElement(
 		Router,
@@ -28877,6 +28877,37 @@
 	"use strict";
 
 	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(178);
+
+	var Index = React.createClass({
+		displayName: "Index",
+
+		componentWillMount: function componentWillMount() {
+			if (userStore.isAuth()) {
+				ReactRouter.hashHistory.push("/home");
+			} else {
+				ReactRouter.hashHistory.push("/landing");
+			}
+		},
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				null,
+				this.props.children
+			);
+		}
+	});
+
+	module.exports = Index;
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
 
 	var Landing = React.createClass({
 		displayName: "Landing",
@@ -28899,7 +28930,7 @@
 	module.exports = Landing;
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28990,7 +29021,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29141,7 +29172,7 @@
 	module.exports = Register;
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29149,18 +29180,18 @@
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(178);
 	var userStore = __webpack_require__(235);
-	var showStore = __webpack_require__(243);
+	var showStore = __webpack_require__(244);
 
-	var Searchpane = __webpack_require__(244);
-	var Showpane = __webpack_require__(246);
-	var WeeklyView = __webpack_require__(247);
+	var Searchpane = __webpack_require__(245);
+	var Showpane = __webpack_require__(247);
+	var WeeklyView = __webpack_require__(248);
 
 	var Home = React.createClass({
 		displayName: "Home",
 
 		getInitialState: function getInitialState() {
 			return {
-				// shows: showStore.pollForUpdate()	
+				shows: showStore.pollForUpdate()
 			};
 		},
 
@@ -29190,7 +29221,7 @@
 	module.exports = Home;
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29201,11 +29232,25 @@
 	var showStore = Object.create(EventEmitter.prototype);
 	EventEmitter.call(showStore);
 
+	// Update time set to every ten minutes
+	var UPDATE_TIME = 600000;
+	var lastUpdate = 0;
+
 	// Collection
 	var shows = [];
 
 	showStore.getShows = function () {
 		return shows;
+	}, showStore.pollForUpdate = function () {
+		console.log("Polling for update...");
+		var currentTime = new Date().getTime();
+		if (currentTime - lastUpdate > UPDATE_TIME) {
+			console.log("Update required. Updating...");
+			lastUpdate = currentTime;
+			return showStore.fetchShows();
+		} else {
+			return shows;
+		}
 	};
 
 	showStore.fetchShows = function () {
@@ -29216,7 +29261,7 @@
 				shows = results;
 			}
 		});
-		return null;
+		return shows;
 	};
 
 	window.showStore = showStore;
@@ -29224,7 +29269,7 @@
 	module.exports = showStore;
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29232,7 +29277,7 @@
 	var React = __webpack_require__(1);
 	var userStore = __webpack_require__(235);
 
-	var SearchResult = __webpack_require__(245);
+	var SearchResult = __webpack_require__(246);
 
 	var Searchpane = React.createClass({
 		displayName: "Searchpane",
@@ -29287,7 +29332,7 @@
 	module.exports = Searchpane;
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29306,7 +29351,7 @@
 	module.exports = SearchResult;
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29326,7 +29371,7 @@
 	module.exports = Showpane;
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29346,7 +29391,7 @@
 	module.exports = WeeklyView;
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29371,37 +29416,6 @@
 	});
 
 	module.exports = Settings;
-
-/***/ },
-/* 249 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(178);
-
-	var Index = React.createClass({
-		displayName: "Index",
-
-		componentWillMount: function componentWillMount() {
-			if (userStore.isAuth()) {
-				ReactRouter.hashHistory.push("/home");
-			} else {
-				ReactRouter.hashHistory.push("/landing");
-			}
-		},
-
-		render: function render() {
-			return React.createElement(
-				"div",
-				null,
-				this.props.children
-			);
-		}
-	});
-
-	module.exports = Index;
 
 /***/ }
 /******/ ]);
