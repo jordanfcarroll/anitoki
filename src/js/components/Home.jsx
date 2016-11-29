@@ -10,7 +10,8 @@ var WeeklyView = require("./WeeklyView.jsx");
 var Home = React.createClass({
 	getInitialState: function () {
 		return {
-			shows: showStore.pollForUpdate()	
+			shows: showStore.pollForUpdate(),
+			userShows: userStore.getTracking()
 		}
 	},
 
@@ -24,16 +25,21 @@ var Home = React.createClass({
 				shows: showStore.getShows()
 			})
 		})
+		userStore.on("update", function() {
+			_this.setState({
+				userShows: userStore.getTracking()
+			})
+		})
 	},
 
 	render: function () {
 		var searchpane = <div>Waiting for data...</div>;
 		if (this.state.shows) {
-			searchpane = <Searchpane shows={this.state.shows} />;
+			searchpane = <Searchpane shows={this.state.shows} userShows={this.state.userShows} />;
 		}
 		return (
 			<div>
-				<WeeklyView />
+				<WeeklyView shows={this.state.shows} userShows={this.state.userShows} />
 				<Showpane />
 				<div>
 					{searchpane}

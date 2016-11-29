@@ -23,7 +23,8 @@ showStore.pollForUpdate = function () {
 	if (currentTime - lastUpdate > UPDATE_TIME) {
 		// console.log("Update required. Updating...")
 		lastUpdate = currentTime;
-		return showStore.fetchShows();
+		showStore.fetchShows();
+		return null;
 	} else {
 		return shows;
 	}
@@ -35,7 +36,11 @@ showStore.fetchShows = function () {
 		url: "/api/getshows",
 		method: "POST",
 		success: function (results) {
-			shows = results;
+
+			// Filter the shows because some of them don't have airing data
+			let filteredShows = results.filter((show) => show.airing);
+
+			shows = filteredShows;
 			_this.emit("update");
 			console.log(shows);
 		}

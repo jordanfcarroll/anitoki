@@ -1,12 +1,12 @@
 // 1. Error checking Password characters
 // 2. Write tests for password field clearing
-// 3. API 
 // 4. Handle Auth token refreshing timer
 // 5. Use Anilist for everything, poll tvdb when you need descriptions?
 // 6. User time zone in settings
 // 7. Link to external site in Anime descriptions
 // 8. Mailchimp 
 // 9. db is converting ids to strings for some reason
+// 10. USE REDUCE TO HELP FINDING SHOWS BY ID
 
 // send this : 
 

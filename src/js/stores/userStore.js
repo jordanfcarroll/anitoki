@@ -16,6 +16,8 @@ var errors = {
 	passwordError: ""
 }
 
+
+
 userStore.getUser = function () {
 	return currentUser; 	
 };
@@ -146,6 +148,10 @@ userStore.untrack = function (id) {
 // 		}
 // 	})
 // }
+
+userStore.getTracking = function () {
+	return currentUser.tracking;
+}
 
 userStore.isTracking = function (id) {
 	return (currentUser.tracking.indexOf(id) >= 0) 
