@@ -19,8 +19,11 @@
 	.account-wrapper {
 		margin: 0 auto;
 		.account-tab {
-			width: 50%;
+			width: 48%;
 			margin-bottom: 1.2em;
+		}
+		.account-tab:first-child {
+			margin-right: 2%;
 		}
 		.text-input {
 			width: 100%;
