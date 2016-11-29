@@ -2,20 +2,30 @@ var React = require("react");
 var userStore = require("../stores/userStore");	
 
 var SearchResult = require("./SearchResult.jsx")
+var Weekday = require("./Weekday.jsx")
 
 var Searchpane = React.createClass({
 	getInitialState: function () {
 		return {
-			searchText: ""
+			searchText: "",
+			displayWeekly: false
 		}
 	},
 
 	render: function () {
 		var _this = this;
 		var results;
-		var trackingButton;
-
-		if (this.props.shows) {
+		const days = [
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday"
+		]
+		// If search text has been inputed, should display search results instead of airing view
+		if (this.props.shows && this.state.searchText !== "") {
 			var filtered = this.props.shows.filter(function(show) {
 				if (show.title_romaji.toUpperCase().indexOf(_this.state.searchText.toUpperCase()) >= 0 || 
 					show.title_english.toUpperCase().indexOf(_this.state.searchText.toUpperCase()) >= 0) {
@@ -25,11 +35,6 @@ var Searchpane = React.createClass({
 				}
 			})
 			results = filtered.map(function (show) {
-				// Check whether the show is being tracked, to determine which button should be displayed
-				// var isTracking = false;
-				// if (userStore.getUser().tracking.indexOf(show.id) !== -1) {
-				// 	isTracking = true;
-				// } 
 				return <SearchResult 
 						key={show.id} 
 						show={show} 
@@ -37,19 +42,34 @@ var Searchpane = React.createClass({
 						onDeChoose={_this.removeTracking} 
 						isTracking={userStore.isTracking(show.id)}/>
 			})
+
+			// If there is no search text, should default to showing all shows with days of the week
+		} else if (this.props.shows && this.state.searchText === "") {
+			results = [];
+			for (var i = 0; i < 7; i++) {
+				if (this.props.shows) {
+					var shows = this.props.shows.filter(function (show) {
+						var date = new Date(show.airing.time);
+						return (date.getDay() === i);
+					})
+				}
+				results.push(<Weekday className="search-day" day={days[i]} key={i} shows={shows}/>)
+			}
 		}
 
 
 		return (
 			<div>
+				<button>Currently Tracking</button>
+				<button onClick={this.clearSearch}>Currently Airing</button>
+				<ul>
+					{results}
+				</ul>
 				<input 
 					type="text"
 					value={this.state.searchText}
 					onChange={this.handleChange}
 					onKeyDown={this.handleSearch} />
-				<ul>
-					{results}
-				</ul>
 			</div>
 		);
 	},
@@ -66,6 +86,12 @@ var Searchpane = React.createClass({
 
 	removeTracking: function (id) {
 		userStore.untrack(id);
+	},
+
+	clearSearch: function () {
+		this.setState({
+			searchText: ""
+		})
 	}
 });
 

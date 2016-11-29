@@ -27,19 +27,21 @@ var Login = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<input 
+				<input
+					className="text-input email-input" 
 					onKeyDown={this.keySubmit} 
 					type="text" 
 					value={this.state.emailText} 
 					onChange={this.emailChange}/>
 				<p>{this.state.emailError}</p>
 				<input 
+					className="text-input password-input" 
 					onKeyDown={this.keySubmit} 
 					type="password" 
 					value={this.state.passwordText} 
 					onChange={this.passwordChange}/>
 				<p>{this.state.passwordError}</p>
-				<button onClick={this.handleSubmit}>Submit</button>
+				<button className="submit" onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);
 	},

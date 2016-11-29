@@ -23,28 +23,104 @@ describe("Searchpane", () => {
 		expect(input.prop("value")).to.equal("Haikyuu");
 	})
 
-	it("Should filter displayed shows by English title based on search input", () => {
-		userStore.fake();
+	it("Should render two buttons", () => {
+		const wrapper = shallow(<Searchpane />);
+		const button = wrapper.find("button");
+		expect(button.length).to.equal(2);
+	})
+
+	it("Should empty search field on a Currently Airing click", () => {
+		const wrapper = shallow(<Searchpane />);
+		const button = wrapper.find("button").at(1);
+		const input = wrapper.find("input");
+
+		input.simulate("change", {target: {value: "aaaa"}});
+		button.simulate("click");
+
+		expect(wrapper.state("searchText")).to.equal("");
+		expect(input.prop("value")).to.equal("");
+	})
+
+	it("Should display <WeeklyView /> ")
+
+	it("Should display full airing schedule when search field is blank", () => {
 		const fakeShows = [
 			{
 				title_romaji: "Haikyuu",
 				title_english: "Haikyuu",
-				id: 1
+				id: 1,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Dragonforce",
 				title_english: "Dragonforce",
-				id: 2
+				id: 2,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Dragonlance",
 				title_english: "Dragonlance",
-				id: 3
+				id: 3,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Nichijou",
 				title_english: "Nichijou",
-				id: 4
+				id: 4,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
+			}
+				];
+		const wrapper = mount(<Searchpane shows={fakeShows}/>);
+		const input = wrapper.find("input");
+		expect(input.prop("value")).to.equal("");
+
+		const days = wrapper.find("Weekday");
+
+		expect(days.length).to.equal(7);
+	})
+
+	it("Should filter displayed shows by English title based on search input", () => {
+		userStore.fake();
+		const fakeShows =  [
+			{
+				title_romaji: "Haikyuu",
+				title_english: "Haikyuu",
+				id: 1,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
+			},
+			{
+				title_romaji: "Dragonforce",
+				title_english: "Dragonforce",
+				id: 2,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
+			},
+			{
+				title_romaji: "Dragonlance",
+				title_english: "Dragonlance",
+				id: 3,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
+			},
+			{
+				title_romaji: "Nichijou",
+				title_english: "Nichijou",
+				id: 4,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			}
 				];
 		const wrapper = mount(<Searchpane shows={fakeShows} />);
@@ -53,11 +129,8 @@ describe("Searchpane", () => {
 		expect(wrapper.state("searchText")).to.equal("");
 		expect(wrapper.prop("shows").length).to.equal(4);
 
-		let results = wrapper.find("li");
-		expect(results.length).to.equal(4);
-
 		input.simulate("change", {target: {value: "Hai"}});
-		results = wrapper.find("li");
+		let results = wrapper.find("li");
 		expect(results.length).to.equal(1);
 
 		input.simulate("change", {target: {value: "Drag"}});
@@ -79,22 +152,34 @@ describe("Searchpane", () => {
 			{
 				title_romaji: "No go to walk",
 				title_english: "Haikyuu",
-				id: 1
+				id: 1,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Doragofousu",
 				title_english: "Dragonforce",
-				id: 2
+				id: 2,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Haikyuuuuu",
 				title_english: "Dragonlance",
-				id: 3
+				id: 3,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Nichijou",
 				title_english: "Nichijou",
-				id: 4
+				id: 4,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			}
 				];
 		const wrapper = mount(<Searchpane shows={fakeShows} />);
@@ -103,11 +188,9 @@ describe("Searchpane", () => {
 		expect(wrapper.state("searchText")).to.equal("");
 		expect(wrapper.prop("shows").length).to.equal(4);
 
-		let results = wrapper.find("li");
-		expect(results.length).to.equal(4);
 
 		input.simulate("change", {target: {value: "Haikyuu"}});
-		results = wrapper.find("li");
+		let results = wrapper.find("li");
 		expect(results.length).to.equal(2);
 
 		input.simulate("change", {target: {value: "Dora"}});
@@ -129,22 +212,34 @@ describe("Searchpane", () => {
 			{
 				title_romaji: "No go to walk",
 				title_english: "Haikyuu",
-				id: 1
+				id: 1,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "DORAGOFOUSU",
 				title_english: "Dragonforce",
-				id: 2
+				id: 2,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Haikyuuuuu",
 				title_english: "Dragonlance",
-				id: 3
+				id: 3,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			},
 			{
 				title_romaji: "Nichijou",
 				title_english: "Nichijou",
-				id: 4
+				id: 4,
+				airing: {
+					time: "2016-12-03T18:00:00+09:00"
+				}
 			}
 				];
 		const wrapper = mount(<Searchpane shows={fakeShows} />);
@@ -154,7 +249,6 @@ describe("Searchpane", () => {
 		expect(wrapper.prop("shows").length).to.equal(4);
 
 		let results = wrapper.find("li");
-		expect(results.length).to.equal(4);
 
 		input.simulate("change", {target: {value: "HAIKYUU"}});
 		results = wrapper.find("li");
