@@ -1,13 +1,29 @@
 .about-wrapper {
-	
-}
-
-.about-header {
-	font-size: 2.5em;
-	color: $red;
-}
-
-.flav-txt {
-	font-size: 1em;
-	color: $black;
+	margin: 0 auto;
+	display: block;
+	width: 75%;
+	.about-header {
+		font-size: 2.5em;
+		color: $red;
+		text-align: center;
+		margin-bottom: .4em;
+		line-height: 1.25em;
+	}
+	.flav-txt {
+		font-size: 1.1em;
+		color: $black;
+		text-align: center;
+		width: 75%;
+		margin: 0 auto;
+	}	
+	.account-wrapper {
+		margin: 0 auto;
+		.account-tab {
+			width: 50%;
+			margin-bottom: 1.2em;
+		}
+		.text-input {
+			width: 100%;
+		}
+	}
 }
