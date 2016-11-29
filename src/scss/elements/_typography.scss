@@ -1,0 +1,58 @@
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+@include font-face("Poppins-Bold", assets/Poppins/Poppins-Bold, ttf);
+@include font-face("Poppins-Semibold", assets/Poppins/Poppins-Semibold, ttf);
+@include font-face("Poppins-Medium", assets/Poppins/Poppins-Medium, ttf);
+@include font-face("Poppins-Regular", assets/Poppins/Poppins-Regular, ttf);
+
+@include font-face("Karla", assets/karla/Karla-Regular, ttf);
+
+$font-family-h1: "Poppins-Semibold", sans-serif;
+$font-family-h2: "Poppins-Semibold", sans-serif;
+$font-family-h3: "Poppins-Medium", sans-serif;
+$font-family-nav: "Poppins-Semibold", sans-serif;
+$font-family-button: "Poppins-Bold", sans-serif;
+$font-family-p: "Karla", sans-serif;
+
+h2 {
+	font-family: $font-family-h2;
+}
+
+h3 {
+	font-family: $font-family-h3;
+}

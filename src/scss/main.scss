@@ -1,12 +1,4 @@
-* {
-	text-color: black;
-}
-
-#week-view {
-	height: 300px;
-}
-
-.weekday {
-	float: left;
-	width: 14%;
-}
+// Partials
+@import "elements/typography";
+@import "elements/palette";
+@import "elements/nav";
