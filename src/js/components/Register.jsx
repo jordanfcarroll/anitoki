@@ -34,23 +34,26 @@ var Register = React.createClass({
 		return (
 			<div>
 				<input type="text" 
+					className="text-input email-input" 
 					onChange={this.emailChange} 
 					onKeyDown={this.keySubmit} 
 					value={this.state.emailText} />
 				<span>{this.state.emailError}</span>
 				<input 
+					className="text-input password-input" 
 					type="password" 
 					onChange={this.passwordChange} 
 					onKeyDown={this.keySubmit} 
 					value={this.state.passwordText}/>
 				<span>{this.state.passwordError}</span>
 				<input 
+					className="text-input password-confirm" 
 					type="password" 
 					onChange={this.passwordConfirmChange} 
 					onKeyDown={this.keySubmit} 
 					value={this.state.passwordConfirmText}/>
 				<span>{this.state.passwordConfirmError}</span>
-				<button onClick={this.handleSubmit}>Submit</button>
+				<button className="submit" onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);
 	},

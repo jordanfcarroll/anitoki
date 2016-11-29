@@ -21,4 +21,6 @@ describe("Weekday", () => {
 
 		expect(shows.length).to.equal(3);
 	})
+
+	it("Should pass airtimeDisplay? prop to children")
 });

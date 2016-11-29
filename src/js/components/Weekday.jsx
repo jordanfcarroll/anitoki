@@ -11,7 +11,7 @@ var Weekday = React.createClass({
 			return <Show key={show.id} show={show}/>;
 		})
 		return (
-			<div className="weekday">
+			<div className={this.props.className}>
 				<h2>{this.props.day}</h2>
 				{schedule}
 			</div>

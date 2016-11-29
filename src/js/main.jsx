@@ -1,4 +1,5 @@
 // 1. Error checking Password characters
+// -- Refactor searchPane to display search results as Weekday components
 // 2. Write tests for password field clearing
 // 4. Handle Auth token refreshing timer
 // 5. Use Anilist for everything, poll tvdb when you need descriptions?

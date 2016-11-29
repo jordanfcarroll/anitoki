@@ -9,16 +9,16 @@ var Nav = React.createClass({
 		if (userStore.isAuth()) {
 			links = (
 				<ul>
-					<li><Link to="/home">Home</Link></li>
-					<li><Link to="/Settings">Settings</Link></li>
-					<li><Link to="/Logout">Logout</Link></li>
+					<li className="logo"><Link to="/home"></Link></li>
+					<li className="settings fa fa-cog"><Link to="/Settings">Settings</Link></li>
+					<li className="user-status"><Link to="/Logout">Logout</Link></li>
 				</ul>
 			)
 		} else {
 			links = (
 				<ul>
-					<li><Link to="/home">Home</Link></li>
-					<li><Link to="/landing/login">Login</Link></li>
+					<li className="logo"><Link to="/home"></Link></li>
+					<li className="user-status"><Link to="/landing/login">Login</Link></li>
 				</ul>
 			)
 		}

@@ -27,7 +27,7 @@ var WeeklyView = React.createClass({
 					return (date.getDay() === i);
 				})
 			}
-			weekdays.push(<Weekday day={days[i]} key={i} shows={shows}/>)
+			weekdays.push(<Weekday className="weekly-day" day={days[i]} key={i} shows={shows}/>)
 		}
 
 		return (
