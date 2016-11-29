@@ -7,5 +7,5 @@ var mount = require("enzyme").mount;
 
 
 describe("WeeklyView", () => {
-	it("Should display airTime based on its prop")
+
 });

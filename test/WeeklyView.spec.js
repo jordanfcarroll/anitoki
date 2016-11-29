@@ -29,5 +29,4 @@ describe("WeeklyView", () => {
 		expect(day.prop("day")).to.equal("Saturday");
 	})
 
-	it("Should pass airtimeDisplay? prop to children")
 });

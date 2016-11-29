@@ -33,16 +33,12 @@ var Home = React.createClass({
 	},
 
 	render: function () {
-		var searchpane = <div>Waiting for data...</div>;
-		if (this.state.shows) {
-			searchpane = <Searchpane shows={this.state.shows} userShows={this.state.userShows} />;
-		}
 		return (
 			<div>
 				<WeeklyView shows={this.state.shows} userShows={this.state.userShows} />
-				<Showpane />
 				<div>
-					{searchpane}
+					<Showpane />
+					<Searchpane shows={this.state.shows} userShows={this.state.userShows} />
 				</div>
 			</div>
 		);
