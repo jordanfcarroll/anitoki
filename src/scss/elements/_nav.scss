@@ -1,12 +1,26 @@
-.nav {
-	#logo {
+nav > ul {
+	padding: 0;
+	li {
+		list-style: none;
+	}
+	.logo {
 		background-image: url("assets/logo.svg");
+		height: 3em;
+		width: 10em;
+		background-repeat: no-repeat;
+		display: inline-block;
 	}
 	.settings {
 		color: $dark-gray;
 	}
 	.user-status {
 		font-family: $font-family-nav;
-
+		font-size: 1.7em;
+		line-height: 2em;
+		float: right;
+		a {
+			text-decoration: none;
+			color: $black;
+		}
 	}
 }
