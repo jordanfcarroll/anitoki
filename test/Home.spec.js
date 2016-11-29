@@ -13,17 +13,26 @@ var userStore = require("../src/js/stores/userStore.js");
 
 describe("Home", () => {
 	it("Renders the <WeeklyView /> component", () => {
+    userStore.fake();
     const wrapper = shallow(<Home />);
     expect(wrapper.containsMatchingElement(<WeeklyView />)).to.equal(true);
   });
 
-	it("Renders the <Searchpane /> component", () => {
-    const wrapper = shallow(<Home />);
-    expect(wrapper.containsMatchingElement(<Searchpane />)).to.equal(true);
-  });
-
-	it("Renders the <Showpane /> component", () => {
+  it("Renders the <Showpane /> component", () => {
+    userStore.fake();
     const wrapper = shallow(<Home />);
     expect(wrapper.containsMatchingElement(<Showpane />)).to.equal(true);
+  });
+
+  if ("Does not render the <Searchpane /> component without data", () => {
+    const wrapper = shallow(<Home />);
+    expect(wrapper.containsMatchingElement(<Searchpane />)).to.equal(false);
+  })
+
+  it("Renders the <Searchpane /> component when data is present", () => {
+    userStore.fake();
+    const wrapper = shallow(<Home />);
+    wrapper.setState({ shows: 1 });
+    expect(wrapper.containsMatchingElement(<Searchpane />)).to.equal(true);
   });
 });

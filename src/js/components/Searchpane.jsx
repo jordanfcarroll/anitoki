@@ -26,16 +26,16 @@ var Searchpane = React.createClass({
 			})
 			results = filtered.map(function (show) {
 				// Check whether the show is being tracked, to determine which button should be displayed
-				var isTracking = false;
-				if (userStore.getUser().tracking.indexOf(show.id) !== -1) {
-					isTracking = true;
-				} 
+				// var isTracking = false;
+				// if (userStore.getUser().tracking.indexOf(show.id) !== -1) {
+				// 	isTracking = true;
+				// } 
 				return <SearchResult 
 						key={show.id} 
 						show={show} 
 						onChoose={_this.addTracking} 
 						onDeChoose={_this.removeTracking} 
-						isTracking={isTracking}/>
+						isTracking={userStore.isTracking(show.id)}/>
 			})
 		}
 

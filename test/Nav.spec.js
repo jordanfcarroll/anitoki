@@ -12,7 +12,7 @@ describe("Nav", () => {
 	it("Renders two links when no user is logged in", () => {
 		userStore.logOut();
 
-		const wrapper = shallow(<Nav/>);
+		const wrapper = mount(<Nav/>);
 		expect(wrapper.find("li").length).to.equal(2);
 	})
 
@@ -20,7 +20,7 @@ describe("Nav", () => {
 		userStore.logOut();
 		userStore.fake();
 
-		const wrapper = shallow(<Nav/>);
+		const wrapper = mount(<Nav/>);
 		expect(wrapper.find("li").length).to.equal(3);
 		userStore.logOut();
 	})

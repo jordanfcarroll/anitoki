@@ -16,8 +16,6 @@ var errors = {
 	passwordError: ""
 }
 
-
-
 userStore.getUser = function () {
 	return currentUser; 	
 };

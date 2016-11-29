@@ -26,7 +26,7 @@ var SearchResult = React.createClass({
 		}
 		return (
 			<li>
-				<p>{this.props.show.title_romaji}</p>
+				<h3>{this.props.show.title_romaji}</h3>
 				{button}
 			</li>
 			);

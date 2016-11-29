@@ -12,7 +12,7 @@ var Weekday = React.createClass({
 		})
 		return (
 			<div className="weekday">
-				<h3>{this.props.day}</h3>
+				<h2>{this.props.day}</h2>
 				{schedule}
 			</div>
 		);

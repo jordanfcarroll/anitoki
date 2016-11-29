@@ -11,11 +11,15 @@ var lastUpdate = 0;
 
 // Collection
 var shows = [];
-
+var showObj = {};
 
 showStore.getShows = function () {
 	return shows;
 },
+
+showStore.getObj = function () {
+	return showObj;
+}
 
 showStore.pollForUpdate = function () {
 	// console.log("Polling for update...")
@@ -41,6 +45,16 @@ showStore.fetchShows = function () {
 			let filteredShows = results.filter((show) => show.airing);
 
 			shows = filteredShows;
+
+			// Make show obj for simpler referencing by id
+			showObj = filteredShows.reduce(function (a,b) {
+				var key = b.id;
+				var value = b;
+				a[key] = value;
+				return a;
+			})
+
+
 			_this.emit("update");
 			console.log(shows);
 		}

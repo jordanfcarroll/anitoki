@@ -41,7 +41,9 @@ describe("userStore", () => {
 
     userStore.track(123);
 
-    expect(userStore.getUser().tracking.indexOf(123)).to.equal(0);
-    expect(userStore.getUser().tracking.indexOf(124)).to.equal(-1);
+    userStore.on("update", function () {
+      expect(userStore.getUser().tracking.indexOf(123)).to.equal(0);
+      expect(userStore.getUser().tracking.indexOf(124)).to.equal(-1);
+    })
   })
 });

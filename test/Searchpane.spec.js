@@ -24,6 +24,7 @@ describe("Searchpane", () => {
 	})
 
 	it("Should filter displayed shows by English title based on search input", () => {
+		userStore.fake();
 		const fakeShows = [
 			{
 				title_romaji: "Haikyuu",
