@@ -1,18 +1,43 @@
 var React = require("react");
+var userStore = require("../stores/userStore.js");
 
 var SearchResult = React.createClass({
-	
+	getInitialState: function () {
+		return {
+			isTracking: userStore.isTracking(this.props.show.id)
+		}
+	},
+
+	componentWillMount: function () {
+		var _this = this;
+		userStore.on("update", function () {
+			_this.setState({
+				isTracking: userStore.isTracking(_this.props.show.id)
+			})
+		})
+	},
+
 	render: function () {
+		var button;
+		if(this.state.isTracking) {
+			button = <button onClick={this.untrackThisShow}>Untrack</button>
+		} else {
+			button = <button onClick={this.trackThisShow}>Track</button>
+		}
 		return (
 			<li>
 				<p>{this.props.show.title_romaji}</p>
-				<button onClick={this.trackThisShow}>Here's some text for Rannah to think about later</button>
+				{button}
 			</li>
 			);
 	},
 
 	trackThisShow: function () {
 		this.props.onChoose(this.props.show.id);
+	},
+
+	untrackThisShow: function () {
+		this.props.onDeChoose(this.props.show.id);
 	}
 });
 

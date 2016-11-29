@@ -13,6 +13,7 @@ var Searchpane = React.createClass({
 	render: function () {
 		var _this = this;
 		var results;
+		var trackingButton;
 
 		if (this.props.shows) {
 			var filtered = this.props.shows.filter(function(show) {
@@ -24,7 +25,17 @@ var Searchpane = React.createClass({
 				}
 			})
 			results = filtered.map(function (show) {
-				return <SearchResult key={show.id} show={show} onChoose={_this.addTracking}/>
+				// Check whether the show is being tracked, to determine which button should be displayed
+				var isTracking = false;
+				if (userStore.getUser().tracking.indexOf(show.id) !== -1) {
+					isTracking = true;
+				} 
+				return <SearchResult 
+						key={show.id} 
+						show={show} 
+						onChoose={_this.addTracking} 
+						onDeChoose={_this.removeTracking} 
+						isTracking={isTracking}/>
 			})
 		}
 
@@ -51,6 +62,10 @@ var Searchpane = React.createClass({
 
 	addTracking: function (id) {
 		userStore.track(id);
+	},
+
+	removeTracking: function (id) {
+		userStore.untrack(id);
 	}
 });
 

@@ -6,6 +6,7 @@
 // 6. User time zone in settings
 // 7. Link to external site in Anime descriptions
 // 8. Mailchimp 
+// 9. db is converting ids to strings for some reason
 
 // send this : 
 

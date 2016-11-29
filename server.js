@@ -117,28 +117,42 @@ app.post("/api/getshows", function (req, res) {
 	)
 })
 
-app.put("/api/track", function(req, res) {
+app.put("/api/track", function(req, res) {;
 	let body = req.body;
-	
-	// let currentTracking = db.get("users")
-	// 						.find({email: body.email})
-	// 						.get("tracking")
-	// 						.value();
 
 	var user = db.get("users")
 				.find({email: body.email})
 				.value();
 
+
+	// Converting ids to strings??
 	db.get("users")
 		.find({email: body.email})
 		.get("tracking")
-		.push(body.id)
+		.push(Number(body.id))
 		.value();
 
 	res.json(user);
-		
+})
 
+app.put("/api/untrack", function(req, res) {
+	let body = req.body;
 
+	var user = db.get("users")
+				.find({email: body.email})
+				.value();	
+
+	db.get("users")
+		.find({email: body.email})
+		.get("tracking")
+		.remove(function (value) {
+			if (value == body.id) {
+				return true;
+			}
+		})
+		.value();
+
+	res.json(user);
 })
 
 app.listen(port);

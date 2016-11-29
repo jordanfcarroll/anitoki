@@ -101,9 +101,28 @@ userStore.getErrors = function () {
 }
 
 userStore.track = function (id) {
+	var _this = this;
 	if (currentUser.tracking.indexOf(id) === -1) {
 		$.ajax({
 			url: "/api/track",
+			data: {
+				"email": currentUser.email,
+				"id": id
+			},
+			method: "PUT",
+			success: function (result) {
+				currentUser = result;
+				_this.emit("update");
+			}
+		})
+	}
+}
+
+userStore.untrack = function (id) {
+	var _this = this;
+	if (currentUser.tracking.indexOf(id) !== -1) {
+		$.ajax({
+			url: "/api/untrack",
 			data: {
 				email: currentUser.email,
 				id: id
@@ -111,6 +130,7 @@ userStore.track = function (id) {
 			method: "PUT",
 			success: function (result) {
 				currentUser = result;
+				_this.emit("update");
 			}
 		})
 	}
@@ -126,6 +146,10 @@ userStore.track = function (id) {
 // 		}
 // 	})
 // }
+
+userStore.isTracking = function (id) {
+	return (currentUser.tracking.indexOf(id) >= 0) 
+}
 
 window.userStore = userStore;
 
