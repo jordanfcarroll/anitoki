@@ -5,6 +5,7 @@ var shallow = require("enzyme").shallow;
 var mount = require("enzyme").mount;
 
 var Searchpane = require("../src/js/components/Searchpane.jsx");
+var WeeklyView = require("../src/js/components/WeeklyView.jsx")
 var userStore = require("../src/js/stores/userStore.js");
 
 
@@ -39,9 +40,46 @@ describe("Searchpane", () => {
 
 		expect(wrapper.state("searchText")).to.equal("");
 		expect(input.prop("value")).to.equal("");
+		expect(wrapper.state("displayTracking")).to.equal(false);
 	})
 
-	it("Should display <WeeklyView /> ")
+	it("Should set displayTracking state to false on a Currently Airing click", () => {
+		const wrapper = shallow(<Searchpane />);
+		const button = wrapper.find("button").at(1);
+		const input = wrapper.find("input");
+
+		wrapper.setState({displayTracking: true});
+		expect(wrapper.state("displayTracking")).to.equal(true);
+
+		button.simulate("click");
+
+		expect(wrapper.state("displayTracking")).to.equal(false);
+	})
+
+	it("Should change displayTracking state on a Currently Tracking click", () => {
+		const wrapper = shallow(<Searchpane />);
+		const button = wrapper.find("button").at(0);
+
+		expect(wrapper.state("displayTracking")).to.equal(false);
+
+		button.simulate("click");
+		expect(wrapper.state("displayTracking")).to.equal(true);
+	})
+
+	it("Should display <WeeklyView /> component when displayTracking is true and shows are loaded", () => {
+		const wrapper = shallow(<Searchpane shows={[]}/>);
+		wrapper.setState({"displayTracking" : true});
+
+		expect(wrapper.find("WeeklyView").length).to.equal(1);
+	})
+
+	it("Should display a loading message and no components when there is no show data", () => {
+		const wrapper = shallow(<Searchpane shows={null}/>);
+
+		expect(wrapper.find("WeeklyView").length).to.equal(0);
+		expect(wrapper.find("li").length).to.equal(0);
+		expect(wrapper.containsMatchingElement(<p>Loading shows...</p>)).to.equal(true);
+	})
 
 	it("Should display full airing schedule when search field is blank", () => {
 		const fakeShows = [
