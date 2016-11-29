@@ -29,6 +29,7 @@ var Login = React.createClass({
 			<div>
 				<input
 					className="text-input email-input" 
+					placeholder="Email"
 					onKeyDown={this.keySubmit} 
 					type="text" 
 					value={this.state.emailText} 
@@ -36,6 +37,7 @@ var Login = React.createClass({
 				<p>{this.state.emailError}</p>
 				<input 
 					className="text-input password-input" 
+					placeholder="Password"
 					onKeyDown={this.keySubmit} 
 					type="password" 
 					value={this.state.passwordText} 

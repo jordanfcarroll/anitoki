@@ -35,12 +35,14 @@ var Register = React.createClass({
 			<div>
 				<input type="text" 
 					className="text-input email-input" 
+					placeholder="Email"
 					onChange={this.emailChange} 
 					onKeyDown={this.keySubmit} 
 					value={this.state.emailText} />
 				<span>{this.state.emailError}</span>
 				<input 
 					className="text-input password-input" 
+					placeholder="Password"
 					type="password" 
 					onChange={this.passwordChange} 
 					onKeyDown={this.keySubmit} 
@@ -48,6 +50,7 @@ var Register = React.createClass({
 				<span>{this.state.passwordError}</span>
 				<input 
 					className="text-input password-confirm" 
+					placeholder="Confirm Password"
 					type="password" 
 					onChange={this.passwordConfirmChange} 
 					onKeyDown={this.keySubmit} 
