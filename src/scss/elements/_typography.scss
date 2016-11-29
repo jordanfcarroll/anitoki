@@ -1,0 +1,17 @@
+@include font-face(Poppins-Bold, /public/assets/Poppins/Poppins-Bold.ttf);
+@include font-face(Poppins-Semibold, /public/assets/Poppins/Poppins-Semibold.ttf);
+@include font-face(Poppins-Medium, /public/assets/Poppins/Poppins-Medium.ttf);
+@include font-face(Poppins-Regular, /public/assets/Poppins/Poppins-Regular.ttf);
+
+@include font-face(Karla, /public/assets/karla/Karla-Regular.ttf);
+
+$font-family-h1: "Poppins-Semibold", sans-serif;
+$font-family-h2: "Poppins-Semibold", sans-serif;
+$font-family-h3: "Poppins-Medium", sans-serif;
+$font-family-button: "Poppins-Bold", sans-serif;
+$font-family-p: "Karla", sans-serif;
+
+h1 {
+	font-family: $font-family-h1;
+	
+}
