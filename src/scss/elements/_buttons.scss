@@ -1,0 +1,23 @@
+.account-tab {
+	font-family: $font-family-h2;
+	font-size: 1.75em;
+	background-color: $white;
+	color: $blue;
+	border: none;
+	padding: 1em 1em .2em 1em;
+}
+
+.account-tab.active {
+	border-bottom: 8px solid $blue;
+}
+
+.submit {
+	font-family: $font-family-button;
+	font-size: 1.5em;
+	color: $white;
+	background-color: $blue;
+	border: none;
+	padding: .5em .75em;
+	margin: 0 auto;
+	display: block;
+}
