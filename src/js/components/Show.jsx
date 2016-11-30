@@ -7,9 +7,9 @@ var Show = React.createClass({
 
 	render: function () {
 		return (
-			<div>
-				<p>{this.props.show.title_romaji}</p>
-				<p>{this.parseTime(this.props.show.airing.time)}</p>
+			<div className="show-info">
+				<p className="show-title">{this.props.show.title_romaji}</p>
+				<p className="show-time">{this.parseTime(this.props.show.airing.time)}</p>
 			</div>
 		);
 	},

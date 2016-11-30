@@ -3,6 +3,11 @@ var React = require("react");
 var Weekday = require("./Weekday.jsx");
 
 var WeeklyView = React.createClass({
+	getInitialState: function () {
+		return {
+			mobileDisplaying: 0
+		}
+	},
 
 	render: function () {
 		var _this = this;
@@ -18,6 +23,7 @@ var WeeklyView = React.createClass({
 		var weekdays = [];
 		for (var i = 0; i < 7; i++) {
 			let shows = [];
+			let className = "weekly-day"
 			if (this.props.shows) {
 				shows = this.props.userShows.map(function (id) {
 					return _this.props.shows.find((value) => id === value.id)
@@ -27,14 +33,47 @@ var WeeklyView = React.createClass({
 					return (date.getDay() === i);
 				})
 			}
-			weekdays.push(<Weekday className="weekly-day" day={days[i]} key={i} shows={shows}/>)
+			if (this.state.mobileDisplaying === i) {
+				className += " mobile-current-displaying";
+			}
+			weekdays.push(<Weekday className={className} day={days[i]} key={i} shows={shows}/>)
 		}
+
+		// Create mobile view buttons 
+		var buttonLeft;
+		var buttonRight;
+
+		if (this.state.mobileDisplaying > 0) {
+			buttonLeft = <button className="forward-button" onClick={this.handleAdvance} />
+		}
+		if (this.state.mobileDisplaying < 6) {
+			buttonRight = <button className="back-button" onClick={this.handleBack} />
+		})
+
 
 		return (
 			<div id="week-view">
+				{buttonLeft}
 				{weekdays}
+				{buttonRight}
 			</div>
 		);
+	},
+
+	handleAdvance: function () {
+		if(this.state.mobileDisplaying < 6) {
+			this.setState({
+				mobileDisplaying: this.mobileDisplaying + 1;
+			})
+		}
+	},
+
+	handleBack: function () {
+		if(this.state.mobileDisplaying > 0) {
+			this.setState({
+				mobileDisplaying: this.mobileDisplaying - 1;
+			})
+		}
 	}
 });
 

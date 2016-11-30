@@ -15,7 +15,13 @@ var Searchpane = React.createClass({
 
 	render: function () {
 		var _this = this;
+
+		// Placeholder for display that holds shows
 		var display;
+
+		// Placeholder for X button in search field
+		var button;
+
 		const days = [
 			"Sunday",
 			"Monday",
@@ -82,6 +88,11 @@ var Searchpane = React.createClass({
 				// Push day to display
 				display.push(day);
 			}
+
+			if (this.state.searchText.length > 0) {
+				// Make an X button
+				button = <div onClick={this.clearSearch} />
+			} 
 		}
 		return (
 			<div>
@@ -95,6 +106,7 @@ var Searchpane = React.createClass({
 					value={this.state.searchText}
 					onChange={this.handleChange}
 					onKeyDown={this.handleSearch} />
+				{button}
 			</div>
 		);
 	},

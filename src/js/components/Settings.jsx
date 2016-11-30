@@ -32,12 +32,6 @@ var Settings = React.createClass({
 					<h4>Showtime Display</h4>
 					<input type="radio" name="showtimes" value="showtimenone" /><label htmlFor="showtimenone">None</label>
 					<input type="radio" name="showtimes" value="Countdown" /><label htmlFor="Countdown">Countdown</label>
-					<select name="Timezone">
-  						<option value="volvo">Volvo</option>
- 						<option value="saab">Saab</option>
- 						<option value="fiat">Fiat</option>
-  						<option value="audi">Audi</option>
-					</select>
 				</div>
 				<button>Save Changes</button>
 			</div>
