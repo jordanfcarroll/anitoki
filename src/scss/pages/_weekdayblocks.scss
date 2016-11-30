@@ -1,4 +1,4 @@
-.weekly-day:first-child {
+.weekly-day.mobile-current-displaying {
 	display: inline-block;
 	background-color: $light-gray;
 	width: 80%;
@@ -9,14 +9,18 @@
 		font-size: 2em;
 		color: $blue;
 	}
-	p:first-child {
-		border-top: none; 
-	}
-	p {
+	.show-info {
+		// padding-left: 1.5em;
 		font-family: $font-family-showname;
-		padding-left: 1.5em;
-		line-height: .5em;
-		letter-spacing: -0.8px;
 		border-top: 2px solid $dark-gray;
+		line-height: .5em;
+		
+		margin: 0 2em;
+		.show-time {
+			letter-spacing: -0.8px;	
+		}
+	}
+	.show-info:first-of-type {
+		border-top: none; 
 	}
 }
