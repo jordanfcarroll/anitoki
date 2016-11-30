@@ -11,21 +11,29 @@ var Home = React.createClass({
 	getInitialState: function () {
 		return {
 			shows: showStore.pollForUpdate(),
-			userShows: userStore.getTracking(),
+			userShows: null,
 			showDetails: null
 		}
 	},
 
 	componentWillMount: function () {
 		var _this = this;
-		// if (!userStore.isAuth()) {
-		// 	ReactRouter.hashHistory.push("/landing");
-		// }
+		if (!userStore.getUser()) {
+			userStore.pseudo();
+		}
+
+		this.setState({
+			userShows: userStore.getTracking()
+		})
+
+		// Pull new shows when necessary
 		showStore.on("update", function() {
 			_this.setState({
 				shows: showStore.getShows()
 			})
 		})
+
+		// Pull user's tracked shows when updated
 		userStore.on("update", function() {
 			_this.setState({
 				userShows: userStore.getTracking()

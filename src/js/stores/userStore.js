@@ -22,7 +22,9 @@ userStore.getUser = function () {
 
 userStore.isAuth = function () {
 	if (currentUser) {
-		return true;
+		if(currentUser.email) {
+			return true;
+		}
 	} else {
 		return false;
 	}
@@ -88,6 +90,15 @@ userStore.logOut = function () {
 	ReactRouter.hashHistory.push("/landing/login");
 }
 
+userStore.pseudo = function () {
+	currentUser = {
+		email: null,
+		pw: null,
+		tracking: [],
+		settings: null
+	}
+}
+
 userStore.fake = function () {
 	currentUser = {
 		name: "Rannah or Jordan",
@@ -103,7 +114,9 @@ userStore.getErrors = function () {
 
 userStore.track = function (id) {
 	var _this = this;
-	if (currentUser.tracking.indexOf(id) === -1) {
+
+	// Action to perform if performed user is bonafide
+	if (currentUser.tracking.indexOf(id) === -1 && currentUser.email) {
 		$.ajax({
 			url: "/api/track",
 			data: {
@@ -116,7 +129,12 @@ userStore.track = function (id) {
 				_this.emit("update");
 			}
 		})
+	} else {
+	//Action to perform if it is a pseudouser
+		currentUser.tracking.push(id);
+		_this.emit("update");
 	}
+
 }
 
 userStore.untrack = function (id) {
