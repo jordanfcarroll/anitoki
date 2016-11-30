@@ -9,6 +9,8 @@
 // 8. Mailchimp 
 // 9. db is converting ids to strings for some reason
 // -- Test time parser
+// -- Password hashing
+// -- Make sessions more secure
 
 // send this : 
 

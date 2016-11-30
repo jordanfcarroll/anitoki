@@ -9,7 +9,6 @@ var userStore = Object.create(EventEmitter.prototype);
 EventEmitter.call(userStore);
 
 
-
 // Collection
 var currentUser = null;
 
@@ -61,6 +60,10 @@ userStore.register = function (email, pw) {
 }
 
 userStore.logIn = function (email, pw) {
+	// Wipe localStorage pseudouser
+	if (store.get("pseudo")) {
+		store.clear();
+	}
 	errors = {
 		emailError: "",
 		passwordError: ""
@@ -75,7 +78,9 @@ userStore.logIn = function (email, pw) {
 		},
 		success: function (result) {
 			currentUser = result;
-			ReactRouter.hashHistory.push("/home");
+			ReactRouter.hashHistory.push("/");
+			_this.emit("update");
+			store.set("session", currentUser);
 			return currentUser;
 		},
 		error: function (result) {
@@ -88,8 +93,9 @@ userStore.logIn = function (email, pw) {
 };
 
 userStore.logOut = function () {
-	currentUser = null;
-	ReactRouter.hashHistory.push("/landing/login");
+	userStore.pseudo();
+	this.emit("update");
+	ReactRouter.hashHistory.push("/");
 }
 
 userStore.pseudo = function () {
@@ -215,9 +221,17 @@ userStore.isTracking = function (id) {
 	return (currentUser.tracking.indexOf(id) >= 0) 
 }
 
-userStore.getLocalStorage = function () {
-	let tracking = store.get("pseudo");
-	console.log(tracking);
+userStore.getLocalSession = function () {
+	return store.get("session");
+}
+
+userStore.setSession = function () {
+	currentUser = store.get("session");
+	this.emit("update");
+}
+
+userStore.getLocalUser = function () {
+	return store.get("pseudo");
 }
 
 window.userStore = userStore;

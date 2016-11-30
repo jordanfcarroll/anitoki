@@ -1,12 +1,27 @@
-	var React = require("react");
+var React = require("react");
 
 var Link = require("react-router").Link;
 var userStore = require("../stores/userStore.js")
 
 var Nav = React.createClass({
+	getInitialState: function () {
+		return {
+			auth: userStore.isAuth()
+		}
+	},
+
+	componentWillMount: function () {
+		var _this = this;
+		userStore.on("update", function () {
+			_this.setState({
+				auth: userStore.isAuth()
+			})
+		})
+	},
+
 	render: function () {
 		var links;
-		if (userStore.isAuth()) {
+		if (this.state.auth) {
 			links = (
 				<ul>
 					<li className="logo"><Link to="/home"></Link></li>
