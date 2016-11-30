@@ -71,11 +71,8 @@ var Home = React.createClass({
 
 	componentWillUnmount: function () {
 		var _this = this;
-		showStore.removeListener("update", function() {
-			_this.setState({
-				shows: showStore.getShows()
-			})
-		})
+		showStore.off("update");
+		userStore.off("update");
 	},
 
 	setShow: function (id) {

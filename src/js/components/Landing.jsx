@@ -37,7 +37,7 @@ var Landing = React.createClass({
 	},
 
 	navigateRegister: function () {
-		ReactRouter.hashHistory.push("/landing");
+		ReactRouter.hashHistory.push("/landing/register");
 	}
 });
 

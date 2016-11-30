@@ -32,6 +32,11 @@ var SearchResult = React.createClass({
 			);
 	},
 
+	componentWillUnmount: function () {
+		var _this = this;
+		userStore.off("update");
+	},
+
 	trackThisShow: function () {
 		this.props.onChoose(this.props.show.id);
 	},

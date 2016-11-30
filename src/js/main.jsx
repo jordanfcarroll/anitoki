@@ -50,7 +50,7 @@ var jsx = (
 		<Route path="/" component={App}>
 			<IndexRoute component={Home} />
 			<Route path="landing" component={Landing}>
-				<IndexRoute component={Register} />
+				<Route path="register" component={Register} />
 				<Route path="login" component={Login} />
 			</Route>
 			<Route path="/settings" component={Settings} />

@@ -48,7 +48,7 @@ app.post("/api/register", function (req, res) {
 		var newUser = {
 			email: userData.email,
 			pw: userData.pw,
-			tracking : [],
+			tracking : userData.tracking,
 			settings : []
 		}
 		db.get("users").push(newUser).value();

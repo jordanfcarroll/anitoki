@@ -32,6 +32,12 @@ userStore.isAuth = function () {
 };
 
 userStore.register = function (email, pw) {
+	const localTracking = store.get("pseudo").tracking;
+
+	// Convert string ids to numbers
+	const trueTracking = localTracking.map(function (value) {
+		return Number(value);
+	})
 	errors = {
 		emailError: "",
 		passwordError: ""
@@ -42,12 +48,15 @@ userStore.register = function (email, pw) {
 		method: "POST",
 		data: {
 			email: email,
-			pw: pw
+			pw: pw,
+			tracking: localTracking
 		},
 		success: function (result) {
 			currentUser = result;
+			store.clear();
+			store.set("session", currentUser);
 
-			ReactRouter.hashHistory.push("/home");
+			ReactRouter.hashHistory.push("/");
 
 			return currentUser;
 		},
@@ -93,6 +102,9 @@ userStore.logIn = function (email, pw) {
 };
 
 userStore.logOut = function () {
+	// Clear session
+	store.clear();
+
 	userStore.pseudo();
 	this.emit("update");
 	ReactRouter.hashHistory.push("/");
@@ -110,15 +122,6 @@ userStore.pseudo = function () {
 	if (store.get("pseudo")) {
 		let tracking = store.get("pseudo").tracking;
 		currentUser.tracking = tracking;
-	}
-}
-
-userStore.fake = function () {
-	currentUser = {
-		name: "Rannah or Jordan",
-		pw: "123",
-		tracking: [],
-		settings: []
 	}
 }
 
@@ -232,6 +235,10 @@ userStore.setSession = function () {
 
 userStore.getLocalUser = function () {
 	return store.get("pseudo");
+}
+
+userStore.clearLocalStorage = function() {
+	store.clear();
 }
 
 window.userStore = userStore;
