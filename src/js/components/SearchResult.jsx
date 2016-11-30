@@ -26,7 +26,7 @@ var SearchResult = React.createClass({
 		}
 		return (
 			<li>
-				<h3>{this.props.show.title_romaji}</h3>
+				<h3 onClick={this.handleClick}>{this.props.show.title_romaji}</h3>
 				{button}
 			</li>
 			);
@@ -38,6 +38,10 @@ var SearchResult = React.createClass({
 
 	untrackThisShow: function () {
 		this.props.onDeChoose(this.props.show.id);
+	},
+
+	handleClick: function () {
+		this.props.setShow(this.props.show.id);
 	}
 });
 

@@ -18,10 +18,24 @@ describe("Home", () => {
     expect(wrapper.containsMatchingElement(<WeeklyView />)).to.equal(true);
   });
 
-  it("Renders the <Showpane /> component", () => {
+  it("Does not render the <Showpane /> component without a show selected", () => {
     userStore.fake();
     const wrapper = shallow(<Home />);
-    expect(wrapper.containsMatchingElement(<Showpane />)).to.equal(true);
+    expect(wrapper.containsMatchingElement(<Showpane />)).to.equal(false);
+  });
+
+  it("Renders the <Showpane /> component with a show selected", () => {
+    userStore.fake();
+    const wrapper = shallow(<Home />);
+    wrapper.setState({showDetails: {show: "show"}});
+  });
+
+  it("sets showDetails on a setShow call", () => {
+    userStore.fake();
+    const wrapper = shallow(<Home />);
+    wrapper.instance().setShow({show: "show"});
+
+    expect(wrapper.state("showDetails")).to.eql({show: "show"});
   });
 
   if ("Does not render the <Searchpane /> component without data", () => {

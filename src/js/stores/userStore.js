@@ -85,6 +85,7 @@ userStore.logIn = function (email, pw) {
 
 userStore.logOut = function () {
 	currentUser = null;
+	ReactRouter.hashHistory.push("/landing/login");
 }
 
 userStore.fake = function () {

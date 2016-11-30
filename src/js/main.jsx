@@ -1,5 +1,6 @@
 // 1. Error checking Password characters
 // -- Refactor searchPane to display search results as Weekday components
+// -- Active class for account-tabs in Landing
 // 2. Write tests for password field clearing
 // 4. Handle Auth token refreshing timer
 // 5. Use Anilist for everything, poll tvdb when you need descriptions?
@@ -7,7 +8,7 @@
 // 7. Link to external site in Anime descriptions
 // 8. Mailchimp 
 // 9. db is converting ids to strings for some reason
-// 10. USE REDUCE TO HELP FINDING SHOWS BY ID
+// -- Test time parser
 
 // send this : 
 

@@ -61,7 +61,8 @@ var Searchpane = React.createClass({
 								show={show} 
 								onChoose={_this.addTracking} 
 								onDeChoose={_this.removeTracking} 
-								isTracking={userStore.isTracking(show.id)}/>
+								isTracking={userStore.isTracking(show.id)}
+								setShow={_this.props.setShow}/>
 						</div>
 					)
 				})

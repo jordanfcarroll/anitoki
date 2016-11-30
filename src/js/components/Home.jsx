@@ -11,7 +11,8 @@ var Home = React.createClass({
 	getInitialState: function () {
 		return {
 			shows: showStore.pollForUpdate(),
-			userShows: userStore.getTracking()
+			userShows: userStore.getTracking(),
+			showDetails: null
 		}
 	},
 
@@ -33,12 +34,21 @@ var Home = React.createClass({
 	},
 
 	render: function () {
+		var searchpane;
+		if (this.state.showDetails) {
+			searchpane = <Showpane show={this.state.showDetails} />
+		}
 		return (
 			<div>
-				<WeeklyView shows={this.state.shows} userShows={this.state.userShows} />
+				<WeeklyView 
+					shows={this.state.shows} 
+					userShows={this.state.userShows}/>
 				<div>
-					<Showpane />
-					<Searchpane shows={this.state.shows} userShows={this.state.userShows} />
+					{searchpane}
+					<Searchpane 
+						shows={this.state.shows} 
+						userShows={this.state.userShows}
+						setShow={this.setShow} />
 				</div>
 			</div>
 		);
@@ -50,6 +60,13 @@ var Home = React.createClass({
 			_this.setState({
 				shows: showStore.getShows()
 			})
+		})
+	},
+
+	setShow: function (id) {
+		console.log(id);
+		this.setState({
+			showDetails: showStore.getObj()[String(id)]
 		})
 	}
 });
