@@ -3,6 +3,8 @@ var $ = require("jquery");
 
 var ReactRouter = require("react-router");
 
+var store = require("store");
+
 var userStore = Object.create(EventEmitter.prototype);
 EventEmitter.call(userStore);
 
@@ -97,6 +99,12 @@ userStore.pseudo = function () {
 		tracking: [],
 		settings: null
 	}
+
+	// Check to see if there is localStorage pseudo data
+	if (store.get("pseudo")) {
+		let tracking = store.get("pseudo").tracking;
+		currentUser.tracking = tracking;
+	}
 }
 
 userStore.fake = function () {
@@ -131,15 +139,34 @@ userStore.track = function (id) {
 		})
 	} else {
 	//Action to perform if it is a pseudouser
-		currentUser.tracking.push(id);
+
+	// Update localStorage
+		if (store.get('pseudo')) {
+			let tracking = store.get("pseudo").tracking;
+			tracking.push(id);
+			store.set('pseudo', { tracking: tracking})
+			currentUser.tracking = tracking;
+		} else {
+			store.set("pseudo", {tracking: []});
+
+			let tracking = store.get("pseudo").tracking;
+
+			tracking.push(id);
+			store.set('pseudo', { tracking: tracking});
+
+			currentUser.tracking = tracking;
+		}
 		_this.emit("update");
+
 	}
 
 }
 
 userStore.untrack = function (id) {
 	var _this = this;
-	if (currentUser.tracking.indexOf(id) !== -1) {
+
+	// Action to take if currentUser is bonafide
+	if (currentUser.tracking.indexOf(id) !== -1 && currentUser.email) {
 		$.ajax({
 			url: "/api/untrack",
 			data: {
@@ -152,8 +179,22 @@ userStore.untrack = function (id) {
 				_this.emit("update");
 			}
 		})
+	} else {
+		// Action to take if currentUser is pseudo
+		let tracking = store.get("pseudo").tracking;
+
+		// Check to ensure nothing weird happens
+		if (tracking.indexOf(id) >= 0) {
+			tracking.splice(tracking.indexOf(id), 1);
+		}
+		// Set tracking to new post-splice value
+		store.set("pseudo", {tracking: tracking});
+		currentUser.tracking = tracking;
+		this.emit("update");
 	}
 }
+
+
 // userStore.sendText = function () {
 // 	$.ajax({
 // 		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/Messages",
@@ -172,6 +213,11 @@ userStore.getTracking = function () {
 
 userStore.isTracking = function (id) {
 	return (currentUser.tracking.indexOf(id) >= 0) 
+}
+
+userStore.getLocalStorage = function () {
+	let tracking = store.get("pseudo");
+	console.log(tracking);
 }
 
 window.userStore = userStore;
