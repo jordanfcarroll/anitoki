@@ -18,9 +18,9 @@ var Home = React.createClass({
 
 	componentWillMount: function () {
 		var _this = this;
-		if (!userStore.isAuth()) {
-			ReactRouter.hashHistory.push("/landing");
-		}
+		// if (!userStore.isAuth()) {
+		// 	ReactRouter.hashHistory.push("/landing");
+		// }
 		showStore.on("update", function() {
 			_this.setState({
 				shows: showStore.getShows()

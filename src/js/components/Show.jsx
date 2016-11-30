@@ -15,8 +15,13 @@ var Show = React.createClass({
 	},
 
 	parseTime: function (date) {
+
+
+
 		let time = new Date(date);
 
+
+		// Currently evaluates to SC time
 		// time.convertTimezone();
 		let amPm = " AM";
 
