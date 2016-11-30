@@ -44,11 +44,11 @@ var WeeklyView = React.createClass({
 		var buttonRight;
 
 		if (this.state.mobileDisplaying > 0) {
-			buttonLeft = <button className="forward-button" onClick={this.handleAdvance} />
+			buttonLeft = <button className="back-button" onClick={this.handleBack} />
 		}
 		if (this.state.mobileDisplaying < 6) {
-			buttonRight = <button className="back-button" onClick={this.handleBack} />
-		})
+			buttonRight = <button className="forward-button" onClick={this.handleAdvance} />
+		}
 
 
 		return (
@@ -61,17 +61,19 @@ var WeeklyView = React.createClass({
 	},
 
 	handleAdvance: function () {
+		var _this = this;
 		if(this.state.mobileDisplaying < 6) {
 			this.setState({
-				mobileDisplaying: this.mobileDisplaying + 1;
+				mobileDisplaying: _this.state.mobileDisplaying + 1
 			})
 		}
 	},
 
 	handleBack: function () {
+		var _this = this;
 		if(this.state.mobileDisplaying > 0) {
 			this.setState({
-				mobileDisplaying: this.mobileDisplaying - 1;
+				mobileDisplaying: _this.state.mobileDisplaying - 1
 			})
 		}
 	}
