@@ -94,8 +94,8 @@ var Searchpane = React.createClass({
 		}
 		return (
 			<div className="list-panel">
-				<button className="tracking-toggle" onClick={this.displayTracking}>Currently Tracking</button>
-				<button className="airing-toggle" onClick={this.clearSearch}>Currently Airing</button>
+				<button className="tracking-toggle" onClick={this.displayTracking}>Following</button>
+				<button className="airing-toggle" onClick={this.clearSearch}>Airing</button>
 				{display}
 				<input 
 					className="search"

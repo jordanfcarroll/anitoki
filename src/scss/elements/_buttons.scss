@@ -50,3 +50,37 @@
 		color: $light-gray !important;
 	}
 }
+
+.list-panel-toggle {
+	width: 100%;
+	margin: 0;
+	overflow: auto;
+	background-color: $blue;
+	.list-up {
+		font-size: 3em;
+		color: $white;
+		margin: 0 auto;
+		display: block;
+		padding: 0 48.5%;
+	}
+	h5 {
+		font-family: $font-family-gen;
+		color: $white;
+		font-size: 1em;
+		text-align: center;
+		// padding: 0 50%;
+		margin-top: 0;
+	}
+}
+
+.tracking-toggle,
+.airing-toggle {
+	font-family: $font-family-h2;
+	font-size: 1em;
+	background-color: $white;
+	color: $black;
+	border: none;
+	padding: 1em 1em .2em 1em;
+	border-bottom: 6px solid $blue;
+	float: right; 
+}
