@@ -41,21 +41,26 @@ var Home = React.createClass({
 	},
 
 	render: function () {
-		var searchpane;
+		var showpane;
 		var drawerButton;
 		if (this.state.showDetails) {
-			searchpane = <Showpane show={this.state.showDetails} />
+			showpane = <Showpane show={this.state.showDetails} />
 		}
 
-		var drawerButton;
 		if (this.state.drawerIsExpanded) {
-			drawerButton = <button 	
-						className="fa fa-angle-down list-down"
-						onClick={this.toggleDrawer} />;
+			drawerButton = (
+				<div className="list-panel-toggle" onClick={this.toggleDrawer}>
+					<i className="fa fa-angle-down list-up" />
+					<h5>Hide List View</h5>
+				</div>
+				);
 		} else {
-			drawerButton = <button 
-						className="fa fa-angle-up list-up"
-						onClick={this.toggleDrawer} />;
+			drawerButton = (
+				<div className="list-panel-toggle" onClick={this.toggleDrawer}>
+					<i className="fa fa-angle-up list-up" />
+					<h5>Show List View</h5>
+				</div>
+				);
 		}
 		return (
 			<div>
@@ -64,7 +69,7 @@ var Home = React.createClass({
 					userShows={this.state.userShows}/>
 				<div>
 					{drawerButton}
-					{searchpane}
+					{showpane}
 					<Searchpane 
 						shows={this.state.shows} 
 						userShows={this.state.userShows}

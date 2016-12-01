@@ -11,6 +11,7 @@ var userStore = require("../src/js/stores/userStore.js");
 describe("Nav", () => {
 	it("Renders two links when no user is logged in", () => {
 		userStore.logOut();
+		userStore.logIn("nehima99@gmail.com", "conduit1");
 
 		const wrapper = mount(<Nav/>);
 		expect(wrapper.find("li").length).to.equal(2);
@@ -18,7 +19,7 @@ describe("Nav", () => {
 
 	it("Renders three links when a user is logged in", () => {
 		userStore.logOut();
-		userStore.fake();
+		userStore.logIn("nehima99@gmail.com", "conduit1");
 
 		const wrapper = mount(<Nav/>);
 		expect(wrapper.find("li").length).to.equal(3);
@@ -26,7 +27,6 @@ describe("Nav", () => {
 	})
 
 	it("Renders three anchors when a user is logged in", () => {
-		userStore.fake();
 
 		const wrapper = mount(<Nav/>);
 		expect(wrapper.find("a").length).to.equal(3);

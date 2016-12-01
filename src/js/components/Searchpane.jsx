@@ -74,7 +74,7 @@ var Searchpane = React.createClass({
 				// Fill day with jsx if there were show results for that day
 				if (shows[0]) {
 					day = (
-						<div key={i}>
+						<div className="list-weekly-day" key={i}>
 							<h3>{days[i]}</h3>
 							{results}
 						</div>
@@ -93,9 +93,9 @@ var Searchpane = React.createClass({
 			} 
 		}
 		return (
-			<div>
-				<button onClick={this.displayTracking}>Currently Tracking</button>
-				<button onClick={this.clearSearch}>Currently Airing</button>
+			<div className="list-panel">
+				<button className="tracking-toggle" onClick={this.displayTracking}>Currently Tracking</button>
+				<button className="airing-toggle" onClick={this.clearSearch}>Currently Airing</button>
 				{display}
 				<input 
 					className="search"

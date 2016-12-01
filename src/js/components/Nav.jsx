@@ -6,16 +6,8 @@ var userStore = require("../stores/userStore.js")
 var Nav = React.createClass({
 	getInitialState: function () {
 		return {
-			hasListener : false,
 			auth: userStore.getUser()
 		}
-	},
-
-	componentDidMount: function() {
-		// After mount and first render, set to true
-		this.setState({
-			hasListener: true
-		})
 	},
 
 	render: function () {
@@ -27,7 +19,7 @@ var Nav = React.createClass({
 			_this.setState({
 				auth: userStore.getUser()
 			})
-		})
+		})	
 	
 		if (this.state.auth.email) {
 			links = (

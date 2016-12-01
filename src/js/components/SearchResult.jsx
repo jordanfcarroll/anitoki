@@ -20,13 +20,13 @@ var SearchResult = React.createClass({
 	render: function () {
 		var button;
 		if(this.state.isTracking) {
-			button = <button onClick={this.untrackThisShow}>Untrack</button>
+			button = <button className="follow-toggle" onClick={this.untrackThisShow}>Untrack</button>
 		} else {
-			button = <button onClick={this.trackThisShow}>Track</button>
+			button = <button className="follow-toggle" onClick={this.trackThisShow}>Track</button>
 		}
 		return (
-			<li>
-				<h3 onClick={this.handleClick}>{this.props.show.title_romaji}</h3>
+			<li className="list-show-view">
+				<h4 onClick={this.handleClick}>{this.props.show.title_romaji}</h4>
 				{button}
 			</li>
 			);

@@ -13,25 +13,21 @@ var userStore = require("../src/js/stores/userStore.js");
 
 describe("Home", () => {
 	it("Renders the <WeeklyView /> component", () => {
-    userStore.fake();
     const wrapper = shallow(<Home />);
     expect(wrapper.containsMatchingElement(<WeeklyView />)).to.equal(true);
   });
 
   it("Does not render the <Showpane /> component without a show selected", () => {
-    userStore.fake();
     const wrapper = shallow(<Home />);
     expect(wrapper.containsMatchingElement(<Showpane />)).to.equal(false);
   });
 
   it("Renders the <Showpane /> component with a show selected", () => {
-    userStore.fake();
     const wrapper = shallow(<Home />);
     wrapper.setState({showDetails: {show: "show"}});
   });
 
   it("sets showDetails on a setShow call", () => {
-    userStore.fake();
     const wrapper = shallow(<Home />);
     wrapper.instance().setShow({show: "show"});
 
@@ -44,7 +40,6 @@ describe("Home", () => {
   })
 
   it("Renders the <Searchpane /> component when data is present", () => {
-    userStore.fake();
     const wrapper = shallow(<Home />);
     wrapper.setState({ shows: 1 });
     expect(wrapper.containsMatchingElement(<Searchpane />)).to.equal(true);

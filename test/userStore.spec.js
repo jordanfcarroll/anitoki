@@ -8,36 +8,29 @@ var mount = require("enzyme").mount;
 var userStore = require("../src/js/stores/userStore.js");
 
 describe("userStore", () => {
-	it("Should initialize with a null user", () => {
+	it("Should initialize with a pseudo user", () => {
   userStore.logOut();
 
   const user = userStore.getUser();
-  expect(user).to.equal(null);
+  expect(user.email).to.equal(null);
   })
-
-  it("isAuth should return false when no user is loaded", () => {
-    const isAuth = userStore.isAuth();
-    expect(isAuth).to.equal(false);
-  })
-
 
   it("Should load user when logIn returns a user", () => {
-    userStore.fake();
+    userStore.logIn("nehima99@gmail.com", "conduit1");
+
     const user = userStore.getUser();
-    expect(user).to.eql({"name": "Rannah or Jordan", "pw":"123", tracking: [], settings: []});
+    expect(user).to.eql({"name": "nehima99@gmail.com", "pw":"conduit1", tracking: [user.tracking], settings: [user.settings]});
   })
 
-  it("Should have a null user after a logOut call", () => {
-    userStore.fake();
+  it("Should have a null user email after a logOut call", () => {
     const user = userStore.getUser();
     expect(user).to.eql({"name": "Rannah or Jordan", "pw":"123", tracking: [], settings: []});
     userStore.logOut();
-    expect(userStore.getUser()).to.equal(null);
+    expect(userStore.getUser().email).to.equal(null);
   })
 
   it("Should add a show's id to the current user on track call", () => {
     userStore.logOut();
-    userStore.fake();
 
     userStore.track(123);
 
