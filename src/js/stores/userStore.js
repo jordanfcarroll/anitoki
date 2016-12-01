@@ -230,7 +230,7 @@ userStore.getLocalSession = function () {
 
 userStore.setSession = function () {
 	currentUser = store.get("session");
-	this.emit("update");
+	userStore.logIn(currentUser.email, currentUser.pw);
 }
 
 userStore.getLocalUser = function () {
