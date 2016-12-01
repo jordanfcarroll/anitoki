@@ -44,10 +44,10 @@ var WeeklyView = React.createClass({
 		var buttonRight;
 
 		if (this.state.mobileDisplaying > 0) {
-			buttonLeft = <button className="back-button" onClick={this.handleBack} />
+			buttonLeft = <button className="back-button fa fa-angle-left" onClick={this.handleBack} />
 		}
 		if (this.state.mobileDisplaying < 6) {
-			buttonRight = <button className="forward-button" onClick={this.handleAdvance} />
+			buttonRight = <button className="forward-button fa fa-angle-right" onClick={this.handleAdvance} />
 		}
 
 
