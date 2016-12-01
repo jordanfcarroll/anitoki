@@ -53,9 +53,13 @@ var WeeklyView = React.createClass({
 
 		return (
 			<div id="week-view">
-				{buttonLeft}
-				{weekdays}
-				{buttonRight}
+				<div className="weekday-wrapper">
+					{weekdays}
+					<div className="arrow-button-wrapper">
+						{buttonLeft}
+						{buttonRight}
+					</div>
+				</div>
 			</div>
 		);
 	},

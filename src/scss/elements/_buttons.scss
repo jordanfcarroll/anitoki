@@ -23,21 +23,28 @@
 	display: block;
 }
 
-.forward-button,
-.back-button {
-	border: none;
-	color: $blue;
-	font-size: 4em;
-	padding: .5em;
-	background-color: transparent;
-	float: right;
-}
-
-.forward-button {
+.arrow-button-wrapper {
 	position: absolute;
-	
-}
-
-.back-button {
-	display: block;
+	right: 0;
+	top: 0;
+	width: 20%;
+	.forward-button,
+	.back-button {
+		border: none;
+		color: $blue;
+		font-size: 3em;
+		background-color: $white;
+		padding: .2em .5em;
+		// float: right;
+		// clear: right;
+		// left: 0;
+		position: absolute;
+		right: 0;
+	}
+	.forward-button {
+		top: 0;
+	}
+	.back-button {
+		right: 72px;
+	}
 }
