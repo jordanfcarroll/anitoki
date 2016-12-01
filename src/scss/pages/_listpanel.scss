@@ -1,5 +1,9 @@
 .list-panel {
-	// width: 85%;
+	max-height: 0;
+}
+
+.list-panel.open {
+	
 	.list-weekly-day {
 		width: 75%;
 		display: block;
