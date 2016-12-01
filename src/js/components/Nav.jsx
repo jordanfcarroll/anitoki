@@ -11,11 +11,6 @@ var Nav = React.createClass({
 		}
 	},
 
-	componentWillMount: function () {
-		var _this = this;
-	
-	},
-
 	componentDidMount: function() {
 		// After mount and first render, set to true
 		this.setState({
@@ -28,14 +23,11 @@ var Nav = React.createClass({
 		var links;
 
 		// hack to ensure listeners do not get deleted by react router (???) and duplicates are not created
-		if (!this.state.hasListener) {
-			userStore.on("update", function () {
-				_this.setState({
-					auth: userStore.getUser()
-				})
+		userStore.once("update", function () {
+			_this.setState({
+				auth: userStore.getUser()
 			})
-
-		}
+		})
 	
 		if (this.state.auth.email) {
 			links = (
