@@ -2,6 +2,11 @@ nav > ul {
 	padding: 0;
 	li {
 		list-style: none;
+		a {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
 	}
 	.logo {
 		background-image: url("assets/logo.svg");
@@ -9,6 +14,9 @@ nav > ul {
 		width: 10em;
 		background-repeat: no-repeat;
 		display: inline-block;
+	}
+	.logo:hover {
+		cursor: pointer;
 	}
 	.settings {
 		color: $dark-gray;
