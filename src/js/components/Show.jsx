@@ -41,9 +41,11 @@ var Show = React.createClass({
 		}
 
 		timeString += " : "; 
-		timeString += time.getMinutes(); 
-		if (time.getMinutes() === 0) {
-			timeString += "0";
+		if (time.getMinutes() < 10) {
+			let minutes = "0" + time.getMinutes();
+			timeString += minutes;
+		} else {
+			timeString += time.getMinutes(); 
 		}
 		timeString += amPm;
 		return timeString;

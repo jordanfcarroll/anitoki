@@ -24,7 +24,7 @@ var Home = React.createClass({
 			userStore.setSession();
 
 		} else if (!userStore.getUser()) {
-				// Set user as pseudo
+			// Set user as pseudo
 			userStore.pseudo();
 		}
 
