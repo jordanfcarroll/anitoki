@@ -1,3 +1,7 @@
+button {
+	outline: none;
+}
+
 .account-tab {
 	font-family: $font-family-h2;
 	font-size: 1.75em;
@@ -73,14 +77,42 @@
 	}
 }
 
-.tracking-toggle,
-.airing-toggle {
-	font-family: $font-family-h2;
-	font-size: 1em;
-	background-color: $white;
-	color: $black;
+.list-toggle-buttons {
+	display: block;
+	clear: both;
+	width: 100%;
+	overflow: auto;
+	.tracking-toggle,
+	.airing-toggle {
+		font-family: $font-family-h2;
+		font-size: 1em;
+		background-color: $white;
+		color: $dark-gray;
+		border: none;
+		padding: 1em 1em .2em 1em;
+		float: right;  
+	}
+	.airing-toggle {
+		margin-right: .2em;
+	}
+	.active-toggle {
+		border-bottom: 4px solid $blue;
+		color: $black;
+	}
+}
+
+.follow-toggle {
+	display: inline-block;
 	border: none;
-	padding: 1em 1em .2em 1em;
-	border-bottom: 6px solid $blue;
-	float: right; 
+	font-family: $font-family-button;
+	color: $white;
+	background-color: $red;
+	font-size: 1.2em;
+	padding: .3em .5em ;
+	text-transform: uppercase;
+	margin-left: 1.5em;
+	cursor: pointer;
+	// position: absolute;
+	// // top: 0;
+	// top: 50%;
 }

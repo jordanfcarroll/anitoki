@@ -1,0 +1,43 @@
+.list-panel {
+	// width: 85%;
+	.list-weekly-day {
+		width: 75%;
+		display: block;
+		margin: 0 auto;
+		border-bottom: 2px solid $dark-gray;
+		h3 {
+			font-size: 1.7em;
+			font-family: $font-family-list-day;
+		}
+		.list-show-view {
+			list-style: none;
+			margin-bottom: .3em;
+			padding: 10px 0;
+			// display: flex;
+			// position: relative;
+			// text-align: center;
+			h4 {
+				font-family: $font-family-gen;
+				font-weight: normal;
+				font-size: 1.2em;
+				margin-bottom: .2em;
+				margin-top: 0;
+				display: inline-block;
+				width: 50%;
+				vertical-align: middle;
+			}
+			// .follow-toggle {
+			// 	display: inline-block;
+			// 	border: none;
+			// 	font-family: $font-family-button;
+			// 	color: $white;
+			// 	background-color: $red;
+			// 	font-size: 1.2em;
+			// 	padding: .5em;
+			// }
+		}
+	}
+	.list-weekly-day:last-of-type {
+		border-bottom: none;
+	}	
+}
