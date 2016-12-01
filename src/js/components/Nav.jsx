@@ -5,23 +5,33 @@ var userStore = require("../stores/userStore.js")
 
 var Nav = React.createClass({
 	getInitialState: function () {
+		console.log("Getting Nav State");
 		return {
-			auth: userStore.isAuth()
+			auth: userStore.getUser()
 		}
 	},
 
 	componentWillMount: function () {
+		console.log("Nav will mount")
 		var _this = this;
-		userStore.on("update", function () {
-			_this.setState({
-				auth: userStore.isAuth()
-			})
-		})
+	
 	},
 
 	render: function () {
+		var _this = this;
 		var links;
-		if (this.state.auth) {
+
+		// Remove residual listeners created from previous renders
+		userStore.off("update");
+
+		// Create the single listener
+		userStore.on("update", function () {
+			console.log("Updating Nav State");
+			_this.setState({
+				auth: userStore.getUser()
+			})
+		})
+		if (this.state.auth.email) {
 			links = (
 				<ul>
 					<li className="logo"><Link to="/home"></Link></li>
@@ -42,6 +52,11 @@ var Nav = React.createClass({
 				{links}
 			</nav>
 		);
+	},
+
+	componentWillUnMount: function () {
+		console.log("Nav Is Unmounting");
+		userStore.off("update");
 	},
 
 	handleLogOut: function () {

@@ -21,13 +21,13 @@ var Home = React.createClass({
 		var _this = this;
 
 		// Check for active user session 
-		if (userStore.getLocalSession()) {
-			userStore.setSession();
+		// if (userStore.getLocalSession() && !userStore.getUser()) {
+		// 	userStore.setSession();
 
-		} else if (!userStore.getUser()) {
-			// Set user as pseudo
-			userStore.pseudo();
-		}
+		// } else if (!userStore.getUser()) {
+		// 	// Set user as pseudo
+		// 	userStore.pseudo();
+		// }
 
 
 		this.setState({

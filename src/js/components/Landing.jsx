@@ -8,8 +8,8 @@ var Link = require("react-router").Link;
 
 var Landing = React.createClass({
 	componentWillMount: function () {
-		if (userStore.isAuth()) {
-			ReactRouter.hashHistory.push("/home");
+		if (userStore.isAuth().email) {
+			ReactRouter.hashHistory.push("/");
 		}
 	},
 	
