@@ -1,47 +1,69 @@
-.list-panel {
-	max-height: 0;
+#drawer {
+	z-index: 1;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: $white;
+	// height: 600px;
 }
 
-.list-panel.open {
-	
-	.list-weekly-day {
-		width: 75%;
-		display: block;
-		margin: 0 auto;
-		border-bottom: 2px solid $dark-gray;
-		h3 {
-			font-size: 1.7em;
-			font-family: $font-family-list-day;
-		}
-		.list-show-view {
-			list-style: none;
-			margin-bottom: .3em;
-			padding: 10px 0;
-			// display: flex;
-			// position: relative;
-			// text-align: center;
-			h4 {
-				font-family: $font-family-gen;
-				font-weight: normal;
-				font-size: 1.2em;
-				margin-bottom: .2em;
-				margin-top: 0;
-				display: inline-block;
-				width: 50%;
-				vertical-align: middle;
+.drawer-body.closed {
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	.list-panel {
+		display: none;
+	}	
+} 
+
+.drawer-body.open {
+	// max-height: 600px;
+	overflow: hidden;
+	.list-panel {
+		max-height: 600px;
+		overflow-y: scroll;
+		.list-weekly-day {
+			width: 75%;
+			display: block;
+			margin: 0 auto;
+			border-bottom: 2px solid $dark-gray;
+			h3 {
+				font-size: 1.7em;
+				font-family: $font-family-list-day;
 			}
-			// .follow-toggle {
-			// 	display: inline-block;
-			// 	border: none;
-			// 	font-family: $font-family-button;
-			// 	color: $white;
-			// 	background-color: $red;
-			// 	font-size: 1.2em;
-			// 	padding: .5em;
-			// }
+			.list-show-view {
+				list-style: none;
+				margin-bottom: .3em;
+				padding: 10px 0;
+				// display: flex;
+				// position: relative;
+				// text-align: center;
+				h4 {
+					font-family: $font-family-gen;
+					font-weight: normal;
+					font-size: 1.2em;
+					margin-bottom: .2em;
+					margin-top: 0;
+					display: inline-block;
+					width: 50%;
+					vertical-align: middle;
+				}
+				// .follow-toggle {
+				// 	display: inline-block;
+				// 	border: none;
+				// 	font-family: $font-family-button;
+				// 	color: $white;
+				// 	background-color: $red;
+				// 	font-size: 1.2em;
+				// 	padding: .5em;
+				// }
+			}
 		}
-	}
+	}	
 	.list-weekly-day:last-of-type {
 		border-bottom: none;
 	}	
 }
+
+
+

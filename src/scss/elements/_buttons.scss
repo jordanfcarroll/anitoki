@@ -60,6 +60,8 @@ button {
 	margin: 0;
 	overflow: auto;
 	background-color: $blue;
+	// position: absolute;
+	// bottom: 0;
 	.list-up {
 		font-size: 3em;
 		color: $white;
@@ -79,7 +81,6 @@ button {
 
 .list-toggle-buttons {
 	display: block;
-	clear: both;
 	width: 100%;
 	overflow: auto;
 	.tracking-toggle,

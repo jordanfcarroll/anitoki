@@ -13,7 +13,7 @@ var Home = React.createClass({
 			shows: showStore.pollForUpdate(),
 			userShows: userStore.getTracking(),
 			showDetails: null,
-			drawerStatus: false
+			drawerStatus: "closed"
 		}
 	},
 

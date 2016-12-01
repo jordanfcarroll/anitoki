@@ -12,12 +12,15 @@
 .weekly-day {
 	display: none;
 	position: relative;
+	// height: 75vh;
 }
 
 .weekly-day.mobile-current-displaying {
 	display: block;
 	background-color: $light-gray;
 	// width: 95%;
+	overflow-y: scroll; 
+	min-height: 75vh;
 	height: 100%;
 	// margin: 0 auto;
 	// padding-left: .5em;
