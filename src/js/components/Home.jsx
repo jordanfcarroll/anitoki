@@ -11,25 +11,22 @@ var Home = React.createClass({
 	getInitialState: function () {
 		return {
 			shows: showStore.pollForUpdate(),
-			userShows: null,
+			userShows: userStore.getTracking(),
 			showDetails: null,
 			drawerIsExpanded: false
 		}
 	},
 
+
+
 	componentWillMount: function () {
 		var _this = this;
-
-
-		this.setState({
-			userShows: userStore.getTracking()
-		})
 
 		// Pull new shows when necessary
 		showStore.on("update", function() {
 			_this.setState({
 				shows: showStore.getShows()
-			})
+			});
 		})
 
 		// Pull user's tracked shows when updated
@@ -40,13 +37,20 @@ var Home = React.createClass({
 		})
 	},
 
+
+
 	render: function () {
 		var showpane;
 		var drawerButton;
+
+		// If show has been clicked, display showpane for details
 		if (this.state.showDetails) {
-			showpane = <Showpane show={this.state.showDetails} />
+			showpane = <Showpane show={this.state.showDetails} unsetShow={this.unsetShow} />
 		}
 
+
+
+		// Drawer toggle states
 		if (this.state.drawerIsExpanded) {
 			drawerButton = (
 				<div className="list-panel-toggle" onClick={this.toggleDrawer}>
@@ -62,33 +66,45 @@ var Home = React.createClass({
 				</div>
 				);
 		}
+
+
+
 		return (
 			<div>
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}/>
-				<div>
+				<div id="drawer">
 					{drawerButton}
-					{showpane}
-					<Searchpane 
-						shows={this.state.shows} 
-						userShows={this.state.userShows}
-						setShow={this.setShow} />
+					<div className="drawer-body">
+						{showpane}
+						<Searchpane 
+							shows={this.state.shows} 
+							userShows={this.state.userShows}
+							setShow={this.setShow} />
+					</div>
 				</div>
 			</div>
 		);
 	},
 
+
+
 	componentWillUnmount: function () {
-		var _this = this;
 		showStore.off("update");
 		userStore.off("update");
 	},
 
 	setShow: function (id) {
-		console.log(id);
+		// On show click, set details to be displayed in showpane
 		this.setState({
 			showDetails: showStore.getObj()[String(id)]
+		})
+	},
+
+	unsetShow: function () {
+		this.setState({
+			showDetails: null
 		})
 	},
 
