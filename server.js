@@ -37,7 +37,15 @@ db.defaults({
 app.post("/api/register", function (req, res) {
 
 	var userData = req.body;
+	var tracking;
+	console.log(userData);
 
+	if (userData.tracking) {
+		tracking = userData.tracking;
+		tracking = tracking.map((value) => Number(value));
+	} else {
+		tracking = [];
+	}
 	// Search server to see if given email has already been registered
 
 	var email = db.get("users").find({email: userData.email});
@@ -48,7 +56,7 @@ app.post("/api/register", function (req, res) {
 		var newUser = {
 			email: userData.email,
 			pw: userData.pw,
-			tracking : userData.tracking,
+			tracking : tracking,
 			settings : {
 				notifications: "email",
 				showtimes: "countdown"

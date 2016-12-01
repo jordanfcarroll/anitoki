@@ -12,7 +12,7 @@ var userStore = require("../stores/userStore.js");
 
 var App = React.createClass({
  	componentWillMount() {
- 			// Check for active user session 
+ 			// Check for active user session and set if needed
 		if (userStore.getLocalSession() && !userStore.getUser()) {
 			userStore.setSession();
 

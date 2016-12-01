@@ -26,24 +26,26 @@ userStore.isAuth = function () {
 };
 
 userStore.register = function (email, pw) {
+	var _this = this;
 	const localTracking = store.get("pseudo").tracking;
+
 
 	// Convert string ids to numbers
 	const trueTracking = localTracking.map(function (value) {
 		return Number(value);
 	})
+
 	errors = {
 		emailError: "",
 		passwordError: ""
 	}
-	var _this = this;
 	$.ajax({
 		url: "/api/register",
 		method: "POST",
 		data: {
 			email: email,
 			pw: pw,
-			tracking: localTracking
+			tracking: trueTracking
 		},
 		success: function (result) {
 			currentUser = result;
@@ -51,6 +53,8 @@ userStore.register = function (email, pw) {
 			store.set("session", currentUser);
 
 			ReactRouter.hashHistory.push("/");
+			_this.emit("update");
+
 
 			return currentUser;
 		},

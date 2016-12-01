@@ -24,7 +24,7 @@ var Nav = React.createClass({
 		if (this.state.auth.email) {
 			links = (
 				<ul>
-					<li className="logo"><Link to="/home"></Link></li>
+					<li className="logo"><Link to="/"></Link></li>
 					<li className="settings fa fa-cog"><Link to="/Settings">Settings</Link></li>
 					<li className="user-status" onClick={this.handleLogOut}>Logout</li>
 				</ul>
@@ -32,7 +32,7 @@ var Nav = React.createClass({
 		} else {
 			links = (
 				<ul>
-					<li className="logo"><Link to="/home"></Link></li>
+					<li className="logo"><Link to="/"></Link></li>
 					<li className="user-status"><Link to="/landing/login">Login</Link></li>
 				</ul>
 			)
