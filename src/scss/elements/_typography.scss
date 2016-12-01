@@ -35,12 +35,12 @@
 	}
 }
 
-@include font-face("Poppins-Bold", assets/Poppins/Poppins-Bold, ttf);
-@include font-face("Poppins-Semibold", assets/Poppins/Poppins-Semibold, ttf);
-@include font-face("Poppins-Medium", assets/Poppins/Poppins-Medium, ttf);
-@include font-face("Poppins-Regular", assets/Poppins/Poppins-Regular, ttf);
+@include font-face("Poppins-Bold", assets/Poppins/Poppins-Bold, null, null, ttf);
+@include font-face("Poppins-Semibold", assets/Poppins/Poppins-Semibold, null, null, ttf);
+@include font-face("Poppins-Medium", assets/Poppins/Poppins-Medium, null, null, ttf);
+@include font-face("Poppins-Regular", assets/Poppins/Poppins-Regular, null, null, ttf);
 
-@include font-face("Karla", assets/karla/Karla-Regular, ttf);
+@include font-face("Karla", assets/karla/Karla-Regular, null, null, ttf);
 
 $font-family-h1: "Poppins-Semibold", sans-serif;
 $font-family-h2: "Poppins-Semibold", sans-serif;

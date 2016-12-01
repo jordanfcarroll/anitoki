@@ -54,13 +54,14 @@ var WeeklyView = React.createClass({
 			buttonRight = <button className="forward-button fa fa-angle-right" onClick={this.handleAdvance} />
 		}
 
-
 		return (
 			<div id="week-view">
-				{weekdays}
-				<div className="arrow-button-wrapper">
-					{buttonLeft}
-					{buttonRight}
+				<div className="weekday-wrapper">
+					{weekdays}
+					<div className="arrow-button-wrapper">
+						{buttonLeft}
+						{buttonRight}
+					</div>
 				</div>
 			</div>
 		);

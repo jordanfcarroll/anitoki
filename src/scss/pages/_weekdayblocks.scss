@@ -1,23 +1,42 @@
+#week-view {
+	position: relative;
+}
+
+.weekday-wrapper {
+	position: relative;
+	margin: 0 auto;
+	display: block;
+	width: 95%;
+}
+
 .weekly-day {
 	display: none;
+	position: relative;
 }
+
 .weekly-day.mobile-current-displaying {
-	display: inline-block;
+	display: block;
 	background-color: $light-gray;
-	width: 80%;
+	// width: 95%;
 	height: 100%;
-	padding-left: .5em;
+	// margin: 0 auto;
+	// padding-left: .5em;
 	// margin: 0 .5em;
 	h2 {
 		font-size: 2em;
 		color: $blue;
+		margin-left: 1em;
+		padding-top: .3em;
 	}
 	.show-info {
 		// padding-left: 1.5em;
 		font-family: $font-family-showname;
 		border-top: 2px solid $dark-gray;
-		line-height: .5em;
+		// line-height: .5em;
 		margin: 0 2em;
+		.show-title {
+			line-height: .75em;
+		}
 		.show-time {
 			letter-spacing: -0.8px;	
 		}
