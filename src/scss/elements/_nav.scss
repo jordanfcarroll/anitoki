@@ -10,6 +10,9 @@ nav > ul {
 		background-repeat: no-repeat;
 		display: inline-block;
 	}
+	.logo:hover {
+		cursor: pointer;
+	}
 	.settings {
 		color: $dark-gray;
 	}

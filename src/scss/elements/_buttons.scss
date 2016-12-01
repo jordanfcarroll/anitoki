@@ -23,11 +23,21 @@
 	display: block;
 }
 
-.forward-button {
+.forward-button,
+.back-button {
 	border: none;
 	color: $blue;
-	font-size: 2em;
-	padding: 2em;
-	background-color: $white;
+	font-size: 4em;
+	padding: .5em;
+	background-color: transparent;
 	float: right;
+}
+
+.forward-button {
+	position: absolute;
+	
+}
+
+.back-button {
+	display: block;
 }

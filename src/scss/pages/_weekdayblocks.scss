@@ -16,8 +16,11 @@
 		// padding-left: 1.5em;
 		font-family: $font-family-showname;
 		border-top: 2px solid $dark-gray;
-		line-height: .5em;
+		// line-height: .5em;
 		margin: 0 2em;
+		.show-title {
+			line-height: .75em;
+		}
 		.show-time {
 			letter-spacing: -0.8px;	
 		}
