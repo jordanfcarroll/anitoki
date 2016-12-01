@@ -5,32 +5,38 @@ var userStore = require("../stores/userStore.js")
 
 var Nav = React.createClass({
 	getInitialState: function () {
-		console.log("Getting Nav State");
 		return {
+			hasListener : false,
 			auth: userStore.getUser()
 		}
 	},
 
 	componentWillMount: function () {
-		console.log("Nav will mount")
 		var _this = this;
 	
+	},
+
+	componentDidMount: function() {
+		// After mount and first render, set to true
+		this.setState({
+			hasListener: true
+		})
 	},
 
 	render: function () {
 		var _this = this;
 		var links;
 
-		// Remove residual listeners created from previous renders
-		userStore.off("update");
-
-		// Create the single listener
-		userStore.on("update", function () {
-			console.log("Updating Nav State");
-			_this.setState({
-				auth: userStore.getUser()
+		// hack to ensure listeners do not get deleted by react router (???) and duplicates are not created
+		if (!this.state.hasListener) {
+			userStore.on("update", function () {
+				_this.setState({
+					auth: userStore.getUser()
+				})
 			})
-		})
+
+		}
+	
 		if (this.state.auth.email) {
 			links = (
 				<ul>
@@ -55,7 +61,6 @@ var Nav = React.createClass({
 	},
 
 	componentWillUnMount: function () {
-		console.log("Nav Is Unmounting");
 		userStore.off("update");
 	},
 

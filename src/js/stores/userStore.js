@@ -152,7 +152,6 @@ userStore.track = function (id) {
 		})
 	} else if (!currentUser.email){
 	//Action to perform if it is a pseudouser
-
 	// Update localStorage
 		let tracking = store.get("pseudo").tracking;
 		tracking.push(id);
@@ -193,7 +192,7 @@ userStore.untrack = function (id) {
 		// Set tracking to new post-splice value
 		store.set("pseudo", {tracking: tracking});
 		currentUser.tracking = tracking;
-		this.emit("update");
+		_this.emit("update");
 	}
 }
 

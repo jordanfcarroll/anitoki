@@ -11,10 +11,8 @@ var userStore = require("../stores/userStore.js");
 // }
 
 var App = React.createClass({
-	componentWillMount: function () {
-		userStore.on("update", function () {
-			console.log("userStore has updated");
-		});
+ 	componentWillMount() {
+ 			// Check for active user session 
 		if (userStore.getLocalSession() && !userStore.getUser()) {
 			userStore.setSession();
 
@@ -22,8 +20,8 @@ var App = React.createClass({
 			// Set user as pseudo
 			userStore.pseudo();
 		}
-	},
-
+ 	},
+ 	
 	render: function () {
 
 		return (

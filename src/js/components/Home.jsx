@@ -20,15 +20,6 @@ var Home = React.createClass({
 	componentWillMount: function () {
 		var _this = this;
 
-		// Check for active user session 
-		// if (userStore.getLocalSession() && !userStore.getUser()) {
-		// 	userStore.setSession();
-
-		// } else if (!userStore.getUser()) {
-		// 	// Set user as pseudo
-		// 	userStore.pseudo();
-		// }
-
 
 		this.setState({
 			userShows: userStore.getTracking()

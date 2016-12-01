@@ -61,7 +61,6 @@ var Searchpane = React.createClass({
 				// Convert filtered shows into SearchResult components
 				let results = shows.map(function (show) {
 					return (
-						<div>
 							<SearchResult 
 								key={show.id} 
 								show={show} 
@@ -69,14 +68,13 @@ var Searchpane = React.createClass({
 								onDeChoose={_this.removeTracking} 
 								isTracking={userStore.isTracking(show.id)}
 								setShow={_this.props.setShow}/>
-						</div>
 					)
 				})
 
 				// Fill day with jsx if there were show results for that day
 				if (shows[0]) {
 					day = (
-						<div>
+						<div key={i}>
 							<h3>{days[i]}</h3>
 							{results}
 						</div>
