@@ -12,7 +12,8 @@ var Home = React.createClass({
 		return {
 			shows: showStore.pollForUpdate(),
 			userShows: null,
-			showDetails: null
+			showDetails: null,
+			drawerIsExpanded: false
 		}
 	},
 
@@ -20,13 +21,13 @@ var Home = React.createClass({
 		var _this = this;
 
 		// Check for active user session 
-		if (userStore.getLocalSession()) {
-			userStore.setSession();
+		// if (userStore.getLocalSession() && !userStore.getUser()) {
+		// 	userStore.setSession();
 
-		} else if (!userStore.getUser()) {
-			// Set user as pseudo
-			userStore.pseudo();
-		}
+		// } else if (!userStore.getUser()) {
+		// 	// Set user as pseudo
+		// 	userStore.pseudo();
+		// }
 
 
 		this.setState({
@@ -50,8 +51,20 @@ var Home = React.createClass({
 
 	render: function () {
 		var searchpane;
+		var drawerButton;
 		if (this.state.showDetails) {
 			searchpane = <Showpane show={this.state.showDetails} />
+		}
+
+		var drawerButton;
+		if (this.state.drawerIsExpanded) {
+			drawerButton = <button 	
+						className="fa fa-angle-down list-down"
+						onClick={this.toggleDrawer} />;
+		} else {
+			drawerButton = <button 
+						className="fa fa-angle-up list-up"
+						onClick={this.toggleDrawer} />;
 		}
 		return (
 			<div>
@@ -59,6 +72,7 @@ var Home = React.createClass({
 					shows={this.state.shows} 
 					userShows={this.state.userShows}/>
 				<div>
+					{drawerButton}
 					{searchpane}
 					<Searchpane 
 						shows={this.state.shows} 
@@ -79,6 +93,12 @@ var Home = React.createClass({
 		console.log(id);
 		this.setState({
 			showDetails: showStore.getObj()[String(id)]
+		})
+	},
+
+	toggleDrawer: function () {
+		this.setState({
+			drawerIsExpanded: !this.state.drawerIsExpanded
 		})
 	}
 });

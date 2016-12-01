@@ -49,7 +49,10 @@ app.post("/api/register", function (req, res) {
 			email: userData.email,
 			pw: userData.pw,
 			tracking : userData.tracking,
-			settings : []
+			settings : {
+				notifications: "email",
+				showtimes: "countdown"
+			}
 		}
 		db.get("users").push(newUser).value();
 		res.json(newUser);

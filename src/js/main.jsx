@@ -9,6 +9,7 @@
 // -- Test time parser
 // -- Password hashing
 // -- Make sessions more secure
+// -- Investigate Nav issue -- React router deletes existing listeners on route
 
 // send this : 
 
@@ -34,7 +35,6 @@ var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
 var App = require("./components/App.jsx");
-var Index = require("./components/Index.jsx");
 var Landing = require("./components/Landing.jsx");
 var Login = require("./components/Login.jsx");
 var Register = require("./components/Register.jsx");

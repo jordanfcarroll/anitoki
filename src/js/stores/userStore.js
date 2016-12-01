@@ -22,13 +22,7 @@ userStore.getUser = function () {
 };
 
 userStore.isAuth = function () {
-	if (currentUser) {
-		if(currentUser.email) {
-			return true;
-		}
-	} else {
-		return false;
-	}
+	return userStore.getUser();
 };
 
 userStore.register = function (email, pw) {
@@ -68,11 +62,7 @@ userStore.register = function (email, pw) {
 	})
 }
 
-userStore.logIn = function (email, pw) {
-	// Wipe localStorage pseudouser
-	if (store.get("pseudo")) {
-		store.clear();
-	}
+userStore.logIn = function (email, pw) {	
 	errors = {
 		emailError: "",
 		passwordError: ""
@@ -86,16 +76,27 @@ userStore.logIn = function (email, pw) {
 			pw: pw
 		},
 		success: function (result) {
+			// Clear current pseudo-user data on submit
+			if (store.get("pseudo")) {
+				store.clear();
+			}
+			// Set currentUser to the response to from the user db on server
 			currentUser = result;
+			userStore.emit("update");
+
+			// Redirect to home
 			ReactRouter.hashHistory.push("/");
-			_this.emit("update");
+
+			// Create a user session in localStorage
 			store.set("session", currentUser);
 			return currentUser;
 		},
 		error: function (result) {
 			errors.emailError = result.responseJSON.emailError;
 			errors.passwordError = result.responseJSON.passwordError;
+
 			_this.emit("error");
+			return null;
 		}
 	})
 	return null; 
@@ -106,7 +107,6 @@ userStore.logOut = function () {
 	store.clear();
 
 	userStore.pseudo();
-	this.emit("update");
 	ReactRouter.hashHistory.push("/");
 }
 
@@ -122,7 +122,11 @@ userStore.pseudo = function () {
 	if (store.get("pseudo")) {
 		let tracking = store.get("pseudo").tracking;
 		currentUser.tracking = tracking;
+	} else {
+		store.set("pseudo", {tracking: []});
 	}
+
+	this.emit("update");
 }
 
 userStore.getErrors = function () {
@@ -146,25 +150,15 @@ userStore.track = function (id) {
 				_this.emit("update");
 			}
 		})
-	} else {
+	} else if (!currentUser.email){
 	//Action to perform if it is a pseudouser
 
 	// Update localStorage
-		if (store.get('pseudo')) {
-			let tracking = store.get("pseudo").tracking;
-			tracking.push(id);
-			store.set('pseudo', { tracking: tracking})
-			currentUser.tracking = tracking;
-		} else {
-			store.set("pseudo", {tracking: []});
+		let tracking = store.get("pseudo").tracking;
+		tracking.push(id);
+		store.set('pseudo', { tracking: tracking})
+		currentUser.tracking = tracking;
 
-			let tracking = store.get("pseudo").tracking;
-
-			tracking.push(id);
-			store.set('pseudo', { tracking: tracking});
-
-			currentUser.tracking = tracking;
-		}
 		_this.emit("update");
 
 	}
@@ -230,7 +224,13 @@ userStore.getLocalSession = function () {
 
 userStore.setSession = function () {
 	currentUser = store.get("session");
-	userStore.logIn(currentUser.email, currentUser.pw);
+
+	if (!userStore.logIn(currentUser.email, currentUser.pw)) {
+		// Clear residual localStorage which is conflicting with server
+		userStore.clearLocalStorage();
+		userStore.pseudo();
+		this.emit("update")
+	}
 }
 
 userStore.getLocalUser = function () {

@@ -26,16 +26,21 @@ var Settings = React.createClass({
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Text Only">Text Only</label>
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Email Only">Email Only</label>
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Text and Email">Text and Email</label>
+					<button>Save Changes</button>
 					<input 
 						type="text"
 						placeholder="Phone" />
 					<h4>Showtime Display</h4>
 					<input type="radio" name="showtimes" value="showtimenone" /><label htmlFor="showtimenone">None</label>
 					<input type="radio" name="showtimes" value="Countdown" /><label htmlFor="Countdown">Countdown</label>
+					<button onClick={this.saveNotifications}>Save Changes</button>
 				</div>
-				<button>Save Changes</button>
 			</div>
 		);
+	}, 
+
+	saveNotifications: function () {
+		
 	}
 });
 
