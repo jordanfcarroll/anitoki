@@ -35,9 +35,6 @@
 		font-size: 3em;
 		background-color: $white;
 		padding: .2em .5em;
-		// float: right;
-		// clear: right;
-		// left: 0;
 		position: absolute;
 		right: 0;
 	}
@@ -46,5 +43,10 @@
 	}
 	.back-button {
 		right: 72px;
+	}
+	.no-back,
+	.no-fwd {
+		background-color: $white !important;
+		color: $light-gray !important;
 	}
 }
