@@ -22,3 +22,12 @@
 	margin: 0 auto;
 	display: block;
 }
+
+.forward-button {
+	border: none;
+	color: $blue;
+	font-size: 2em;
+	padding: 2em;
+	background-color: $white;
+	float: right;
+}
