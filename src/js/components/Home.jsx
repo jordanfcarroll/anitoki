@@ -13,7 +13,7 @@ var Home = React.createClass({
 			shows: showStore.pollForUpdate(),
 			userShows: userStore.getTracking(),
 			showDetails: null,
-			drawerIsExpanded: false
+			drawerStatus: false
 		}
 	},
 
@@ -51,7 +51,7 @@ var Home = React.createClass({
 
 
 		// Drawer toggle states
-		if (this.state.drawerIsExpanded) {
+		if (this.state.drawerStatus === "open") {
 			drawerButton = (
 				<div className="list-panel-toggle" onClick={this.toggleDrawer}>
 					<i className="fa fa-angle-down list-up" />
@@ -76,7 +76,7 @@ var Home = React.createClass({
 					userShows={this.state.userShows}/>
 				<div id="drawer">
 					{drawerButton}
-					<div className="drawer-body">
+					<div className={"drawer-body " + this.state.drawerStatus}>
 						{showpane}
 						<Searchpane 
 							shows={this.state.shows} 
@@ -109,9 +109,15 @@ var Home = React.createClass({
 	},
 
 	toggleDrawer: function () {
-		this.setState({
-			drawerIsExpanded: !this.state.drawerIsExpanded
-		})
+		if (this.state.drawerStatus === "open") {
+			this.setState({
+				drawerStatus: "closed"
+			});
+		} else {
+			this.setState({
+				drawerStatus: "open"
+			});
+		}
 	}
 });
 
