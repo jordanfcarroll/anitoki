@@ -4,14 +4,15 @@ var userStore = require("../stores/userStore.js");
 
 var Link = require("react-router").Link;
 
-
-
 var Landing = React.createClass({
+	// Access to register and login are not permitted if user is authorized
 	componentWillMount: function () {
 		if (userStore.isAuth().email) {
 			ReactRouter.hashHistory.push("/");
 		}
 	},
+
+
 	
 	render: function () {
 		return (
@@ -31,6 +32,8 @@ var Landing = React.createClass({
 			</div>
 		);
 	},
+
+
 
 	navigateLogin: function () {
 		ReactRouter.hashHistory.push("/landing/login");

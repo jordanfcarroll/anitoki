@@ -7,6 +7,7 @@ var Showpane = React.createClass({
 	render: function () {
 		return (
 			<div>
+				<button onClick={this.props.unsetShow}>X</button>
 				<img src={this.props.show.image_url_lge} />
 				<h3>{this.props.show.title_romaji}</h3>
 				<p>Next episode: ... </p>

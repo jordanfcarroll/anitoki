@@ -21,11 +21,12 @@ var Nav = React.createClass({
 			})
 		})	
 	
+		// Psuedo users have email of null, so are not considered authenticated for nav display 
 		if (this.state.auth.email) {
 			links = (
 				<ul>
 					<li className="logo"><Link to="/"></Link></li>
-					<li className="settings fa fa-cog"><Link to="/Settings">Settings</Link></li>
+					<li className="settings fa fa-cog"><Link to="/Settings"></Link></li>
 					<li className="user-status" onClick={this.handleLogOut}>Logout</li>
 				</ul>
 			)

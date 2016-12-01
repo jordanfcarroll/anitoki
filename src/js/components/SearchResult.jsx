@@ -2,12 +2,14 @@ var React = require("react");
 var userStore = require("../stores/userStore.js");
 
 var SearchResult = React.createClass({
+	// Check to see if the current user is tracking this show
 	getInitialState: function () {
 		return {
 			isTracking: userStore.isTracking(this.props.show.id)
 		}
 	},
 
+	// Create update listener for this show's tracking status
 	componentWillMount: function () {
 		var _this = this;
 		userStore.on("update", function () {
@@ -17,12 +19,13 @@ var SearchResult = React.createClass({
 		})
 	},
 
+
 	render: function () {
 		var button;
 		if(this.state.isTracking) {
-			button = <button className="follow-toggle" onClick={this.untrackThisShow}>Untrack</button>
+			button = <button className="follow-toggle unfollow" onClick={this.untrackThisShow}>Unfollow</button>
 		} else {
-			button = <button className="follow-toggle" onClick={this.trackThisShow}>Track</button>
+			button = <button className="follow-toggle" onClick={this.trackThisShow}>Follow</button>
 		}
 		return (
 			<li className="list-show-view">
