@@ -29,12 +29,6 @@ userStore.register = function (email, pw) {
 	var _this = this;
 	const localTracking = store.get("pseudo").tracking;
 
-
-	// Convert string ids to numbers
-	const trueTracking = localTracking.map(function (value) {
-		return Number(value);
-	})
-
 	errors = {
 		emailError: "",
 		passwordError: ""
@@ -45,7 +39,7 @@ userStore.register = function (email, pw) {
 		data: {
 			email: email,
 			pw: pw,
-			tracking: trueTracking
+			tracking: localTracking
 		},
 		success: function (result) {
 			currentUser = result;

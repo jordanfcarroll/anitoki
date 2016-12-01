@@ -1,5 +1,4 @@
 var React = require("react");
-var Link = require("react-router").Link;
 
 var Nav = require("./Nav.jsx");
 var userStore = require("../stores/userStore.js");
@@ -11,13 +10,16 @@ var userStore = require("../stores/userStore.js");
 // }
 
 var App = React.createClass({
+
+	// Only run once on page load
  	componentWillMount() {
- 			// Check for active user session and set if needed
+ 			
+ 		// Check for active user session and set if needed
 		if (userStore.getLocalSession() && !userStore.getUser()) {
 			userStore.setSession();
 
+		// Else set user as pseudo
 		} else if (!userStore.getUser()) {
-			// Set user as pseudo
 			userStore.pseudo();
 		}
  	},

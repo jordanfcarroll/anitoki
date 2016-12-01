@@ -9,7 +9,9 @@ var Searchpane = React.createClass({
 	getInitialState: function () {
 		return {
 			searchText: "",
-			displayTracking: false
+			displayTracking: false,
+			airingButtonClass: "active-toggle",
+			trackingButtonClass: ""
 		};
 	},
 
@@ -92,10 +94,17 @@ var Searchpane = React.createClass({
 				button = <div onClick={this.clearSearch} />
 			} 
 		}
+
 		return (
 			<div className="list-panel">
-				<button className="tracking-toggle" onClick={this.displayTracking}>Currently Tracking</button>
-				<button className="airing-toggle" onClick={this.clearSearch}>Currently Airing</button>
+				<div className="list-toggle-buttons">
+					<button 
+						className={"tracking-toggle " + this.state.trackingButtonClass} 
+						onClick={this.displayTracking}>Following</button>
+					<button 
+						className={"airing-toggle " + this.state.airingButtonClass}
+						onClick={this.clearSearch}>Airing</button>
+				</div>
 				{display}
 				<input 
 					className="search"
@@ -126,13 +135,17 @@ var Searchpane = React.createClass({
 	clearSearch: function () {
 		this.setState({
 			searchText: "",
-			displayTracking: false	
+			displayTracking: false,
+			airingButtonClass: "active-toggle",
+			trackingButtonClass: ""
 		});
 	},
 
 	displayTracking: function () {
 		this.setState({
-			displayTracking: true
+			displayTracking: true,
+			trackingButtonClass: "active-toggle",
+			airingButtonClass: ""
 		});
 	}
 });

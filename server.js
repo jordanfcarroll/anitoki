@@ -42,12 +42,12 @@ app.post("/api/register", function (req, res) {
 
 	if (userData.tracking) {
 		tracking = userData.tracking;
-		tracking = tracking.map((value) => Number(value));
+		trueTracking = tracking.map((value) => Number(value));
 	} else {
 		tracking = [];
 	}
-	// Search server to see if given email has already been registered
 
+	// Search server to see if given email has already been registered
 	var email = db.get("users").find({email: userData.email});
 	if (email.value()) {
 		res.status(401);
@@ -56,7 +56,7 @@ app.post("/api/register", function (req, res) {
 		var newUser = {
 			email: userData.email,
 			pw: userData.pw,
-			tracking : tracking,
+			tracking : trueTracking,
 			settings : {
 				notifications: "email",
 				showtimes: "countdown"
