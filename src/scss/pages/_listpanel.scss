@@ -53,6 +53,16 @@
 				}
 		}
 	}	
+	.no-results-found {
+		width: 75%;
+		display: block;
+		margin: 0 auto;
+		margin-top: 4.5em;
+		font-family: $font-family-h1;
+		color: $dark-gray;
+		font-size: 3em;
+		text-align: center;
+	}	
 	#week-view {
 		position: static;
 		.weekday-wrapper {
