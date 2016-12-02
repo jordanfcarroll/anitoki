@@ -25,7 +25,9 @@ var userStore = Object.create(EventEmitter.prototype);
 EventEmitter.call(userStore);
 
 // Collection
-var currentUser = null;
+var currentUser = {
+	isAuth: false
+};
 
 var errors = {
 	emailError: "",
@@ -133,7 +135,8 @@ userStore.pseudo = function () {
 		email: null,
 		pw: null,
 		tracking: [],
-		settings: null
+		settings: null,
+		isAuth: false
 	}
 
 	// Check to see if there is localStorage pseudo data

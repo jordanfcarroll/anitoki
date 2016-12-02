@@ -59,6 +59,7 @@ app.post("/api/register", function (req, res) {
 			email: userData.email,
 			pw: userData.pw,
 			tracking : trueTracking,
+			isAuth: true,
 			settings : {
 				notifications: "email",
 				showtimes: "countdown"

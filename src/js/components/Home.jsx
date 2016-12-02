@@ -20,6 +20,7 @@ var Home = React.createClass({
 
 
 	componentWillMount: function () {
+		console.log(userStore.getUser());
 		var _this = this;
 
 		// Pull new shows when necessary

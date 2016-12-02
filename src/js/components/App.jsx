@@ -13,19 +13,17 @@ var App = React.createClass({
 
 	// Only run once on page load
  	componentWillMount() {
- 			
  		// Check for active user session and set if needed
-		if (userStore.getLocalSession() && !userStore.getUser()) {
+		if (userStore.getLocalSession() && !userStore.getUser().isAuth) {
 			userStore.setSession();
 
 		// Else set user as pseudo
-		} else if (!userStore.getUser()) {
+		} else if (!userStore.getUser().isAuth) {
 			userStore.pseudo();
 		}
  	},
  	
 	render: function () {
-
 		return (
 			<div>
 				<Nav />
