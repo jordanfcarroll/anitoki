@@ -106,6 +106,13 @@ button {
 		border-bottom: 4px solid $blue;
 		color: $black;
 	}
+	i {
+		color: $dark-gray;
+		position: absolute;
+		top: 26px;
+	    left: 129px;
+	    font-size: 1.5em;
+	}
 }
 
 .follow-toggle {
