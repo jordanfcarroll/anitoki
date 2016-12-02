@@ -139,7 +139,10 @@ userStore.pseudo = function () {
 		email: null,
 		pw: null,
 		tracking: [],
-		settings: null,
+		settings: {
+			countdown: true,
+			notifications: "none"
+		},
 		isAuth: false
 	}
 
