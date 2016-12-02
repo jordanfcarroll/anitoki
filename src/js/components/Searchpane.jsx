@@ -23,6 +23,7 @@ var Searchpane = React.createClass({
 		// Placeholder for display that holds shows
 		var display;
 		var hasResults = false;
+		var input;
 
 		// Placeholder for X button in search field
 		var button;
@@ -43,8 +44,18 @@ var Searchpane = React.createClass({
 		} else if (this.state.displayTracking) {
 			display = <PaneWeeklyView 
 						shows={this.props.shows} 
-						userShows={this.props.userShows} />;
+						userShows={this.props.userShows} />
+			input = <div />;
 		} else {
+			input = (<input 
+							className="search"
+							type="text"
+							value={this.state.searchText}
+							onChange={this.handleChange}
+							onKeyDown={this.handleSearch} />
+							)
+
+
 			// Add shows that match searchText to jsx for weekday and append those to display jsx
 			display = [];
 			for (var i = 0; i < 7; i++) {
@@ -128,12 +139,7 @@ var Searchpane = React.createClass({
 						className={"airing-toggle " + this.state.airingButtonClass}
 						onClick={this.clearSearch}>Airing</button>
 					<div className="search-wrapper">
-						<input 
-							className="search"
-							type="text"
-							value={this.state.searchText}
-							onChange={this.handleChange}
-							onKeyDown={this.handleSearch} />
+						{input}
 						{button}
 					</div>
 				</div>
