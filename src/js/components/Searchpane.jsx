@@ -20,6 +20,7 @@ var Searchpane = React.createClass({
 
 		// Placeholder for display that holds shows
 		var display;
+		var hasResults = false;
 
 		// Placeholder for X button in search field
 		var button;
@@ -75,6 +76,7 @@ var Searchpane = React.createClass({
 
 				// Fill day with jsx if there were show results for that day
 				if (shows[0]) {
+					hasResults = true;
 					day = (
 						<div className="list-weekly-day" key={i}>
 							<h3>{days[i]}</h3>
@@ -87,6 +89,11 @@ var Searchpane = React.createClass({
 
 				// Push day to display
 				display.push(day);
+
+			}
+			
+			if (!hasResults) {
+				display = <div className="no-results-found">No Results Found</div>;
 			}
 
 			if (this.state.searchText.length > 0) {
