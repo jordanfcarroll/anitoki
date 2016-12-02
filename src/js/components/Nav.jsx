@@ -6,7 +6,7 @@ var userStore = require("../stores/userStore.js");
 var Nav = React.createClass({
 	getInitialState: function () {
 		return {
-			auth: userStore.getUser()
+			auth: userStore.getUser().isAuth
 		}
 	},
 
@@ -16,13 +16,15 @@ var Nav = React.createClass({
 
 		// hack to ensure listeners do not get deleted by react router (???) and duplicates are not created
 		userStore.once("update", function () {
+			console.log("updating nav");
 			_this.setState({
-				auth: userStore.getUser()
+				auth: userStore.getUser().isAuth
 			})
+			console.log(_this.state.auth);
 		})	
 	
 		// Psuedo users have email of null, so are not considered authenticated for nav display 
-		if (this.state.auth.email) {
+		if (this.state.auth) {
 			links = (
 				<ul>
 					<li className="logo"><Link to="/"></Link></li>
