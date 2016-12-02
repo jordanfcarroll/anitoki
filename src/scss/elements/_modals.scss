@@ -1,0 +1,33 @@
+.popup {
+	position: fixed;
+    z-index: 3;
+    background-color: $white;
+    bottom: 15px;
+    width: 84%;
+    left: 9%;
+    box-shadow: 1px 1px 15px #888888;
+    .popup-close {
+    	position: absolute;
+    	right: 8px;
+    	top: -15px;
+    	border: none;
+    	background-color: $blue;
+    	color: $white;
+    	font-size: 1.7em;
+    	cursor: pointer;
+    }
+    p {
+    	font-family: $font-family-gen;
+    	color: $black;
+    	margin: 1em;
+    	font-size: 1.05em;
+    	a {
+    		font-family: $font-family-h2;
+    		color: $red; 
+    	}
+    	a:after {
+    		content: " ";
+    		text-decoration: none;
+    	}
+    }
+}
