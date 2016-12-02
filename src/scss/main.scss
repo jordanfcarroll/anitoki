@@ -13,6 +13,6 @@
 @import "pages/weekdayblocks";
 @import "pages/listpanel";
 
-// .list-panel #week-view {
-// 	display: none !important;
-// }
+body {
+	min-width: 340px;
+}

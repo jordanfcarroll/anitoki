@@ -128,6 +128,7 @@ var Searchpane = React.createClass({
 								<Link to="landing/register">Make an account</Link>
 								to receive notifications!</p>
 						</div>
+					</div>	
 					);
 			}
 		}

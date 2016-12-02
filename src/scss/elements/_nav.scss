@@ -23,6 +23,14 @@ nav > ul {
 	}
 	.settings {
 		color: $dark-gray;
+	    position: absolute;
+	    top: 27px;
+	    right: 123px;
+	    padding: 0.05em;
+	    font-size: 1.5em;
+	}
+	.settings:hover {
+		cursor: pointer;
 	}
 	.user-status {
 		font-family: $font-family-nav;
