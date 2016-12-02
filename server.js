@@ -180,6 +180,21 @@ app.put("/api/untrack", function(req, res) {
 		.value();
 
 	res.json(user);
-})
+});
+
+app.post("/api/session", function (req, res) {
+	const body = req.body;
+	const match = db.get("users").find({email: body.email});
+
+	if (match.value()) {
+		res.json(match);
+	} else {
+		res.status(404);
+		res.json({emailError: "Could not find email", passwordError: ""});
+	}
+});
+
+
+
 
 app.listen(port);

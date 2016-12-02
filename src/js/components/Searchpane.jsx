@@ -2,7 +2,7 @@ var React = require("react");
 var userStore = require("../stores/userStore");	
 
 var SearchResult = require("./SearchResult.jsx");
-var WeeklyView = require("./WeeklyView.jsx");
+var PaneWeeklyView = require("./PaneWeeklyView.jsx");
 var Weekday = require("./Weekday.jsx");
 
 var Searchpane = React.createClass({
@@ -38,7 +38,7 @@ var Searchpane = React.createClass({
 			display = <p>Loading shows...</p>;
 
 		} else if (this.state.displayTracking) {
-			display = <WeeklyView 
+			display = <PaneWeeklyView 
 						shows={this.props.shows} 
 						userShows={this.props.userShows} />;
 		} else {

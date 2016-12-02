@@ -6,7 +6,6 @@ var ReactRouter = require("react-router");
 var store = require("store");
 
 
-
 // Encryption
 
 var CryptoJS = require("crypto-js");
@@ -24,7 +23,6 @@ const KEY = "asldkjioawejfa212jaw";
 
 var userStore = Object.create(EventEmitter.prototype);
 EventEmitter.call(userStore);
-
 
 // Collection
 var currentUser = null;
@@ -63,7 +61,7 @@ userStore.register = function (email, pw) {
 		success: function (result) {
 			currentUser = result;
 			store.clear();
-			store.set("session", currentUser);
+			store.set("session", currentUser.email);
 
 			ReactRouter.hashHistory.push("/");
 			_this.emit("update");
@@ -108,7 +106,7 @@ userStore.logIn = function (email, pw) {
 			ReactRouter.hashHistory.push("/");
 
 			// Create a user session in localStorage
-			store.set("session", currentUser);
+			store.set("session", currentUser.email);
 			return currentUser;
 		},
 		error: function (result) {
@@ -168,6 +166,7 @@ userStore.track = function (id) {
 			success: function (result) {
 				currentUser = result;
 				_this.emit("update");
+				_this.emit("resultupdate");
 			}
 		})
 	} else if (!currentUser.email){
@@ -179,6 +178,7 @@ userStore.track = function (id) {
 		currentUser.tracking = tracking;
 
 		_this.emit("update");
+		_this.emit("resultupdate");
 
 	}
 
@@ -199,6 +199,7 @@ userStore.untrack = function (id) {
 			success: function (result) {
 				currentUser = result;
 				_this.emit("update");
+				_this.emit("resultupdate");
 			}
 		})
 	} else {
@@ -213,6 +214,7 @@ userStore.untrack = function (id) {
 		store.set("pseudo", {tracking: tracking});
 		currentUser.tracking = tracking;
 		_this.emit("update");
+		_this.emit("resultupdate");
 	}
 }
 
@@ -242,14 +244,26 @@ userStore.getLocalSession = function () {
 }
 
 userStore.setSession = function () {
-	currentUser = store.get("session");
+	var _this = this;
 
-	if (!userStore.logIn(currentUser.email, currentUser.pw)) {
-		// Clear residual localStorage which is conflicting with server
-		userStore.clearLocalStorage();
-		userStore.pseudo();
-		this.emit("update")
-	}
+	const email = store.get("session");
+
+	$.ajax({
+		url: "/api/session",
+		method: "POST",
+		data: {
+			email: email
+		},
+		success: function (result) {
+			currentUser = result;
+			_this.emit("update")
+		},
+		error: function (result) {
+			userStore.clearLocalStorage();
+			userStore.pseudo();
+			_this.emit("update")
+		}
+	})
 }
 
 userStore.getLocalUser = function () {

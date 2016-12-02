@@ -12,7 +12,7 @@ var SearchResult = React.createClass({
 	// Create update listener for this show's tracking status
 	componentWillMount: function () {
 		var _this = this;
-		userStore.on("update", function () {
+		userStore.on("resultupdate", function () {
 			_this.setState({
 				isTracking: userStore.isTracking(_this.props.show.id)
 			})
@@ -36,8 +36,8 @@ var SearchResult = React.createClass({
 	},
 
 	componentWillUnmount: function () {
-		var _this = this;
-		userStore.off("update");
+		console.log("GETTING RID OF HANDLERS")
+		userStore.off("resultupdate");
 	},
 
 	trackThisShow: function () {
