@@ -10,14 +10,15 @@ input[type="text"] {
 }
 
 .search {
-	margin-left: 6.2em;
+	margin-left: 13%;
     margin-top: .4em;
     margin-bottom: .3em !important;
-    width: 26.6em;
+    width: 50%;
     border: none !important;
     border-radius: 0px !important;
     border-bottom: 2px solid $blue !important;
     padding: .5em !important;
+    padding-left: 2em !important;
     outline: none;
     // font-family: "FontAwesome" !important;
 }
