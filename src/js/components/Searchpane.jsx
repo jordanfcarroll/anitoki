@@ -4,6 +4,7 @@ var userStore = require("../stores/userStore");
 var SearchResult = require("./SearchResult.jsx");
 var PaneWeeklyView = require("./PaneWeeklyView.jsx");
 var Weekday = require("./Weekday.jsx");
+var Link = require("react-router").Link;
 
 var Searchpane = React.createClass({
 	getInitialState: function () {
@@ -11,7 +12,8 @@ var Searchpane = React.createClass({
 			searchText: "",
 			displayTracking: false,
 			airingButtonClass: "active-toggle",
-			trackingButtonClass: ""
+			trackingButtonClass: "",
+			popup: true
 		};
 	},
 
@@ -103,6 +105,17 @@ var Searchpane = React.createClass({
 				// Or a search icon
 				button = <i className="fa fa-search" />
 			}
+
+			if (this.state.popup) {
+				var popup = (
+					<div className="popup">
+						<button onClick={this.handlePopupClose} className="fa fa-times popup-close" />
+						<p>Want to know when a new episode is out? 
+							<Link to="landing/register">Make an account</Link>
+							to receive notifications!</p>
+					</div>
+					);
+			}
 		}
 
 		return (
@@ -126,6 +139,7 @@ var Searchpane = React.createClass({
 				</div>
 				<div className="list-week-wrapper">
 					{display}
+					{popup}
 				</div>
 			</div>
 		);
@@ -160,6 +174,12 @@ var Searchpane = React.createClass({
 			trackingButtonClass: "active-toggle",
 			airingButtonClass: ""
 		});
+	},
+
+	handlePopupClose: function () {
+		this.setState({
+			popup: false
+		})
 	}
 });
 
