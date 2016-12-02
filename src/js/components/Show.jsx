@@ -70,7 +70,14 @@ var Show = React.createClass({
 	},
 
 	parseCountdown: function (seconds) {
-		return seconds;
+
+		let hours = Math.floor(seconds / 3600);
+		let minutes = (hours*60) - (Math.floor(seconds / 3600));
+		seconds = seconds % 60;
+
+		const timeString = String(hours) + 'h ' + String(minutes) + "m " + String(seconds) + "s"
+
+		return timeString;
 	}
 });
 

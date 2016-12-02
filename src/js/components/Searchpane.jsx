@@ -124,7 +124,9 @@ var Searchpane = React.createClass({
 						{button}
 					</div>
 				</div>
-				{display}
+				<div className="list-week-wrapper">
+					{display}
+				</div>
 			</div>
 		);
 	},
