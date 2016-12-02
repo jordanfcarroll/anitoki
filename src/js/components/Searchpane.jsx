@@ -91,8 +91,11 @@ var Searchpane = React.createClass({
 
 			if (this.state.searchText.length > 0) {
 				// Make an X button
-				button = <div onClick={this.clearSearch} />
-			} 
+				button = <i className="fa fa-times" onClick={this.clearSearch} />
+			}  else {
+				// Or a search icon
+				button = <i className="fa fa-search" />
+			}
 		}
 
 		return (
@@ -104,15 +107,15 @@ var Searchpane = React.createClass({
 					<button 
 						className={"airing-toggle " + this.state.airingButtonClass}
 						onClick={this.clearSearch}>Airing</button>
-				<input 
-					className="search"
-					placeholder="Search"
-					type="text"
-					value={this.state.searchText}
-					onChange={this.handleChange}
-					onKeyDown={this.handleSearch} />
+					<input 
+						className="search"
+						placeholder="Search"
+						type="text"
+						value={this.state.searchText}
+						onChange={this.handleChange}
+						onKeyDown={this.handleSearch} />
+					{button}
 				</div>
-				{button}
 				{display}
 			</div>
 		);

@@ -5,6 +5,23 @@ var ReactRouter = require("react-router");
 
 var store = require("store");
 
+
+
+// Encryption
+
+var CryptoJS = require("crypto-js");
+var AES = require("crypto-js/aes");
+var SHA256 = require("crypto-js/sha256");
+
+function encrypt(data, key) {
+   return CryptoJS.AES.encrypt(data, key).toString();
+}
+
+const KEY = "asldkjioawejfa212jaw";
+
+
+
+
 var userStore = Object.create(EventEmitter.prototype);
 EventEmitter.call(userStore);
 
@@ -29,6 +46,8 @@ userStore.register = function (email, pw) {
 	var _this = this;
 	const localTracking = store.get("pseudo").tracking;
 
+	const encryptedPw = encrypt(pw, KEY);
+
 	errors = {
 		emailError: "",
 		passwordError: ""
@@ -38,7 +57,7 @@ userStore.register = function (email, pw) {
 		method: "POST",
 		data: {
 			email: email,
-			pw: pw,
+			pw: encryptedPw,
 			tracking: localTracking
 		},
 		success: function (result) {
@@ -65,13 +84,16 @@ userStore.logIn = function (email, pw) {
 		emailError: "",
 		passwordError: ""
 	}
+
+	const encryptedPw = encrypt(pw, KEY);
+
 	var _this = this;
 	$.ajax({
 		url: "/api/login",
 		method: "POST",
 		data: {
 			email: email,
-			pw: pw
+			pw: encryptedPw
 		},
 		success: function (result) {
 			// Clear current pseudo-user data on submit

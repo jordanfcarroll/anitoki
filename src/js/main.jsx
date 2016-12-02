@@ -10,6 +10,9 @@
 // -- Password hashing
 // -- Make sessions more secure
 // -- Investigate Nav issue -- React router deletes existing listeners on route
+// -- No results found message
+
+// -- Floating box for pseudo user "Want to know when a new episode is out? MAKE AN ACCOUNT to receive notifcations" closable
 
 // send this : 
 

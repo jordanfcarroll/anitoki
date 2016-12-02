@@ -5,6 +5,9 @@ var fileAsync = require("lowdb/lib/file-async");
 var shortid = require("shortid");
 var bodyParser = require("body-parser");
 
+var CryptoJS = require("crypto-js");
+var AES = require("crypto-js/aes");
+var SHA256 = require("crypto-js/sha256");
 
 var app = express();
 var db = lowdb("db.json", {storage: fileAsync});
@@ -38,13 +41,12 @@ app.post("/api/register", function (req, res) {
 
 	var userData = req.body;
 	var tracking;
-	console.log(userData);
 
 	if (userData.tracking) {
 		tracking = userData.tracking;
 		trueTracking = tracking.map((value) => Number(value));
 	} else {
-		tracking = [];
+		trueTracking = [];
 	}
 
 	// Search server to see if given email has already been registered
@@ -70,12 +72,26 @@ app.post("/api/register", function (req, res) {
 
 app.post("/api/login", function (req, res) {
 
+	const KEY = "asldkjioawejfa212jaw";
+
 	var query = req.body;
+
+
+	var bytes = CryptoJS.AES.decrypt(query.pw.toString(), KEY);
+	var decryptedReceived = bytes.toString(CryptoJS.enc.Utf8);
+	console.log(decryptedReceived);
+
 	var match = db.get("users").find({email: query.email});
+
+	bytes = CryptoJS.AES.decrypt(query.pw.toString(), KEY);
+	var decryptedStored = bytes.toString(CryptoJS.enc.Utf8);
+	console.log(decryptedStored);
+
+
 	if (!match.value()) {
 		res.status(404);
 		res.json({emailError: "Could not find email", passwordError: ""});
-	} else if (match.value().pw === query.pw) {
+	} else if (decryptedReceived === decryptedStored) {
 		res.json(match);
 	} else {
 		res.status(401);
