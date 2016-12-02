@@ -1,4 +1,4 @@
-var React = require("react");
+	var React = require("react");
 var ReactRouter = require("react-router");
 var userStore = require("../stores/userStore");	
 var showStore = require("../stores/showStore");	
@@ -31,6 +31,7 @@ var Home = React.createClass({
 
 		// Pull user's tracked shows when updated
 		userStore.on("update", function() {
+			console.log("HOME HANDLER IS STILL HERE");
 			_this.setState({
 				userShows: userStore.getTracking()
 			})
