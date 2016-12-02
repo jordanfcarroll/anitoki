@@ -71,8 +71,10 @@ var Show = React.createClass({
 
 	parseCountdown: function (seconds) {
 
+		// 
+
 		let hours = Math.floor(seconds / 3600);
-		let minutes = (hours*60) - (Math.floor(seconds / 3600));
+		let minutes = Math.floor(seconds/60 - hours*60);
 		seconds = seconds % 60;
 
 		const timeString = String(hours) + 'h ' + String(minutes) + "m " + String(seconds) + "s"

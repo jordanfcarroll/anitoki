@@ -30,7 +30,7 @@ var WeeklyView = React.createClass({
 				})
 				shows = shows.filter(function (show) {
 					var date = new Date(show.airing.time);
-					return (date.getDay() === i);
+					return (date.getDay() === i && show.airing.countdown < 604800);
 				})
 			}
 			if (this.state.mobileDisplaying === i) {

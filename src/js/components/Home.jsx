@@ -57,14 +57,13 @@ var Home = React.createClass({
 			drawerButton = (
 				<div className="list-panel-toggle" onClick={this.toggleDrawer}>
 					<i className="fa fa-angle-down list-up" />
-					<h5>Hide List View</h5>
 				</div>
 				);
 		} else {
 			drawerButton = (
 				<div className="list-panel-toggle" onClick={this.toggleDrawer}>
 					<i className="fa fa-angle-up list-up" />
-					<h5>Show List View</h5>
+					<h5>Show All Shows</h5>
 				</div>
 				);
 		}
