@@ -22,37 +22,68 @@
 	.list-panel {
 		height: 74vh;
 		overflow-y: scroll;
-		.list-weekly-day:nth-child(2) {
-			margin-top: 8.5em !important;
-		}
-		.list-weekly-day{
-			width: 75%;
-			display: block;
-			margin: 0 auto;
-			border-bottom: 2px solid $dark-gray;
-			h3 {
-				font-size: 1.7em;
-				font-family: $font-family-list-day;
-			}
-			.list-show-view {
-				list-style: none;
-				margin-bottom: .3em;
-				padding: 10px 0;
-				// display: flex;
-				// position: relative;
-				// text-align: center;
-				h4 {
-					font-family: $font-family-gen;
-					font-weight: normal;
-					font-size: 1.2em;
-					margin-bottom: .2em;
-					margin-top: 0;
-					display: inline-block;
-					width: 50%;
-					vertical-align: middle;
+		.list-week-wrapper {
+			margin-top: 8.5em;
+			.list-weekly-day{
+				width: 75%;
+				display: block;
+				margin: 0 auto;
+				border-bottom: 2px solid $dark-gray;
+				h3 {
+					font-size: 1.7em;
+					font-family: $font-family-list-day;
 				}
+				.list-show-view {
+					list-style: none;
+					margin-bottom: .3em;
+					padding: 10px 0;
+					// display: flex;
+					// position: relative;
+					// text-align: center;
+					h4 {
+						font-family: $font-family-gen;
+						font-weight: normal;
+						font-size: 1.2em;
+						margin-bottom: .2em;
+						margin-top: 0;
+						display: inline-block;
+						width: 50%;
+						vertical-align: middle;
+					}
+				}
+			}	
 		}
-	}	
+		// .list-weekly-day:nth-child(2) {
+		// 	margin-top: 8.5em !important;
+		// }
+		// .list-weekly-day{
+		// 	width: 75%;
+		// 	display: block;
+		// 	margin: 0 auto;
+		// 	border-bottom: 2px solid $dark-gray;
+		// 	h3 {
+		// 		font-size: 1.7em;
+		// 		font-family: $font-family-list-day;
+		// 	}
+		// 	.list-show-view {
+		// 		list-style: none;
+		// 		margin-bottom: .3em;
+		// 		padding: 10px 0;
+		// 		// display: flex;
+		// 		// position: relative;
+		// 		// text-align: center;
+		// 		h4 {
+		// 			font-family: $font-family-gen;
+		// 			font-weight: normal;
+		// 			font-size: 1.2em;
+		// 			margin-bottom: .2em;
+		// 			margin-top: 0;
+		// 			display: inline-block;
+		// 			width: 50%;
+		// 			vertical-align: middle;
+		// 		}
+		// 	}
+		// }	
 	.no-results-found {
 		width: 75%;
 		display: block;
