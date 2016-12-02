@@ -29,7 +29,7 @@ var SearchResult = React.createClass({
 		}
 		return (
 			<li className="list-show-view">
-				<h4 onClick={this.handleClick}>{this.props.show.title_romaji}</h4>
+				<h4 onClick={this.handleClick}>{this.props.show.title_english}</h4>
 				{button}
 			</li>
 			);

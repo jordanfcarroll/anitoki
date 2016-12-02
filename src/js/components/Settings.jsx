@@ -1,9 +1,18 @@
 var React = require("react");
 var ReactRouter = require("react-router");
 
+var userStore = require("../stores/userStore.js")
 
 
 var Settings = React.createClass({
+	getInitialState: function () {
+		return {
+			settings: userStore.getSettings()
+		}
+	},
+
+
+
 	render: function () {
 		return (
 			<div>
@@ -40,7 +49,6 @@ var Settings = React.createClass({
 	}, 
 
 	saveNotifications: function () {
-		
 	}
 });
 

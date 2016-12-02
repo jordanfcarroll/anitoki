@@ -26,7 +26,7 @@ var Show = React.createClass({
 
 		return (
 			<div className="show-info">
-				<p className="show-title">{this.props.show.title_romaji}</p>
+				<p className="show-title">{this.props.show.title_english}</p>
 				{time}
 			</div>
 		);
