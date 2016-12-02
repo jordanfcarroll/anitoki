@@ -36,7 +36,6 @@ var SearchResult = React.createClass({
 	},
 
 	componentWillUnmount: function () {
-		console.log("GETTING RID OF HANDLERS")
 		userStore.off("resultupdate");
 	},
 
