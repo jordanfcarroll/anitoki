@@ -83,6 +83,12 @@ button {
 	display: block;
 	width: 100%;
 	overflow: auto;
+	position: fixed;
+	z-index: 1;
+	background-color: $white;
+	// height: 10%;
+	box-shadow: 0px 1px 12px #888888;
+	padding: .2em 0;
 	.tracking-toggle,
 	.airing-toggle {
 		font-family: $font-family-h2;
@@ -109,11 +115,16 @@ button {
 	color: $white;
 	background-color: $red;
 	font-size: 1.2em;
-	padding: .3em .5em ;
+	padding: .3em 1.4em ;
 	text-transform: uppercase;
 	margin-left: 1.5em;
 	cursor: pointer;
-	// position: absolute;
-	// // top: 0;
-	// top: 50%;
+	border-radius: 2px;
+}
+
+.follow-toggle.unfollow {
+	color: $red;
+	background-color: $white;
+	border: 2px solid $red;
+	padding: .3em .5em;
 }

@@ -1,4 +1,5 @@
-.text-input {
+.text-input,
+input[type="text"] {
 	border: 3px solid $blue;
 	border-radius: 2px;
 	padding: .75em;
@@ -6,4 +7,17 @@
 	margin-bottom: 1.2em;
 	font-family: $font-family-h3;
 	font-size: 1.2em;
+}
+
+.search {
+	margin-left: 6.2em;
+    margin-top: .4em;
+    margin-bottom: .3em !important;
+    width: 26.6em;
+    border: none !important;
+    border-radius: 0px !important;
+    border-bottom: 2px solid $blue !important;
+    padding: .5em !important;
+    outline: none;
+    // font-family: "FontAwesome" !important;
 }

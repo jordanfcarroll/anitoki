@@ -20,9 +20,12 @@
 	// max-height: 600px;
 	overflow: hidden;
 	.list-panel {
-		max-height: 600px;
+		max-height: 74vh;
 		overflow-y: scroll;
-		.list-weekly-day {
+		.list-weekly-day:nth-child(2) {
+			margin-top: 7em !important;
+		}
+		.list-weekly-day{
 			width: 75%;
 			display: block;
 			margin: 0 auto;
@@ -48,22 +51,43 @@
 					width: 50%;
 					vertical-align: middle;
 				}
-				// .follow-toggle {
-				// 	display: inline-block;
-				// 	border: none;
-				// 	font-family: $font-family-button;
-				// 	color: $white;
-				// 	background-color: $red;
-				// 	font-size: 1.2em;
-				// 	padding: .5em;
-				// }
-			}
 		}
 	}	
+	#week-view {
+		position: static;
+		.weekday-wrapper {
+			margin-top: 7em;
+			background-color: $white;
+			.arrow-button-wrapper {
+				display: none;
+			}
+			.weekly-day {
+				width: 75%;
+				display: block;
+				position: static;
+				margin: 0 auto;
+				border-bottom: 2px solid $dark-gray;
+				background-color: $white;
+				overflow: auto;
+				.mobile-current-displaying {
+					height: 3em !important;
+				}
+				h2 {
+					font-size: 1.7em;
+					font-family: $font-family-list-day;
+					color: $black;
+				}
+				.show-info {
+					font-family: $font-family-gen;
+				}
+		}
+	}
+	}
 	.list-weekly-day:last-of-type {
 		border-bottom: none;
 	}	
+	
 }
-
+}
 
 
