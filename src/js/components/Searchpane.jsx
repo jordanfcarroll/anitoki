@@ -107,14 +107,15 @@ var Searchpane = React.createClass({
 					<button 
 						className={"airing-toggle " + this.state.airingButtonClass}
 						onClick={this.clearSearch}>Airing</button>
-					<input 
-						className="search"
-						placeholder="Search"
-						type="text"
-						value={this.state.searchText}
-						onChange={this.handleChange}
-						onKeyDown={this.handleSearch} />
-					{button}
+					<div className="search-wrapper">
+						<input 
+							className="search"
+							type="text"
+							value={this.state.searchText}
+							onChange={this.handleChange}
+							onKeyDown={this.handleSearch} />
+						{button}
+					</div>
 				</div>
 				{display}
 			</div>

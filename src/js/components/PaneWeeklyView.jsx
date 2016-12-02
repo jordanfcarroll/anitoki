@@ -17,7 +17,6 @@ var PaneWeeklyView = React.createClass({
 		var weekdays = [];
 		for (var i = 0; i < 7; i++) {
 			let shows = [];
-			let className = "weekly-day"
 			if (this.props.shows) {
 				shows = this.props.userShows.map(function (id) {
 					return _this.props.shows.find((value) => id === value.id)
@@ -28,7 +27,7 @@ var PaneWeeklyView = React.createClass({
 				})
 			}
 
-			weekdays.push(<Weekday className={className} day={days[i]} key={i} shows={shows}/>)
+			weekdays.push(<Weekday className="weekly-day" day={days[i]} key={i} shows={shows}/>)
 		}
 
 
