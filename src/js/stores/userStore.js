@@ -26,7 +26,11 @@ EventEmitter.call(userStore);
 
 // Collection
 var currentUser = {
-	isAuth: false
+	isAuth: false,
+	settings: {
+		countdown: false,
+		notifications: "none"
+	}
 };
 
 var errors = {
@@ -275,6 +279,10 @@ userStore.getLocalUser = function () {
 
 userStore.clearLocalStorage = function() {
 	store.clear();
+}
+
+userStore.getSettings = function () {
+	return currentUser.settings;
 }
 
 window.userStore = userStore;

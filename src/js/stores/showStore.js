@@ -13,6 +13,21 @@ var lastUpdate = 0;
 var shows = [];
 var showObj = {};
 
+var timeSinceMount = 0;
+
+window.setInterval(function () {
+	timeSinceMount++;
+	showStore.emit("timeupdate");
+}, 1000);
+
+showStore.setTime = function() {
+	timeSinceMount = 0;
+}
+
+showStore.getTime = function () {
+	return timeSinceMount;
+}
+
 showStore.getShows = function () {
 	return shows;
 },

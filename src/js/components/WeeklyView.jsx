@@ -36,7 +36,12 @@ var WeeklyView = React.createClass({
 			if (this.state.mobileDisplaying === i) {
 				className += " mobile-current-displaying";
 			}
-			weekdays.push(<Weekday className={className} day={days[i]} key={i} shows={shows}/>)
+			weekdays.push(<Weekday 
+							className={className} 
+							day={days[i]} 
+							key={i} 
+							shows={shows}
+							countdown={this.props.countdown}/>);
 		}
 
 		// Create mobile view buttons 

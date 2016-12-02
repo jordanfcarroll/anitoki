@@ -13,14 +13,14 @@ var Home = React.createClass({
 			shows: showStore.pollForUpdate(),
 			userShows: userStore.getTracking(),
 			showDetails: null,
-			drawerStatus: "closed"
+			drawerStatus: "closed",
+			settings: userStore.getSettings()
 		}
 	},
 
 
 
 	componentWillMount: function () {
-		console.log(userStore.getUser());
 		var _this = this;
 
 		// Pull new shows when necessary
@@ -32,11 +32,12 @@ var Home = React.createClass({
 
 		// Pull user's tracked shows when updated
 		userStore.on("update", function() {
-			console.log("HOME HANDLER IS STILL HERE");
 			_this.setState({
-				userShows: userStore.getTracking()
+				userShows: userStore.getTracking(),
+				settings: userStore.getSettings()
 			})
 		})
+
 	},
 
 
@@ -49,7 +50,6 @@ var Home = React.createClass({
 		if (this.state.showDetails) {
 			showpane = <Showpane show={this.state.showDetails} unsetShow={this.unsetShow} />
 		}
-
 
 
 		// Drawer toggle states
@@ -75,7 +75,8 @@ var Home = React.createClass({
 			<div>
 				<WeeklyView 
 					shows={this.state.shows} 
-					userShows={this.state.userShows}/>
+					userShows={this.state.userShows}
+					countdown={this.state.settings.countdown}/>
 				<div id="drawer">
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>
