@@ -15,34 +15,52 @@ var Settings = React.createClass({
 
 	render: function () {
 		return (
-			<div>
+			<div className="settings-wrapper">
 				<div>
 					<h3>Settings</h3>
-					<h4>User Info</h4>
-					<input 
-						type="text"
-						placeholder="Email"/>
-					<input 
-						type="text"
-						placeholder="New Password"/>
-					<input 
-						type="text"
-						placeholder="Confirm New Password"/>
+					<div className="user-info-wrapper">
+						<h4>User Info</h4>
+						<input 
+							type="text"
+							placeholder="Email"/>
+						<input 
+							type="text"
+							placeholder="New Password"/>
+						<input 
+							type="text"
+							placeholder="Confirm New Password"/>
+						<button className="settings-button">Save Changes</button>
+					</div>
 				</div>
-				<div>
-					<h4>Notifications</h4>
-					<input type="radio" name="notifications" value="none"/><label htmlFor="None">None</label>
-					<input type="radio" name="notifications" value="none"/><label htmlFor="Text Only">Text Only</label>
+				<div className="notif-wrapper">
+					<h4>Preferences</h4>
+					<h5>Notifications</h5>
+					<div className="radio-wrapper">
+						<input type="radio" name="notifications" value="none"/>
+						<label htmlFor="None">None</label>
+					</div>
+					<div className="radio-wrapper">
+						<input type="radio" name="notifications" value="none"/>
+						<label htmlFor="Text Only">Text</label>
+					</div>
+					{/*
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Email Only">Email Only</label>
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Text and Email">Text and Email</label>
-					<button>Save Changes</button>
+					*/}
+					<button className="settings-button">Save Changes</button>
 					<input 
 						type="text"
 						placeholder="Phone" />
-					<h4>Showtime Display</h4>
-					<input type="radio" name="showtimes" value="showtimenone" /><label htmlFor="showtimenone">None</label>
-					<input type="radio" name="showtimes" value="Countdown" /><label htmlFor="Countdown">Countdown</label>
-					<button onClick={this.saveNotifications}>Save Changes</button>
+					<h5>Showtime Display</h5>
+					<div className="radio-wrapper">
+						<input type="radio" name="showtimes" value="showtimenone" />
+						<label htmlFor="showtimenone">None</label>
+					</div>
+					<div className="radio-wrapper">
+						<input type="radio" name="showtimes" value="Countdown" />
+						<label htmlFor="Countdown">Countdown</label>
+					</div>
+					<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
 				</div>
 			</div>
 		);

@@ -9,6 +9,31 @@ input[type="text"] {
 	font-size: 1.2em;
 }
 
+.radio-wrapper {
+    display: block;
+    margin-left: 1em;
+    input[type="radio"]{
+        border: 2px solid $blue;
+        
+    }
+}
+
+// input[type="radio"] + label {
+//     float: right;
+// }
+
+.settings-wrapper input[type="text"] {
+    width: 75%;
+    padding: .5em;
+    font-size: 1em;
+    font-family: $font-family-pmed;
+}
+
+.user-info-wrapper,
+.notif-wrapper input[type="text"] {
+    margin-left: 1em;
+}
+
 .search-wrapper {
     width: 60%;
     margin-left: 13%;

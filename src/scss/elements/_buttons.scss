@@ -2,6 +2,10 @@ button {
 	outline: none;
 }
 
+button:hover {
+	cursor: pointer;
+}
+
 .account-tab {
 	font-family: $font-family-h2;
 	font-size: 1.75em;
@@ -106,14 +110,6 @@ button {
 		border-bottom: 4px solid $blue;
 		color: $black;
 	}
-	
-	// i {
-	// 	color: $dark-gray;
-	// 	position: absolute;
-	// 	top: 26px;
-	//     left: 129px;
-	//     font-size: 1.5em;
-	// }
 }
 
 .follow-toggle {
@@ -135,4 +131,16 @@ button {
 	background-color: $white;
 	border: 2px solid $red;
 	padding: .3em .5em;
+}
+
+.settings-button {
+	font-family: $font-family-button;
+	font-size: 1em;
+	color: $white;
+	background-color: $blue;
+	border: none;
+	padding: .5em .75em;
+	display: block;
+	margin-bottom: 1.2em;
+	margin-left: 1em;
 }
