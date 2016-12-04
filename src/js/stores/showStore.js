@@ -13,6 +13,7 @@ var lastUpdate = 0;
 var shows = [];
 var showObj = {};
 
+// Time to keep track of how long shows have been displayed to calculate countdown
 var timeSinceMount = 0;
 
 window.setInterval(function () {

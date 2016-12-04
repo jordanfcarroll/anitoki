@@ -22,11 +22,13 @@ var Searchpane = React.createClass({
 
 		// Placeholder for display that holds shows
 		var display;
+		// Placeholder for determining which days should be shown
 		var hasResults = false;
+		// Placeholder for search field
 		var input;
-
 		// Placeholder for X button in search field
 		var button;
+
 
 		const days = [
 			"Sunday",
@@ -37,27 +39,31 @@ var Searchpane = React.createClass({
 			"Friday",
 			"Saturday"
 		];
-		if (!this.props.shows) {
 
+		if (!this.props.shows) {
 			display = <p>Loading shows...</p>;
+
 
 		} else if (this.state.displayTracking) {
 			display = <PaneWeeklyView 
 						shows={this.props.shows} 
 						userShows={this.props.userShows} />
 			input = <div />;
+
+
 		} else {
 			input = (<input 
-							className="search"
-							type="text"
-							value={this.state.searchText}
-							onChange={this.handleChange}
-							onKeyDown={this.handleSearch} />
-							)
+						className="search"
+						type="text"
+						value={this.state.searchText}
+						onChange={this.handleChange}
+						onKeyDown={this.handleSearch} />
+					);
 
 
-			// Add shows that match searchText to jsx for weekday and append those to display jsx
+			// Placeholder for filtered weekdays containing search filtered shows
 			display = [];
+
 			for (var i = 0; i < 7; i++) {
 				// Variable to hold all jsx for a given day
 				var day;

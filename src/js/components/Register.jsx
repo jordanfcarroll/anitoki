@@ -1,7 +1,6 @@
 var React = require("react");
 var ReactRouter = require("react-router");
 
-
 var userStore = require("../stores/userStore.js")
 
 
@@ -33,13 +32,16 @@ var Register = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<input type="text" 
+				<input 
+					type="text" 
 					className="text-input email-input" 
 					placeholder="Email"
 					onChange={this.emailChange} 
 					onKeyDown={this.keySubmit} 
 					value={this.state.emailText} />
+
 				<span>{this.state.emailError}</span>
+
 				<input 
 					className="text-input password-input" 
 					placeholder="Password"
@@ -47,7 +49,9 @@ var Register = React.createClass({
 					onChange={this.passwordChange} 
 					onKeyDown={this.keySubmit} 
 					value={this.state.passwordText}/>
+
 				<span>{this.state.passwordError}</span>
+
 				<input 
 					className="text-input password-confirm" 
 					placeholder="Confirm Password"
@@ -55,29 +59,34 @@ var Register = React.createClass({
 					onChange={this.passwordConfirmChange} 
 					onKeyDown={this.keySubmit} 
 					value={this.state.passwordConfirmText}/>
+
 				<span>{this.state.passwordConfirmError}</span>
+
 				<button className="submit" onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);
 	},
+
+	// Allow fields to accept input
 
 	emailChange: function (event) {
 		this.setState({
 			emailText: event.target.value
 		})
 	},
-
 	passwordChange: function (event) {
 		this.setState({
 			passwordText: event.target.value
 		})
 	},
-
 	passwordConfirmChange: function (event) {
 		this.setState({
 			passwordConfirmText: event.target.value
 		})
 	},
+
+
+	// Handle form submission
 
 	handleSubmit: function () {
 		this.setState({
@@ -87,7 +96,6 @@ var Register = React.createClass({
 		})
 		if(!this.hasErrors()) {
 			userStore.register(this.state.emailText, this.state.passwordText);
-			// userStore.getErrors();
 		} 
 	},
 
@@ -97,8 +105,13 @@ var Register = React.createClass({
 		}
 	},
 
+
+	// Check for all errors, setting state upon encountering, and returning true if none are thrown
+
 	hasErrors: function () {
-		var hasErrors = false;
+
+		let hasErrors = false;
+
 		// Check email field for errors
 		if(this.state.emailText.indexOf("@") === -1) {
 			this.setState({
@@ -113,6 +126,7 @@ var Register = React.createClass({
 			hasErrors = true;
 		}
 
+
 		// Check password fields for errors
 		if (this.state.passwordText !== this.state.passwordConfirmText) {
 			this.setState({
@@ -121,15 +135,19 @@ var Register = React.createClass({
 			hasErrors = true;
 		}
 
+
+		// Check that password length is appropriate
 		if (this.state.passwordText.length < 8) {
 			this.setState({
 				passwordError: "Password must contain at least 8 characters"
 			})
 			hasErrors = true;
 		}
-
+		
 		return hasErrors;
 	}
+
+
 });
 
 module.exports = Register;

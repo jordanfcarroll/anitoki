@@ -4,13 +4,6 @@ var ReactRouter = require("react-router");
 
 
 var Show = React.createClass({
-	getInitialState: function () {
-		return {
-			initialCountdown: new Date().getTime()/1000,
-			currentRemaining: this.props.show.airing.countdown
-		}
-	},
-	
 
 	render: function () {
 		var time;
@@ -33,8 +26,6 @@ var Show = React.createClass({
 	},
 
 	parseTime: function (date) {
-
-
 
 		let time = new Date(date);
 
@@ -71,13 +62,12 @@ var Show = React.createClass({
 
 	parseCountdown: function (seconds) {
 
-		// 
-
-		let hours = Math.floor(seconds / 3600);
-		let minutes = Math.floor(seconds/60 - hours*60);
+		let days = Math.floor(seconds / 86400)
+		let hours = Math.floor(seconds / 3600 - days*24);
+		let minutes = Math.floor(seconds / 60 - days*24*60 - hours*60);
 		seconds = seconds % 60;
 
-		const timeString = String(hours) + 'h ' + String(minutes) + "m " + String(seconds) + "s"
+		const timeString = String(days) + "d " + String(hours) + 'h ' + String(minutes) + "m " + String(seconds) + "s";
 
 		return timeString;
 	}

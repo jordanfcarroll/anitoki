@@ -1,4 +1,3 @@
-// 1. Error checking Password characters
 // -- Active class for account-tabs in Landing
 // 2. Write tests for password field clearing
 // 4. Handle Auth token refreshing timer
@@ -55,6 +54,8 @@ var jsx = (
 );
 
 ReactDOM.render(jsx, document.querySelector("#app"));
+
+
 
 window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
 	startSlide: 0,
