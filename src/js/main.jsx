@@ -26,6 +26,8 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var ReactRouter = require("react-router");
 
+var Swipe = require("swipe-js");
+
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
@@ -53,3 +55,13 @@ var jsx = (
 );
 
 ReactDOM.render(jsx, document.querySelector("#app"));
+
+window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
+	startSlide: 0,
+	speed: 400,
+	continuous: true,
+	disableScroll: false,
+	stopPropagation: false,
+	callback: function(index, elem) {},
+	transitionEnd: function(index, elem) {}
+});

@@ -2,11 +2,17 @@ var React = require("react");
 
 var Weekday = require("./Weekday.jsx");
 
+var Swipe = require("swipe-js");
+
 var WeeklyView = React.createClass({
 	getInitialState: function () {
 		return {
 			mobileDisplaying: 0
 		}
+	},
+
+	componentWillMount: function () {
+
 	},
 
 	render: function () {
@@ -62,7 +68,11 @@ var WeeklyView = React.createClass({
 		return (
 			<div id="week-view">
 				<div className="weekday-wrapper">
-					{weekdays}
+					<div id='slider' className='swipe'>
+						<div className='swipe-wrap'>
+							{weekdays}
+						</div>
+					</div>
 					<div className="arrow-button-wrapper">
 						{buttonLeft}
 						{buttonRight}
@@ -78,6 +88,7 @@ var WeeklyView = React.createClass({
 			this.setState({
 				mobileDisplaying: _this.state.mobileDisplaying + 1
 			})
+			window.weekdaySwipe.next();
 		}
 	},
 
@@ -87,6 +98,7 @@ var WeeklyView = React.createClass({
 			this.setState({
 				mobileDisplaying: _this.state.mobileDisplaying - 1
 			})
+			window.weekdaySwipe.prev();
 		}
 	}
 });

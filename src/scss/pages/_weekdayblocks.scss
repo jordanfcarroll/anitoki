@@ -10,12 +10,11 @@
 }
 
 .weekly-day {
-	display: none;
 	position: relative;
 	// height: 75vh;
 }
 
-.weekly-day.mobile-current-displaying {
+.weekly-day{
 	display: block;
 	background-color: $light-gray;
 	// width: 95%;
