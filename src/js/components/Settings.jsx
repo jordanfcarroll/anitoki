@@ -36,11 +36,11 @@ var Settings = React.createClass({
 					<h4>Preferences</h4>
 					<h5>Notifications</h5>
 					<div className="radio-wrapper">
-						<input type="radio" name="notifications" value="none"/>
+						<input className="custom-radio" type="radio" name="notifications" value="none" id="None"/>
 						<label htmlFor="None">None</label>
 					</div>
 					<div className="radio-wrapper">
-						<input type="radio" name="notifications" value="none"/>
+						<input className="custom-radio" type="radio" name="notifications" value="none" id="Text Only"/>
 						<label htmlFor="Text Only">Text</label>
 					</div>
 					{/*
@@ -53,11 +53,11 @@ var Settings = React.createClass({
 						placeholder="Phone" />
 					<h5>Showtime Display</h5>
 					<div className="radio-wrapper">
-						<input type="radio" name="showtimes" value="showtimenone" />
+						<input className="custom-radio" type="radio" name="showtimes" value="showtimenone" id="showtimenone" />
 						<label htmlFor="showtimenone">None</label>
 					</div>
 					<div className="radio-wrapper">
-						<input type="radio" name="showtimes" value="Countdown" />
+						<input className="custom-radio" type="radio" name="showtimes" value="Countdown" id="Countdown" />
 						<label htmlFor="Countdown">Countdown</label>
 					</div>
 					<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>

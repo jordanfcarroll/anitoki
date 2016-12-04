@@ -12,11 +12,36 @@ input[type="text"] {
 .radio-wrapper {
     display: block;
     margin-left: 1em;
-    input[type="radio"]{
-        border: 2px solid $blue;
-        
+    label{
+        font-family: $font-family-gen;
+        font-size: 1.2em;
+        color: $black;
+        margin-bottom: .2em;
+    }
+    input[type="radio"].custom-radio{
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 10px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 10px;
+    }
+    input[type="radio"].custom-radio ~ label:before {
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f1db";
+        color: $blue;
+        font-size: 1.4em;
+        letter-spacing: 10px;
+    }
+    input[type="radio"].custom-radio:checked ~ label:before {
+        content: "\f05d";
+        font-size: 1.4em;
     }
 }
+
 
 // input[type="radio"] + label {
 //     float: right;
