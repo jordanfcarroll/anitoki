@@ -150,3 +150,19 @@ button:hover {
 		margin-top: .5em;
 	}
 }
+
+.close-show {
+	position: absolute;
+	right: -2px;
+	top: 2px;
+	color: $blue;
+	font-size: 2em;
+	border: none;
+	background-color: $white;
+}
+
+.showpane{
+	.follow-toggle {
+		margin-left: 0;
+	}
+}
