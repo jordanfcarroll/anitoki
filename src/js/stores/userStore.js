@@ -24,8 +24,13 @@ const KEY = "asldkjioawejfa212jaw";
 var userStore = Object.create(EventEmitter.prototype);
 EventEmitter.call(userStore);
 
+
+
+
+
 // Collection
 var currentUser = {
+	email: "",
 	isAuth: false,
 	settings: {
 		showtime: "countdown",
@@ -43,6 +48,15 @@ var messages = {
 	showtimeMessage: "",
 	emailMessage: ""
 }
+
+var modal = true;
+
+
+
+
+
+
+
 
 userStore.getUser = function () {
 	return currentUser; 	
@@ -150,6 +164,7 @@ userStore.pseudo = function () {
 			notifications: "none",
 			phone: null
 		},
+		pseudo: true,
 		isAuth: false
 	}
 
@@ -350,6 +365,15 @@ userStore.updateShowtimeSettings = function (value) {
 		}
 	})
 }
+
+userStore.noModal = function () {
+	modal = false;
+}
+
+userStore.getModal = function () {
+	return modal;
+}
+
 
 
 window.userStore = userStore;

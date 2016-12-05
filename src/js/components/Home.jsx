@@ -15,7 +15,8 @@ var Home = React.createClass({
 			userShows: userStore.getTracking(),
 			showDetails: null,
 			drawerStatus: "closed",
-			settings: userStore.getSettings()
+			settings: userStore.getSettings(),
+			displayLandingModal: userStore.getModal()
 		}
 	},
 
@@ -44,8 +45,19 @@ var Home = React.createClass({
 
 
 	render: function () {
+		var landingmodal;
 		var showpane;
 		var drawerButton;
+
+		// if first visit, display landingmodal
+		if (this.state.displayLandingModal) {
+			landingmodal = <LandingModal 
+							closeModal={this.closeLandingModal}
+							navigateToDrawer={this.navigateToDrawer}
+							navigateToRegister={this.navigateToRegister}/>;
+		}
+
+
 
 		// If show has been clicked, display showpane for details
 		if (this.state.showDetails) {
@@ -73,7 +85,7 @@ var Home = React.createClass({
 
 		return (
 			<div>
-				<LandingModal />
+				{landingmodal}
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}
@@ -92,7 +104,6 @@ var Home = React.createClass({
 			</div>
 		);
 	},
-
 
 
 	componentWillUnmount: function () {
@@ -123,6 +134,24 @@ var Home = React.createClass({
 				drawerStatus: "open"
 			});
 		}
+	},
+
+	closeLandingModal: function () {
+		this.setState({
+			displayLandingModal: false
+		})
+	},
+
+	navigateToDrawer: function () {
+		this.setState({
+			displayLandingModal: false,
+			drawerStatus: "open"
+		})
+
+	},
+
+	navigateToRegister: function () {
+		// Navigate to register
 	}
 });
 

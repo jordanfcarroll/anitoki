@@ -64,7 +64,8 @@ app.post("/api/register", function (req, res) {
 				notifications: "none",
 				showtime: "countdown",
 				phone: null
-			}
+			},
+			pseudo: false
 		}
 		db.get("users").push(newUser).value();
 		res.json(newUser);

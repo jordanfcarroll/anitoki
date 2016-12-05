@@ -15,11 +15,15 @@ var App = React.createClass({
  	componentWillMount() {
  		// Check for active user session and set if needed
 		if (userStore.getLocalSession() && !userStore.getUser().isAuth) {
+			userStore.noModal();
 			userStore.setSession();
 
 		// Else set user as pseudo
 		} else if (!userStore.getUser().isAuth) {
 			userStore.pseudo();
+			if (userStore.getUser().tracking.length > 0) {
+				userStore.noModal();
+			}
 		}
  	},
  	
