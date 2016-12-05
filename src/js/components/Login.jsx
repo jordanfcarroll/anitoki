@@ -28,11 +28,16 @@ var Login = React.createClass({
 		let emailBorderClass = "";
 		let passwordBorderClass = "";
 
+		var emailError;
+		var passwordError;
+
 		if (this.state.emailError.length > 0) {
+			emailError = <span>{this.state.emailError}</span>;
 			emailBorderClass = " red-border"
 		}
 
 		if (this.state.passwordError.length > 0) {
+			passwordError = <span>{this.state.passwordError}</span>;
 			passwordBorderClass = " red-border"
 		}
 
@@ -48,7 +53,7 @@ var Login = React.createClass({
 					type="text" 
 					value={this.state.emailText} 
 					onChange={this.emailChange}/>
-				<p>{this.state.emailError}</p>
+				{emailError}
 				<input 
 					className={"text-input password-input" + passwordBorderClass} 
 					placeholder="Password"
@@ -56,7 +61,7 @@ var Login = React.createClass({
 					type="password" 
 					value={this.state.passwordText} 
 					onChange={this.passwordChange}/>
-				<p>{this.state.passwordError}</p>
+				{passwordError}
 				<button className="submit" onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);

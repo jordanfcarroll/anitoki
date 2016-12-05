@@ -19,7 +19,6 @@ var Home = React.createClass({
 			drawerStatus: "closed",
 			settings: userStore.getSettings(),
 			displayLandingModal: userStore.getModal(),
-			popupClass: "popup",
 			displayLoginModal: true
 		}
 	},
@@ -140,8 +139,7 @@ var Home = React.createClass({
 	toggleDrawer: function () {
 		if (this.state.drawerStatus === "open") {
 			this.setState({
-				drawerStatus: "closed",
-				popupClass: "popup fade-in"
+				drawerStatus: "closed"
 			});
 		} else {
 			this.setState({

@@ -30,14 +30,22 @@ var Register = React.createClass({
 	},
 
 	render: function () {
+		var emailError;
+		var passwordError;
+
+
 		let emailBorderClass = "";
 		let passwordBorderClass = "";
 
+
+
 		if (this.state.emailError.length > 0) {
+			emailError = <span className="error-msg">{this.state.emailError}</span>
 			emailBorderClass = " red-border"
 		}
 
 		if (this.state.passwordError.length > 0) {
+			passwordError = <span className="error-msg">{this.state.passwordError}</span>
 			passwordBorderClass = " red-border"
 		}
 
@@ -54,7 +62,7 @@ var Register = React.createClass({
 						onKeyDown={this.keySubmit} 
 						value={this.state.emailText} />
 
-					<span className="error-msg">{this.state.emailError}</span>
+					{emailError}
 				</div>
 				<div className="new-pw-wrapper">
 					<input 
@@ -65,7 +73,7 @@ var Register = React.createClass({
 						onKeyDown={this.keySubmit} 
 						value={this.state.passwordText}/>
 
-					<span className="error-msg">{this.state.passwordError}</span>
+					{passwordError}
 					<input 
 						className={"text-input password-confirm" + passwordBorderClass} 
 						placeholder="Confirm Password"

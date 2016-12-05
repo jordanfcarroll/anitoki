@@ -29,7 +29,7 @@ var Searchpane = React.createClass({
 		var input;
 		// Placeholder for X button in search field
 		var button;
-		var popupClass = "popup";
+		var popup;
 
 
 		const days = [
@@ -125,21 +125,8 @@ var Searchpane = React.createClass({
 				button = <i className="fa fa-search" />
 			}
 
-			if (this.state.popup && !userStore.getUser().email) {
-				var popup = (
-					<div>
-						<div className="list-bumper"></div>
-						<div className={this.props.popupClass}>
-							<button onClick={this.handlePopupClose} className="fa fa-times popup-close" />
-								<p>Want to know when a new episode is out?
-								<Link to="landing/register">Make an account</Link>
-								to receive notifications!</p>
-						</div>
-					</div>	
-					);
-			}
 			if (this.state.popup && !userStore.getUser().email && this.props.drawerStatus === "open") {
-				var popup = <Popup handlePopupClose={this.handlePopupClose}/>;
+				popup = <Popup handlePopupClose={this.handlePopupClose}/>;
 			}
 		}
 

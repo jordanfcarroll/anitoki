@@ -2,7 +2,7 @@ var React = require("react");
 var Link = require("react-router").Link;
 
 
-var Login = React.createClass({
+var Popup = React.createClass({
 	getInitialState: function () {
 		return {
 			class: "popup "
@@ -19,16 +19,16 @@ var Login = React.createClass({
 						<br />
 							<Link to="landing/register">Make an account</Link>
 							to receive notifications!</p>
-				</div>
+					</div>
 			</div>
 		);
 	},
 
 	componentDidMount: function () {
 		this.setState({
-			class: this.state.class += "fade-in-popup "
+			class: this.state.class += "fade-in-popup"
 		})
 	}
 });
 
-module.exports = Login;
+module.exports = Popup;
