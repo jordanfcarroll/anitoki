@@ -6,6 +6,7 @@ var showStore = require("../stores/showStore");
 var Searchpane = require("./Searchpane.jsx");
 var Showpane = require("./Showpane.jsx");
 var WeeklyView = require("./WeeklyView.jsx");
+var LandingModal = require("./LandingModal.jsx");
 
 var Home = React.createClass({
 	getInitialState: function () {
@@ -72,6 +73,7 @@ var Home = React.createClass({
 
 		return (
 			<div>
+				<LandingModal />
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}
