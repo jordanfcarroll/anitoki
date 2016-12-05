@@ -5,10 +5,15 @@ var userStore = require("../stores/userStore.js");
 var Link = require("react-router").Link;
 
 var LandingModal = React.createClass({
+	getInitialState: function () {
+		return {
+			class: "modal"
+		}
+	},
 
 	render: function () {
 		return (
-			<div className="modal">
+			<div className={this.state.class}>
 				<div className="modal-wrapper">
 					<button 
 						className="close-modal fa fa-times"
@@ -26,6 +31,12 @@ var LandingModal = React.createClass({
 				</div>
 			</div>
 		);
+	},
+
+	componentDidMount: function () {
+		this.setState({
+			class: "modal fade-in"
+		})
 	},
 
 	handleClose: function () {

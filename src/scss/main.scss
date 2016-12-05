@@ -21,6 +21,9 @@ body {
 	min-width: 340px;
 }
 
+
+
+
 .swipe {
   overflow: hidden;
   visibility: hidden;
@@ -34,4 +37,10 @@ body {
   float:left;
   width:100%;
   position: relative;
+}
+
+
+.fade-in {
+	transition: opacity 1s;
+	opacity: 1;
 }
