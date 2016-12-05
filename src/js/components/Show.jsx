@@ -9,11 +9,11 @@ var Show = React.createClass({
 		var time;
 		var _this = this;
 
-		if (this.props.countdown) {
+		if (this.props.showtime === "countdown") {
 			
 			time = <p className="show-time">{this.parseCountdown(this.props.show.airing.countdown - this.props.timeSinceUpdate)}</p>
 
-		} else {
+		} else if (this.props.showtime === "showtime") {
 			time = <p className="show-time">{this.parseTime(this.props.show.airing.time)}</p>;
 		}
 
@@ -30,8 +30,6 @@ var Show = React.createClass({
 		let time = new Date(date);
 
 
-		// Currently evaluates to SC time
-		// time.convertTimezone();
 		let amPm = " AM";
 
 		let timeString = "";
