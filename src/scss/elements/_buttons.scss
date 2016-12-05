@@ -175,16 +175,38 @@ button:hover {
 	background-color: $white;
 }
 
+.showpane{
+	.follow-toggle {
+		margin-left: 0;
+	}
+}
+
+.modal-search {
+	background-color: $red;
+	margin: 0 auto;
+	display: block;
+	font-family: $font-family-button;
+	color: $white;
+	padding: 1em;
+	font-size: 1.3em;
+	border: none;
+}
+
+.close-modal {
+	border: none;
+	position: absolute;
+	top: -1px;
+	right: 0;
+	color: $white;
+	font-size: 2em;
+	background-color: transparent;
+}
+
 @include respond-to(small) {
 	.showpane{
 		.follow-toggle {
 			font-size: 1em;
 			padding: .3em .8em;
 		}
-	}
-}
-.showpane{
-	.follow-toggle {
-		margin-left: 0;
 	}
 }
