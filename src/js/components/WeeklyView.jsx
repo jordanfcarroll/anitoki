@@ -11,9 +11,7 @@ var WeeklyView = React.createClass({
 		}
 	},
 
-	componentWillMount: function () {
-		
-	},
+	
 
 	render: function () {
 		var _this = this;

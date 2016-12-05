@@ -62,7 +62,7 @@ app.post("/api/register", function (req, res) {
 			isAuth: true,
 			settings : {
 				notifications: "email",
-				countdown: true
+				showtime: "countdown"
 			}
 		}
 		db.get("users").push(newUser).value();

@@ -26,7 +26,7 @@ var Nav = React.createClass({
 			links = (
 				<ul>
 					<li className="logo"><Link to="/"></Link></li>
-					<li className="settings fa fa-cog"><Link to="/Settings"></Link></li>
+					<li className="settings fa fa-cog"><Link to="/settings"></Link></li>
 					<li className="user-status" onClick={this.handleLogOut}>Logout</li>
 				</ul>
 			)

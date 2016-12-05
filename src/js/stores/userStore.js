@@ -28,7 +28,7 @@ EventEmitter.call(userStore);
 var currentUser = {
 	isAuth: false,
 	settings: {
-		countdown: false,
+		showtime: "countdown",
 		notifications: "none"
 	}
 };
@@ -140,7 +140,7 @@ userStore.pseudo = function () {
 		pw: null,
 		tracking: [],
 		settings: {
-			countdown: true,
+			showtime: "countdown",
 			notifications: "none"
 		},
 		isAuth: false

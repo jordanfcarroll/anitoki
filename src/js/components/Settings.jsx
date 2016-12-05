@@ -7,13 +7,27 @@ var userStore = require("../stores/userStore.js")
 var Settings = React.createClass({
 	getInitialState: function () {
 		return {
-			settings: userStore.getSettings()
+			userNotifications: userStore.getSettings().notifications,
+			userShowtimeDisplay: userStore.getSettings().showtime,
+			displayPhoneInput: false,
+			selectedNotifications: "",
+			selectedShowtimes: ""
 		}
 	},
 
 
 
 	render: function () {
+		// Placeholder for phone input
+		var phone;
+
+		if (this.state.displayPhoneInput) {
+			phone = (<input 
+						type="text"
+						placeholder="Phone" />
+					);
+		}
+
 		return (
 			<div className="settings-wrapper">
 				<div>
@@ -36,11 +50,22 @@ var Settings = React.createClass({
 					<h4>Preferences</h4>
 					<h5>Notifications</h5>
 					<div className="radio-wrapper">
-						<input className="custom-radio" type="radio" name="notifications" value="none" id="None"/>
+						<input 
+							className="custom-radio" 
+							type="radio" 
+							name="notifications" 
+							value="none" 
+							id="None"
+							checked={true}/>
 						<label htmlFor="None">None</label>
 					</div>
 					<div className="radio-wrapper">
-						<input className="custom-radio" type="radio" name="notifications" value="none" id="Text Only"/>
+						<input 
+							className="custom-radio" 
+							type="radio" 
+							name="notifications" 
+							value="text" 
+							id="Text Only"/>
 						<label htmlFor="Text Only">Text</label>
 					</div>
 					{/*
@@ -48,16 +73,14 @@ var Settings = React.createClass({
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Text and Email">Text and Email</label>
 					*/}
 					<button className="settings-button">Save Changes</button>
-					<input 
-						type="text"
-						placeholder="Phone" />
+					{phone}
 					<h5>Showtime Display</h5>
 					<div className="radio-wrapper">
-						<input className="custom-radio" type="radio" name="showtimes" value="showtimenone" id="showtimenone" />
+						<input className="custom-radio" type="radio" name="showtimes" value="showtime" id="showtimenone" />
 						<label htmlFor="showtimenone">None</label>
 					</div>
 					<div className="radio-wrapper">
-						<input className="custom-radio" type="radio" name="showtimes" value="Countdown" id="Countdown" />
+						<input className="custom-radio" type="radio" name="showtimes" value="countdown" id="Countdown" />
 						<label htmlFor="Countdown">Countdown</label>
 					</div>
 					<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
@@ -66,7 +89,18 @@ var Settings = React.createClass({
 		);
 	}, 
 
-	saveNotifications: function () {
+	handleEmailSubmit: function () {
+
+	},
+
+	handleNotificationSubmit: function () {
+		this.setState({
+			notifications: true
+		})
+	},
+
+	handleShowtimesSubmit: function () {
+
 	}
 });
 
