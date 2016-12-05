@@ -147,7 +147,8 @@ userStore.pseudo = function () {
 		tracking: [],
 		settings: {
 			showtime: "countdown",
-			notifications: "none"
+			notifications: "none",
+			phone: null
 		},
 		isAuth: false
 	}
@@ -298,13 +299,19 @@ userStore.getSettings = function () {
 	return currentUser.settings;
 }
 
-userStore.updateNotificationSettings = function (value) {
+userStore.updateNotificationSettings = function (obj) {
 	var _this = this;
+	console.log({
+		notifications : obj.notifications,
+		phone: obj.phone,
+		user: currentUser
+	})
 	$.ajax({
 		url: "/api/notifications",
 		method: "PUT",
 		data: {
-			notifications : value,
+			notifications : obj.notifications,
+			phone: obj.phone,
 			user: currentUser
 		},
 		success: function (result) {

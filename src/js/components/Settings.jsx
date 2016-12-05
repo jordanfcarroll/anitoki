@@ -9,9 +9,11 @@ var Settings = React.createClass({
 		return {
 			selectedNotifications: userStore.getSettings().notifications,
 			selectedShowtimes: userStore.getSettings().showtime,
+			phone: "",
+			phoneError: "",
 			emailMessage: "",
 			showtimeMessage: "",
-			notifMessage: ""
+			notifMessage: "",
 		}
 	},
 
@@ -35,7 +37,9 @@ var Settings = React.createClass({
 		if (this.state.selectedNotifications === "text") {
 			phone = (<input 
 						type="text"
-						placeholder="Phone" />
+						placeholder="Phone : 123-123-1234"
+						value={this.state.phone}
+						onChange={this.onPhoneChange} />
 					);
 		}
 
@@ -88,6 +92,7 @@ var Settings = React.createClass({
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Text and Email">Text and Email</label>
 					*/}
 					{phone}
+					<p>{this.state.phoneError}</p>
 					<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
 					<p>{this.state.notifMessage}</p>
 					<h5>Showtime Display</h5>
@@ -132,16 +137,80 @@ var Settings = React.createClass({
 		})
 	},
 
+	onPhoneChange: function (e) {
+		this.setState({
+			phone: e.target.value
+		})
+	},
+
 	handleEmailSubmit: function () {
 
 	},
 
 	saveNotifications: function () {
-		userStore.updateNotificationSettings(this.state.selectedNotifications);
+		if (this.state.selectedNotifications === "none") {
+			userStore.updateNotificationSettings({
+				phone: null,
+				notifications: this.state.selectedNotifications
+			})
+		} else if (!this.hasPhoneErrors()) {
+
+			this.setState({
+				phone: ""
+			})
+
+
+			userStore.updateNotificationSettings({
+				notifications: this.state.selectedNotifications,
+				phone: this.parsePhone(this.state.phone)});
+		}
 	},
 
 	saveShowtimes: function () {
 		userStore.updateShowtimeSettings(this.state.selectedShowtimes);
+	},
+
+	parsePhone: function (string) {
+		let parsed = string;
+		while(parsed.indexOf("-") >= 0) {
+			parsed = parsed.replace("-","")	;
+		}
+		return parsed;
+	},
+
+	hasPhoneErrors: function () {
+
+		let phone = this.parsePhone(this.state.phone)
+
+		let hasErrors = false;
+		this.setState({
+			phoneError: ""
+		})
+
+
+
+		if (phone.length !== 10) {
+			this.setState({
+				phoneError: "Please enter a ten-digit phone number"
+			})
+			hasErrors = true;
+		}
+
+
+
+		let phoneHasBadChar = phone.split("")
+								.every(function (value) {
+									return (!"0123456789".indexOf(value) >= 0 ) 
+								});
+		if (phoneHasBadChar) {
+			this.setState({
+				phoneError: "Please enter a valid phone number"
+			})
+			hasErrors = true;
+		}
+
+
+		return hasErrors;
 	}
 });
 

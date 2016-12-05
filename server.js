@@ -62,7 +62,8 @@ app.post("/api/register", function (req, res) {
 			isAuth: true,
 			settings : {
 				notifications: "none",
-				showtime: "countdown"
+				showtime: "countdown",
+				phone: null
 			}
 		}
 		db.get("users").push(newUser).value();
@@ -208,7 +209,8 @@ app.put("/api/notifications", function (req, res) {
 				.get("settings")
 				.assign({
 					showtime: user.settings.showtime,
-					notifications: body.notifications
+					notifications: body.notifications,
+					phone: body.phone
 				})
 				.value()
 
@@ -218,7 +220,6 @@ app.put("/api/notifications", function (req, res) {
 
 app.put("/api/showtimes", function (req, res) {
 	const body = req.body;
-	console.log(body);
 
 	var user = db.get("users")
 				.find({email: body.user.email})
