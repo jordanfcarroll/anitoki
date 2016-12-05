@@ -5,6 +5,7 @@ var SearchResult = require("./SearchResult.jsx");
 var PaneWeeklyView = require("./PaneWeeklyView.jsx");
 var Weekday = require("./Weekday.jsx");
 var Link = require("react-router").Link;
+var Popup = require("./Popup.jsx")
 
 var Searchpane = React.createClass({
 	getInitialState: function () {
@@ -140,6 +141,8 @@ var Searchpane = React.createClass({
 						</div>
 					</div>	
 					);
+			if (this.state.popup && !userStore.getUser().email && this.props.drawerStatus === "open") {
+				var popup = <Popup handlePopupClose={this.handlePopupClose}/>;
 			}
 		}
 

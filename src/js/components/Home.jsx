@@ -111,8 +111,7 @@ var Home = React.createClass({
 							userShows={this.state.userShows}
 							setShow={this.setShow}
 							unsetShow={this.unsetShow}
-							drawerStatus={this.state.drawerStatus}
-							popupClass={this.state.popupClass} />
+							drawerStatus={this.state.drawerStatus} />
 					</div>
 				</div>
 			</div>
