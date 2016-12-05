@@ -25,12 +25,24 @@ var Login = React.createClass({
 
 
 	render: function () {
+		let emailBorderClass = "";
+		let passwordBorderClass = "";
+
+		if (this.state.emailError.length > 0) {
+			emailBorderClass = " red-border"
+		}
+
+		if (this.state.passwordError.length > 0) {
+			passwordBorderClass = " red-border"
+		}
+
+
 		return (
 			<div>
 				<h2>Login</h2>
 				<h4>Don't have an account? <span onClick={this.props.switch}> Sign Up </span> to track your favorite shows and receive notifications!</h4>
 				<input
-					className="text-input email-input" 
+					className={"text-input email-input" + emailBorderClass} 
 					placeholder="Email"
 					onKeyDown={this.keySubmit} 
 					type="text" 
@@ -38,7 +50,7 @@ var Login = React.createClass({
 					onChange={this.emailChange}/>
 				<p>{this.state.emailError}</p>
 				<input 
-					className="text-input password-input" 
+					className={"text-input password-input" + passwordBorderClass} 
 					placeholder="Password"
 					onKeyDown={this.keySubmit} 
 					type="password" 
