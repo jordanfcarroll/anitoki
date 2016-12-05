@@ -6,7 +6,9 @@ var showStore = require("../stores/showStore");
 var Searchpane = require("./Searchpane.jsx");
 var Showpane = require("./Showpane.jsx");
 var WeeklyView = require("./WeeklyView.jsx");
+
 var LandingModal = require("./LandingModal.jsx");
+var LoginModal = require("./LoginModal.jsx");
 
 var Home = React.createClass({
 	getInitialState: function () {
@@ -16,7 +18,9 @@ var Home = React.createClass({
 			showDetails: null,
 			drawerStatus: "closed",
 			settings: userStore.getSettings(),
-			displayLandingModal: userStore.getModal()
+			displayLandingModal: userStore.getModal(),
+			popupClass: "popup",
+			displayLoginModal: true
 		}
 	},
 
@@ -45,16 +49,23 @@ var Home = React.createClass({
 
 
 	render: function () {
-		var landingmodal;
+		var landingModal;
+		var loginModal;
+
 		var showpane;
 		var drawerButton;
 
 		// if first visit, display landingmodal
 		if (this.state.displayLandingModal) {
-			landingmodal = <LandingModal 
+			landingModal = <LandingModal 
 							closeModal={this.closeLandingModal}
 							navigateToDrawer={this.navigateToDrawer}
 							navigateToRegister={this.navigateToRegister}/>;
+		}
+
+		if (this.state.displayLoginModal) {
+			loginModal = <LoginModal 
+							closeModal={this.closeLoginModal}/>
 		}
 
 
@@ -85,7 +96,8 @@ var Home = React.createClass({
 
 		return (
 			<div>
-				{landingmodal}
+				{landingModal}
+				{loginModal}
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}
@@ -98,7 +110,9 @@ var Home = React.createClass({
 							shows={this.state.shows} 
 							userShows={this.state.userShows}
 							setShow={this.setShow}
-							unsetShow={this.unsetShow} />
+							unsetShow={this.unsetShow}
+							drawerStatus={this.state.drawerStatus}
+							popupClass={this.state.popupClass} />
 					</div>
 				</div>
 			</div>
@@ -127,7 +141,8 @@ var Home = React.createClass({
 	toggleDrawer: function () {
 		if (this.state.drawerStatus === "open") {
 			this.setState({
-				drawerStatus: "closed"
+				drawerStatus: "closed",
+				popupClass: "popup fade-in"
 			});
 		} else {
 			this.setState({
@@ -139,6 +154,12 @@ var Home = React.createClass({
 	closeLandingModal: function () {
 		this.setState({
 			displayLandingModal: false
+		})
+	},
+
+	closeLoginModal: function () {
+		this.setState({
+			displayLoginModal: false
 		})
 	},
 
