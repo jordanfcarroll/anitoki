@@ -1,5 +1,7 @@
-.red-border {
-    border: 5px solid $red !important;
+.text-input.red-border {
+    border: 5px solid $red;
+    margin-bottom: 0;
+    border-radius: 0;
 }
 
 .text-input,
@@ -20,8 +22,12 @@ input[type="text"] {
     .new-email-wrapper,
     .new-pw-wrapper {
         margin: 0 auto;
+        width: 70%;
+        display: block;
         .text-input {
-            margin-bottom: 1.2em;
+            width: 100%;
+            border-radius: 0;
+            box-sizing: border-box;
         }        
     }
     .new-pw-wrapper {
