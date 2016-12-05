@@ -126,6 +126,20 @@ button:hover {
 	border-radius: 2px;
 }
 
+@include respond-to(small) {
+	.follow-toggle,
+	.follow-toggle.unfollow {
+	    margin-left: 1em;
+	   	font-size: 1em;
+	}
+	.follow-toggle {
+		padding: 0.5em 1.3em;
+	}
+	.follow-toggle.unfollow {
+		padding: 0.5em .45em !important;
+	}
+}
+
 .follow-toggle.unfollow {
 	color: $red;
 	background-color: $white;
@@ -161,6 +175,14 @@ button:hover {
 	background-color: $white;
 }
 
+@include respond-to(small) {
+	.showpane{
+		.follow-toggle {
+			font-size: 1em;
+			padding: .3em .8em;
+		}
+	}
+}
 .showpane{
 	.follow-toggle {
 		margin-left: 0;

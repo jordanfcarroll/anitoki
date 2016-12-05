@@ -4,11 +4,9 @@
 	height: 69%;
 	margin: auto;
 	top: 9.2em;
-	// top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
- //    padding-top: 1em;
 	padding: 5vw;
 	overflow: scroll;
 	position: absolute;
@@ -33,4 +31,45 @@
 	p {
 		font-family: $font-family-para;
 	}
+}
+
+@include respond-to(small) {
+	.showpane {
+		display: block;
+		width: 75%;
+		height: 65%;
+		margin: auto;
+		top: 5.2em;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 5vw;
+		overflow: scroll;
+		position: absolute;
+		background: $white;
+		border: 3px solid $blue;
+		box-shadow:  0px 0px 15px #888888;
+		// img {
+		// 	display: inline-block;
+		// 	max-height: 200px;
+		// 	max-width: 70%;
+		// }
+		.show-aag{
+			display: inline-block;
+			position: absolute;
+			margin-left: 4vw;
+			margin-top: 1vh;
+		}
+		h3 {
+			font-family: $font-family-psem;
+			color: $black;
+			font-size: 0.98em;
+    		padding-right: 1em;
+		}
+		p {
+			font-family: $font-family-para;
+			padding-right: 1em;
+			font-size: 0.98em;
+		}
+}
 }

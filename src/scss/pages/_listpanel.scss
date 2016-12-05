@@ -139,4 +139,30 @@
 }
 }
 
+@include respond-to(small) {
+	.drawer-body.open {
+		.list-panel {
+			.list-show-view {
+				h4 {
+					font-size: .9em !important;
+				}
+			}
+			.list-week-wrapper {
+				#week-view {
+					.weekday-wrapper {
+						margin-top: -7em;
+						.weekly-day {
+							h2 {
+								margin-left: 0;
+							}
+							.show-info {
+								margin-left: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
