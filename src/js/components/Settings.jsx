@@ -7,12 +7,23 @@ var userStore = require("../stores/userStore.js")
 var Settings = React.createClass({
 	getInitialState: function () {
 		return {
-			userNotifications: userStore.getSettings().notifications,
-			userShowtimeDisplay: userStore.getSettings().showtime,
-			displayPhoneInput: false,
-			selectedNotifications: "",
-			selectedShowtimes: ""
+			selectedNotifications: userStore.getSettings().notifications,
+			selectedShowtimes: userStore.getSettings().showtime,
+			emailMessage: "",
+			showtimeMessage: "",
+			notifMessage: ""
 		}
+	},
+
+	componentWillMount: function () {
+		var _this = this;
+		userStore.on("settingsupdate", function () {
+			_this.setState({
+				emailMessage: userStore.getMessages().emailMessage,
+				showtimeMessage: userStore.getMessages().showtimeMessage,
+				notifMessage: userStore.getMessages().notifMessage
+			});
+		})
 	},
 
 
@@ -21,7 +32,7 @@ var Settings = React.createClass({
 		// Placeholder for phone input
 		var phone;
 
-		if (this.state.displayPhoneInput) {
+		if (this.state.selectedNotifications === "text") {
 			phone = (<input 
 						type="text"
 						placeholder="Phone" />
@@ -44,6 +55,7 @@ var Settings = React.createClass({
 							type="text"
 							placeholder="Confirm New Password"/>
 						<button className="settings-button">Save Changes</button>
+						<p>{this.state.emailMessage}</p>
 					</div>
 				</div>
 				<div className="notif-wrapper">
@@ -56,7 +68,8 @@ var Settings = React.createClass({
 							name="notifications" 
 							value="none" 
 							id="None"
-							checked={true}/>
+							onChange={this.handleNotifChange}
+							checked={this.state.selectedNotifications === "none"}/>
 						<label htmlFor="None">None</label>
 					</div>
 					<div className="radio-wrapper">
@@ -65,42 +78,70 @@ var Settings = React.createClass({
 							type="radio" 
 							name="notifications" 
 							value="text" 
-							id="Text Only"/>
+							id="Text Only"
+							onChange={this.handleNotifChange}
+							checked={this.state.selectedNotifications === "text"}/>
 						<label htmlFor="Text Only">Text</label>
 					</div>
 					{/*
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Email Only">Email Only</label>
 					<input type="radio" name="notifications" value="none"/><label htmlFor="Text and Email">Text and Email</label>
 					*/}
-					<button className="settings-button">Save Changes</button>
 					{phone}
+					<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
+					<p>{this.state.notifMessage}</p>
 					<h5>Showtime Display</h5>
 					<div className="radio-wrapper">
-						<input className="custom-radio" type="radio" name="showtimes" value="showtime" id="showtimenone" />
-						<label htmlFor="showtimenone">None</label>
+						<input 
+							className="custom-radio" 
+							type="radio" 
+							name="showtimes" 
+							value="showtime" 
+							id="showtimenone"
+							onChange={this.handleShowtimeChange}
+							checked={this.state.selectedShowtimes === "showtime"} />
+						<label htmlFor="showtimenone">Airing Time</label>
 					</div>
 					<div className="radio-wrapper">
-						<input className="custom-radio" type="radio" name="showtimes" value="countdown" id="Countdown" />
+						<input 
+							className="custom-radio" 
+							type="radio" 
+							name="showtimes" 
+							value="countdown" 
+							id="Countdown"
+							onChange={this.handleShowtimeChange}
+							checked={this.state.selectedShowtimes === "countdown"} />
 						<label htmlFor="Countdown">Countdown</label>
 					</div>
-					<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
+					<button className="settings-button" onClick={this.saveShowtimes}>Save Changes</button>
+					<p>{this.state.showtimeMessage}</p>
 				</div>
 			</div>
 		);
 	}, 
 
+	handleNotifChange: function (e) {
+		this.setState({
+			selectedNotifications: e.target.value
+		})
+	},
+
+	handleShowtimeChange: function (e) {
+		this.setState({
+			selectedShowtimes: e.target.value
+		})
+	},
+
 	handleEmailSubmit: function () {
 
 	},
 
-	handleNotificationSubmit: function () {
-		this.setState({
-			notifications: true
-		})
+	saveNotifications: function () {
+		userStore.updateNotificationSettings(this.state.selectedNotifications);
 	},
 
-	handleShowtimesSubmit: function () {
-
+	saveShowtimes: function () {
+		userStore.updateShowtimeSettings(this.state.selectedShowtimes);
 	}
 });
 

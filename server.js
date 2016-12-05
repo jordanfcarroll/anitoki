@@ -61,7 +61,7 @@ app.post("/api/register", function (req, res) {
 			tracking : trueTracking,
 			isAuth: true,
 			settings : {
-				notifications: "email",
+				notifications: "none",
 				showtime: "countdown"
 			}
 		}
@@ -193,6 +193,50 @@ app.post("/api/session", function (req, res) {
 		res.status(404);
 		res.json({emailError: "Could not find email", passwordError: ""});
 	}
+});
+
+app.put("/api/notifications", function (req, res) {
+	const body = req.body;
+	console.log(body);
+
+	var user = db.get("users")
+				.find({email: body.user.email})
+				.value();
+
+	db.get("users")
+				.find({email: body.user.email})
+				.get("settings")
+				.assign({
+					showtime: user.settings.showtime,
+					notifications: body.notifications
+				})
+				.value()
+
+	res.json(user);
+
+});
+
+app.put("/api/showtimes", function (req, res) {
+	const body = req.body;
+	console.log(body);
+
+	var user = db.get("users")
+				.find({email: body.user.email})
+				.value();
+
+	db.get("users")
+				.find({email: body.user.email})
+				.get("settings")
+				.assign({
+					showtime: body.showtime,
+					notifications: user.settings.notifications
+				})
+				.value()
+
+	res.json(user);
+
+
+
 });
 
 

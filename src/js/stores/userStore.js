@@ -38,6 +38,12 @@ var errors = {
 	passwordError: ""
 }
 
+var messages = {
+	notifMessage: "",
+	showtimeMessage: "",
+	emailMessage: ""
+}
+
 userStore.getUser = function () {
 	return currentUser; 	
 };
@@ -159,6 +165,10 @@ userStore.pseudo = function () {
 
 userStore.getErrors = function () {
 	return errors;
+}
+
+userStore.getMessages = function () {
+	return messages;
 }
 
 userStore.track = function (id) {
@@ -287,6 +297,53 @@ userStore.clearLocalStorage = function() {
 userStore.getSettings = function () {
 	return currentUser.settings;
 }
+
+userStore.updateNotificationSettings = function (value) {
+	var _this = this;
+	$.ajax({
+		url: "/api/notifications",
+		method: "PUT",
+		data: {
+			notifications : value,
+			user: currentUser
+		},
+		success: function (result) {
+			currentUser = result;
+
+			messages = {
+				notifMessage: "Updated!",
+				showtimeMessage: "",
+				emailMessage: ""
+			}
+
+			_this.emit("settingsupdate");
+		}
+	})
+}
+
+userStore.updateShowtimeSettings = function (value) {
+	var _this = this;
+	$.ajax({
+		url: "/api/showtimes",
+		method: "PUT",
+		data: {
+			showtime : value,
+			user: currentUser
+		},
+		success: function (result) {
+			currentUser = result;
+
+			messages = {
+				notifMessage: "",
+				showtimeMessage: "Updated!",
+				emailMessage: ""
+			}
+
+			_this.emit("settingsupdate");
+		}
+	})
+}
+
 
 window.userStore = userStore;
 

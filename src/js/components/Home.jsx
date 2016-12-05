@@ -75,7 +75,7 @@ var Home = React.createClass({
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}
-					countdown={this.state.settings.countdown}/>
+					showtime={this.state.settings.showtime}/>
 				<div id="drawer">
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>
