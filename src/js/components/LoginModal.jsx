@@ -30,8 +30,8 @@ var LoginModal = React.createClass({
 
 		return (
 			<div className={this.state.class}>
-				<div className="modal-wrapper">
-					<button className="close-modal fa fa-times" onClick={this.props.closeModal}></button>
+				<div className="modal-wrapper log">
+					<button className="close-modal log fa fa-times" onClick={this.props.closeModal}></button>
 					{login}
 					{register}
 				</div>

@@ -45,36 +45,37 @@ var Register = React.createClass({
 
 		return (
 			<div>
-				<input 
-					type="text" 
-					className={"text-input email-input" + emailBorderClass} 
-					placeholder="Email"
-					onChange={this.emailChange} 
-					onKeyDown={this.keySubmit} 
-					value={this.state.emailText} />
+				<div className="new-email-wrapper">
+					<input 
+						type="text" 
+						className="text-input email-input" 
+						placeholder="Email"
+						onChange={this.emailChange} 
+						onKeyDown={this.keySubmit} 
+						value={this.state.emailText} />
 
-				<span>{this.state.emailError}</span>
+					<span className="error-msg">{this.state.emailError}</span>
+				</div>
+				<div className="new-pw-wrapper">
+					<input 
+						className="text-input password-input" 
+						placeholder="Password"
+						type="password" 
+						onChange={this.passwordChange} 
+						onKeyDown={this.keySubmit} 
+						value={this.state.passwordText}/>
 
-				<input 
-					className={"text-input password-input" + passwordBorderClass} 
-					placeholder="Password"
-					type="password" 
-					onChange={this.passwordChange} 
-					onKeyDown={this.keySubmit} 
-					value={this.state.passwordText}/>
+					<span className="error-msg">{this.state.passwordError}</span>
+					<input 
+						className="text-input password-confirm" 
+						placeholder="Confirm Password"
+						type="password" 
+						onChange={this.passwordConfirmChange} 
+						onKeyDown={this.keySubmit} 
+						value={this.state.passwordConfirmText}/>
 
-				<span>{this.state.passwordError}</span>
-
-				<input 
-					className={"text-input password-confirm" + passwordBorderClass} 
-					placeholder="Confirm Password"
-					type="password" 
-					onChange={this.passwordConfirmChange} 
-					onKeyDown={this.keySubmit} 
-					value={this.state.passwordConfirmText}/>
-
-				<span>{this.state.passwordConfirmError}</span>
-
+					<span>{this.state.passwordConfirmError}</span>
+				</div>
 				<button className="submit" onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);

@@ -1,3 +1,7 @@
+.red-border {
+    border: 5px solid $red !important;
+}
+
 .text-input,
 input[type="text"] {
 	border: 3px solid $blue;
@@ -7,6 +11,23 @@ input[type="text"] {
 	margin-bottom: 1.2em;
 	font-family: $font-family-h3;
 	font-size: 1.2em;
+}
+
+.modal-wrapper {
+    .text-input {
+        margin: 0 auto;
+    }
+    .new-email-wrapper,
+    .new-pw-wrapper {
+        margin: 0 auto;
+        .text-input {
+            margin-bottom: 1.2em;
+        }        
+    }
+    .new-pw-wrapper {
+        margin-bottom: .5em;
+    }
+   
 }
 
 .radio-wrapper {
