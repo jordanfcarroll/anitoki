@@ -125,10 +125,6 @@ var Searchpane = React.createClass({
 				button = <i className="fa fa-search" />
 			}
 
-			if (this.props.drawerStatus) {
-				popupClass += " fade-in"
-			} 
-
 			if (this.state.popup && !userStore.getUser().email) {
 				var popup = (
 					<div>
@@ -141,6 +137,7 @@ var Searchpane = React.createClass({
 						</div>
 					</div>	
 					);
+			}
 			if (this.state.popup && !userStore.getUser().email && this.props.drawerStatus === "open") {
 				var popup = <Popup handlePopupClose={this.handlePopupClose}/>;
 			}
