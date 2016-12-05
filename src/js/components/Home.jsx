@@ -18,8 +18,8 @@ var Home = React.createClass({
 			showDetails: null,
 			drawerStatus: "closed",
 			settings: userStore.getSettings(),
-			displayLandingModal: userStore.getModal(),
-			displayLoginModal: true
+			displayLandingModal: userStore.getLandingModal(),
+			displayLoginModal: userStore.getLoginModal()
 		}
 	},
 
@@ -40,6 +40,12 @@ var Home = React.createClass({
 			_this.setState({
 				userShows: userStore.getTracking(),
 				settings: userStore.getSettings()
+			})
+		})
+
+		userStore.on("modalupdate", function () {
+			_this.setState({
+				displayLoginModal: userStore.getLoginModal()
 			})
 		})
 

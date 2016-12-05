@@ -34,7 +34,7 @@ var Nav = React.createClass({
 			links = (
 				<ul>
 					<li className="logo"><Link to="/"></Link></li>
-					<li className="user-status" onClick={this.props.navigateLogin}>Login</li>
+					<li className="user-status" onClick={this.navigateLogin}>Login</li>
 				</ul>
 			)
 		}
@@ -54,7 +54,7 @@ var Nav = React.createClass({
 	},
 
 	navigateLogin: function () {
-		
+		userStore.yesLoginModal();
 	}
 });
 

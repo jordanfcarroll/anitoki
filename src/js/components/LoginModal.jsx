@@ -22,9 +22,9 @@ var LoginModal = React.createClass({
 
 
 		if (this.state.display === "login") {
-			login = <Login switch={this.handleSwitch}/>;
+			login = <Login switch={this.handleSwitch} closeModal={this.props.closeModal}/>;
 		} else {
-			register = <Register switch={this.handleSwitch}/>
+			register = <Register switch={this.handleSwitch} closeModal={this.props.closeModal}/>
 		}
 
 

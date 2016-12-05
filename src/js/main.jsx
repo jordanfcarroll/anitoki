@@ -8,6 +8,8 @@
 // - showpane artifacts on following tab
 // -- Buttons?
 
+// -- Artificial delay and success message for login/register
+
 
 // send this : 
 
@@ -36,9 +38,6 @@ var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
 var App = require("./components/App.jsx");
-var Landing = require("./components/Landing.jsx");
-var Login = require("./components/Login.jsx");
-var Register = require("./components/Register.jsx");
 var Home = require("./components/Home.jsx");
 var Settings = require("./components/Settings.jsx");
 
@@ -47,10 +46,6 @@ var jsx = (
 	<Router history={hashHistory}>
 		<Route path="/" component={App}>
 			<IndexRoute component={Home} />
-			<Route path="landing" component={Landing}>
-				<Route path="register" component={Register} />
-				<Route path="login" component={Login} />
-			</Route>
 			<Route path="/settings" component={Settings} />
 		</Route>
 	</Router>

@@ -66,7 +66,6 @@ var Register = React.createClass({
 						onChange={this.emailChange} 
 						onKeyDown={this.keySubmit} 
 						value={this.state.emailText} />
-
 					{emailError}
 				</div>
 				<div className="new-pw-wrapper">
@@ -122,7 +121,7 @@ var Register = React.createClass({
 			passwordConfirmError: ""
 		})
 		if(!this.hasErrors()) {
-			userStore.register(this.state.emailText, this.state.passwordText);
+			userStore.register(this.state.emailText, this.state.passwordText, this.props.closeModal);
 		} 
 	},
 

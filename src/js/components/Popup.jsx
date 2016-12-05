@@ -28,6 +28,12 @@ var Popup = React.createClass({
 		this.setState({
 			class: this.state.class += "fade-in-popup"
 		})
+	},
+
+	componentWillReceiveProps: function () {
+		this.setState({
+			class: this.state.class += "fade-in-popup"
+		})
 	}
 });
 

@@ -49,9 +49,8 @@ var messages = {
 	emailMessage: ""
 }
 
-var modal = true;
-
-
+var landingModal = true;
+var loginModal = false;
 
 
 
@@ -66,7 +65,7 @@ userStore.isAuth = function () {
 	return userStore.getUser();
 };
 
-userStore.register = function (email, pw) {
+userStore.register = function (email, pw, cb) {
 	var _this = this;
 	const localTracking = store.get("pseudo").tracking;
 
@@ -89,8 +88,10 @@ userStore.register = function (email, pw) {
 			store.clear();
 			store.set("session", currentUser.email);
 
-			ReactRouter.hashHistory.push("/");
 			_this.emit("update");
+
+			// Redirect to home
+			cb();
 
 
 			return currentUser;
@@ -103,7 +104,7 @@ userStore.register = function (email, pw) {
 	})
 }
 
-userStore.logIn = function (email, pw) {	
+userStore.logIn = function (email, pw, cb) {	
 	errors = {
 		emailError: "",
 		passwordError: ""
@@ -129,7 +130,7 @@ userStore.logIn = function (email, pw) {
 			userStore.emit("update");
 
 			// Redirect to home
-			ReactRouter.hashHistory.push("/");
+			cb();
 
 			// Create a user session in localStorage
 			store.set("session", currentUser.email);
@@ -375,14 +376,28 @@ userStore.updateShowtimeSettings = function (value) {
 	})
 }
 
-userStore.noModal = function () {
-	modal = false;
+userStore.noLandingModal = function () {
+	landingModal = false;
+	this.emit("modalupdate");
 }
 
-userStore.getModal = function () {
-	return modal;
+userStore.getLandingModal = function () {
+	return landingModal;
 }
 
+userStore.noLoginModal = function () {
+	loginModal = false;
+	this.emit("modalupdate");
+}
+
+userStore.yesLoginModal = function () {
+	loginModal = true;
+	this.emit("modalupdate");
+}
+
+userStore.getLoginModal = function () {
+	return loginModal;
+}
 
 
 window.userStore = userStore;

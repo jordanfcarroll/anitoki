@@ -13,7 +13,7 @@ var LandingModal = React.createClass({
 
 	render: function () {
 		return (
-			<div className={this.state.class}>
+			<div className={this.state.class} onKeyDown={this.handleKey}>
 				<div className="modal-wrapper">
 					<button 
 						className="close-modal fa fa-times"
@@ -31,7 +31,7 @@ var LandingModal = React.createClass({
 				</div>
 			</div>
 		);
-	},
+	},	
 
 	componentDidMount: function () {
 		this.setState({
