@@ -28,7 +28,7 @@ var Login = React.createClass({
 		return (
 			<div>
 				<h2>Login</h2>
-				<h4>Don't have an account? <span onClick={this.props.switch}> Sign Up </span> to track your favorite shows and receive notifications!</h4>
+				<h4>Don't have an account? <span className="sign-up-spn" onClick={this.props.switch}> Sign Up </span> to track your favorite shows and receive notifications!</h4>
 				<input
 					className="text-input email-input" 
 					placeholder="Email"
