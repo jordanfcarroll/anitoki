@@ -12,7 +12,7 @@ var WeeklyView = React.createClass({
 	},
 
 	componentWillMount: function () {
-
+		
 	},
 
 	render: function () {
@@ -90,6 +90,18 @@ var WeeklyView = React.createClass({
 			})
 			window.weekdaySwipe.next();
 		}
+	},
+
+	componentDidMount: function () {
+		window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
+			startSlide: 0,
+			speed: 400,
+			continuous: false,
+			disableScroll: false,
+			stopPropagation: false,
+			callback: function(index, elem) {},
+			transitionEnd: function(index, elem) {}
+		});
 	},
 
 	handleBack: function () {

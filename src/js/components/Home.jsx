@@ -83,7 +83,8 @@ var Home = React.createClass({
 						<Searchpane 
 							shows={this.state.shows} 
 							userShows={this.state.userShows}
-							setShow={this.setShow} />
+							setShow={this.setShow}
+							unsetShow={this.unsetShow} />
 					</div>
 				</div>
 			</div>

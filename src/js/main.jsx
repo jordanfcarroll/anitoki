@@ -5,6 +5,8 @@
 // 7. Link to external site in Anime descriptions
 // 8. Mailchimp 
 // 9. db is converting ids to strings for some reason
+// - showpane artifacts on following tab
+// -- Buttons?
 
 
 // send this : 
@@ -57,12 +59,12 @@ ReactDOM.render(jsx, document.querySelector("#app"));
 
 
 
-window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
-	startSlide: 0,
-	speed: 400,
-	continuous: true,
-	disableScroll: false,
-	stopPropagation: false,
-	callback: function(index, elem) {},
-	transitionEnd: function(index, elem) {}
-});
+// window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
+// 	startSlide: 0,
+// 	speed: 400,
+// 	continuous: false,
+// 	disableScroll: false,
+// 	stopPropagation: false,
+// 	callback: function(index, elem) {},
+// 	transitionEnd: function(index, elem) {}
+// });

@@ -190,6 +190,7 @@ var Searchpane = React.createClass({
 			trackingButtonClass: "active-toggle",
 			airingButtonClass: ""
 		});
+		this.props.unsetShow();
 	},
 
 	handlePopupClose: function () {
