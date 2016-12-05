@@ -98,7 +98,8 @@ var Home = React.createClass({
 							shows={this.state.shows} 
 							userShows={this.state.userShows}
 							setShow={this.setShow}
-							unsetShow={this.unsetShow} />
+							unsetShow={this.unsetShow}
+							drawerStatus={this.state.drawerStatus} />
 					</div>
 				</div>
 			</div>

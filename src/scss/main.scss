@@ -39,8 +39,13 @@ body {
   position: relative;
 }
 
-
 .fade-in {
+  transition: opacity 1s;
+  opacity: 1;
+}
+
+.fade-in-popup {
 	transition: opacity 1s;
+  transition-delay: 2s;
 	opacity: 1;
 }

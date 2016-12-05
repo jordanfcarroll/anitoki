@@ -65,7 +65,25 @@ var Show = React.createClass({
 		let minutes = Math.floor(seconds / 60 - days*24*60 - hours*60);
 		seconds = seconds % 60;
 
-		const timeString = String(days) + "d " + String(hours) + 'h ' + String(minutes) + "m " + String(seconds) + "s";
+		let daysString = "";
+		let hoursString = "";
+		let minutesString = "";
+		let secondsString = "";
+
+		if (days !== 0) {
+			daysString = String(days) +"d ";
+		}
+		if (hours !== 0) {
+			hoursString = String(hours) + "h ";
+		}
+		if (minutes !== 0) {
+			minutesString = String(minutes) + "m ";
+		}
+		if (seconds !== 0) {
+			secondsString = String(seconds) + "s";
+		}
+
+		const timeString = daysString + hoursString + minutesString + secondsString;
 
 		return timeString;
 	}

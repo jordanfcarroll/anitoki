@@ -5,6 +5,7 @@ var SearchResult = require("./SearchResult.jsx");
 var PaneWeeklyView = require("./PaneWeeklyView.jsx");
 var Weekday = require("./Weekday.jsx");
 var Link = require("react-router").Link;
+var Popup = require("./Popup.jsx")
 
 var Searchpane = React.createClass({
 	getInitialState: function () {
@@ -123,19 +124,8 @@ var Searchpane = React.createClass({
 				button = <i className="fa fa-search" />
 			}
 
-			if (this.state.popup && !userStore.getUser().email) {
-				var popup = (
-					<div>
-						<div className="list-bumper"></div>
-						<div className="popup">
-							<button onClick={this.handlePopupClose} className="fa fa-times popup-close" />
-							<p>Want to know when a new episode is out?
-							<br />
-								<Link to="landing/register">Make an account</Link>
-								to receive notifications!</p>
-						</div>
-					</div>	
-					);
+			if (this.state.popup && !userStore.getUser().email && this.props.drawerStatus === "open") {
+				var popup = <Popup handlePopupClose={this.handlePopupClose}/>;
 			}
 		}
 

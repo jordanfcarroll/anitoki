@@ -267,6 +267,15 @@ userStore.untrack = function (id) {
 // 	})
 // }
 
+userStore.registerNumber = function () {
+	$.ajax({
+		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/OutgoingCallerIds",
+		method: "GET"
+	})
+}
+
+
+
 userStore.getTracking = function () {
 	return currentUser.tracking;
 }
