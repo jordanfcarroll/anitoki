@@ -20,6 +20,7 @@
 .drawer-body.open {
 	// max-height: 600px;
 	overflow: hidden;
+	position: relative;
 	.list-panel {
 		height: 82vh;
 		overflow-y: scroll;
