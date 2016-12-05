@@ -83,9 +83,15 @@
 }
 
 @include respond-to(small) {
+    .popup {
+        p {
+            font-size: .85em;
+        }
+    }
     .modal {
         .modal-wrapper {
-            margin: 18% auto;
+            margin: 61px auto;
+            width: 100%;
         }
     }
 }
