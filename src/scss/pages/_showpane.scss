@@ -1,0 +1,28 @@
+.showpane {
+	display: block;
+	width: 83%;
+	height: 100%;
+	top: 9.2em;
+    padding-top: 1em;
+	padding-left: 8vw;
+	position: absolute;
+	background: $white;
+	img {
+		display: inline-block;
+		max-height: 200px;
+		max-width: 70%;
+	}
+	.show-aag{
+		display: inline-block;
+		position: absolute;
+		margin-left: 4vw;
+	}
+	h3 {
+		font-family: $font-family-psem;
+		color: $black;
+		// float: left;
+	}
+	p {
+		font-family: $font-family-para;
+	}
+}

@@ -1,0 +1,32 @@
+.settings-wrapper {
+	display: block;
+	margin: 0 auto;
+	width: 95%;
+	h3 {
+		font-family: $font-family-psem;
+		color: $black;
+		font-size: 1.75em;
+	}
+	h4 {
+		font-family: $font-family-psem;
+		color: $black;
+		font-size: 1.2em;
+	}
+	h5 {
+		font-family: $font-family-psem;
+		color: $dark-gray;
+		font-size: 1em;
+		margin-left: 1em;
+		margin-bottom: .2em;
+	}
+	.user-info-wrapper,
+	.notif-wrapper {
+		margin: 0 1em;
+	}
+	.user-info-wrapper {
+		border-bottom: 2px solid $dark-gray; 
+	}
+	.notif-wrapper {
+
+	}
+}
