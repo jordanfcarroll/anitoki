@@ -141,6 +141,7 @@ var Searchpane = React.createClass({
 						</div>
 					</div>	
 					);
+			}
 			if (this.state.popup && !userStore.getUser().email && this.props.drawerStatus === "open") {
 				var popup = <Popup handlePopupClose={this.handlePopupClose}/>;
 			}
