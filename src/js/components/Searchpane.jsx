@@ -129,8 +129,7 @@ var Searchpane = React.createClass({
 						<div className="list-bumper"></div>
 						<div className="popup">
 							<button onClick={this.handlePopupClose} className="fa fa-times popup-close" />
-							<p>Want to know when a new episode is out?
-							<br />
+							<p>Want to know when a new episode is out? 
 								<Link to="landing/register">Make an account</Link>
 								to receive notifications!</p>
 						</div>

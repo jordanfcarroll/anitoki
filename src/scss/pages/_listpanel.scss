@@ -142,12 +142,16 @@
 @include respond-to(small) {
 	.drawer-body.open {
 		.list-panel {
-			.list-show-view {
-				h4 {
-					font-size: .9em !important;
-				}
-			}
 			.list-week-wrapper {
+				width: 100%;
+				.list-weekly-day {
+					width: 83%;
+				}
+				.list-show-view {
+					h4 {
+						font-size: .9em !important;
+					}
+				}
 				#week-view {
 					.weekday-wrapper {
 						margin-top: -7em;
