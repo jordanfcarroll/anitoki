@@ -19,7 +19,7 @@ var Home = React.createClass({
 			drawerStatus: "closed",
 			settings: userStore.getSettings(),
 			displayLandingModal: userStore.getLandingModal(),
-			displayLoginModal: userStore.getLoginModal()
+			displayLoginModal: false
 		}
 	},
 
