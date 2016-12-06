@@ -51,6 +51,10 @@ var Weekday = React.createClass({
 		);
 	},
 
+	componentWillUnmount: function () {
+		showStore.off("timeupdate");
+	},
+
 	navigateToDrawer: function () {
 		this.props.navigateToDrawer();
 	}

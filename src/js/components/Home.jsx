@@ -171,6 +171,7 @@ var Home = React.createClass({
 	},
 
 	closeLandingModal: function () {
+		userStore.noLandingModal();
 		this.setState({
 			displayLandingModal: false
 		})

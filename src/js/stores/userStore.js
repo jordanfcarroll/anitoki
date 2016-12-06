@@ -130,6 +130,7 @@ userStore.logIn = function (email, pw, cb) {
 			userStore.emit("update");
 
 			// Redirect to home
+			loginModal = false;
 			cb();
 
 			// Create a user session in localStorage
