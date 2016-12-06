@@ -145,7 +145,7 @@ button:hover {
 		padding: 0.5em 1.3em;
 	}
 	.follow-toggle.unfollow {
-		padding: 0.5em .45em !important;
+		padding: 0.5em .45em;
 	}
 }
 
@@ -176,12 +176,14 @@ button:hover {
 
 .close-show {
 	position: fixed;
-	right: 3px;
-	top: 3px;
+	right: 28px;
+	top: 27px;
 	color: $blue;
 	font-size: 2em;
 	border: none;
 	background-color: $white;
+	z-index: 6;
+	padding-left: 7.5em;
 }
 
 .showpane{
@@ -222,9 +224,13 @@ button:hover {
 
 @include respond-to(small) {
 	.showpane{
-		.follow-toggle {
+		.follow-toggle{
 			font-size: 1em;
 			padding: .3em .8em;
+		}
+		.follow-toggle.unfollow {
+			font-size: .9em;
+			padding: .3em .4em;
 		}
 	}
 	.popup .popup-close {

@@ -26,7 +26,8 @@
 		.show-info-wrapper {
 			display: relative;
 			.showpane-top-bumper {
-			padding: 1em;
+				padding: 1em;
+				background-color: $white;
 			}
 			img {
 				display: inline-block;
@@ -45,6 +46,11 @@
 			// float: left;
 		}
 		p {
+			font-family: $font-family-para;
+		}
+		a {
+			color: red;
+			text-decoration: underline;
 			font-family: $font-family-para;
 		}
 	}
@@ -77,17 +83,32 @@
 			position: absolute;
 			margin-left: 4vw;
 			margin-top: 1vh;
+			h3 {
+				font-family: $font-family-psem;
+				color: $black;
+				font-size: 0.9em;
+	    		padding-right: 1em;
+	    		margin-top: 0;
+			}
 		}
-		h3 {
-			font-family: $font-family-psem;
-			color: $black;
-			font-size: 0.98em;
-    		padding-right: 1em;
+		.show-info {
+			padding-top: 1em;
+			h3 {
+				font-size: 0.9em;
+				margin: .5em 0;
+			}
 		}
 		p {
 			font-family: $font-family-para;
 			padding-right: 1em;
 			font-size: 0.98em;
+			margin: 0;
+		}
+		.showpane-time {
+			margin-bottom: .5em;
+			p {
+				color: $blue;
+			}
 		}
 }
 }

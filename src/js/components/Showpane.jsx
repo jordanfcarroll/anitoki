@@ -35,7 +35,7 @@ var Showpane = React.createClass({
 						<div className="show-aag">
 							<h3>{this.props.show.title_romaji}</h3>
 							<p>Next episode: </p>
-							<div>
+							<div className="showpane-time">
 								<p>{this.parseTime(this.props.show.airing.time)}</p>
 							</div>
 							{button}
