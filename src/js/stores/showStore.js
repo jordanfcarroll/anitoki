@@ -11,6 +11,7 @@ var lastUpdate = 0;
 
 // Collection
 var shows = [];
+var showDetails = [];
 var showObj = {};
 
 // Time to keep track of how long shows have been displayed to calculate countdown
@@ -32,6 +33,10 @@ showStore.getTime = function () {
 showStore.getShows = function () {
 	return shows;
 },
+
+showStore.getShowDetails = function () {
+	return showDetails;
+}
 
 showStore.getObj = function () {
 	return showObj;
@@ -73,6 +78,23 @@ showStore.fetchShows = function () {
 
 			_this.emit("update");
 			console.log(shows);
+		}
+	})
+	return null;
+}
+
+showStore.fetchShowDetails = function (id) {
+	var _this = this;
+	$.ajax({
+		url: "/api/getshowdetails",
+		method: "POST",
+		data: {
+			id: id
+		},
+		success: function (result) {
+			console.log(result)
+			showDetails.push(result);
+			_this.emit("detailsupdate")
 		}
 	})
 	return null;

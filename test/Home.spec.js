@@ -37,11 +37,12 @@ describe("Home", () => {
   if ("Does not render the <Searchpane /> component without data", () => {
     const wrapper = shallow(<Home />);
     expect(wrapper.containsMatchingElement(<Searchpane />)).to.equal(false);
-  })
+  });
 
   it("Renders the <Searchpane /> component when data is present", () => {
     const wrapper = shallow(<Home />);
     wrapper.setState({ shows: 1 });
     expect(wrapper.containsMatchingElement(<Searchpane />)).to.equal(true);
   });
+  
 });
