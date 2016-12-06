@@ -385,11 +385,6 @@ userStore.getLandingModal = function () {
 	return landingModal;
 }
 
-userStore.noLoginModal = function () {
-	loginModal = false;
-	this.emit("modalupdate");
-}
-
 userStore.yesLoginModal = function () {
 	loginModal = true;
 	this.emit("modalupdate");
