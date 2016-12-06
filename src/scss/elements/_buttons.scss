@@ -6,19 +6,19 @@ button:hover {
 	cursor: pointer;
 }
 
-.account-tab {
-	font-family: $font-family-h2;
-	font-size: 1.75em;
-	background-color: $white;
-	color: $blue;
-	border: none;
-	padding: 1em 1em .2em 1em;
-	border-bottom: 6px solid $blue;
-}
+// .account-tab {
+// 	font-family: $font-family-h2;
+// 	font-size: 1.75em;
+// 	background-color: $white;
+// 	color: $blue;
+// 	border: none;
+// 	padding: 1em 1em .2em 1em;
+// 	border-bottom: 6px solid $blue;
+// }
 
-.account-tab.active {
-	border-bottom: 8px solid $blue;
-}
+// .account-tab.active {
+// 	border-bottom: 8px solid $blue;
+// }
 
 .submit {
 	font-family: $font-family-button;
@@ -87,6 +87,10 @@ button:hover {
 	}
 }
 
+.list-panel-toggle:hover {
+	cursor: pointer;
+}
+
 .list-toggle-buttons {
 	display: block;
 	width: 100%;
@@ -111,8 +115,9 @@ button:hover {
 		margin-right: .2em;
 	}
 	.active-toggle {
-		border-bottom: 4px solid $blue;
+		border-bottom: 4px solid $red;
 		color: $black;
+		margin-bottom: .75em;
 	}
 }
 
@@ -222,7 +227,11 @@ button:hover {
 			padding: .3em .8em;
 		}
 	}
-	.popup-close {
-		font-size: 1.25em !important;
+	.popup .popup-close {
+		font-size: 1.25em;
+		display: block;
+		width: 40px;
+		height: 40px;
+		padding: 0;
 	}
 }

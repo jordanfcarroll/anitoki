@@ -42,6 +42,7 @@
 	overflow-y: scroll; 
 	min-height: 75vh;
 	max-height: 80vh;
+	// padding-bottom: 100px;
 	// margin: 0 auto;
 	// padding-left: .5em;
 	// margin: 0 .5em;
@@ -58,17 +59,23 @@
 		// line-height: .5em;
 		margin: 0 2em;
 		.show-title {
-			line-height: .75em;
+			line-height: 1.2em;
+			margin-bottom: .2em;
 		}
 		.show-time {
+			font-size: .85em;
+			margin-left: .4em;
+			margin-top: 0;
+			margin-bottom: .2em;
 			letter-spacing: -0.8px;	
+			color: $blue;
 		}
 	}
 	.show-info:first-of-type {
 		border-top: none; 
 	}
 	.show-info:last-of-type {
-		padding-bottom: .75em;
+		padding-bottom: 75px;
 	}
 	.no-shows {
 		margin: 0 auto;
