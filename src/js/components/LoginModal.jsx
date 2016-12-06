@@ -11,7 +11,7 @@ var LoginModal = React.createClass({
 	getInitialState: function () {
 		return {
 			class: "modal",
-			display: "login"
+			display: this.props.display
 		}
 	},
 
@@ -21,10 +21,10 @@ var LoginModal = React.createClass({
 		var register;
 
 
-		if (this.state.display === "login") {
-			login = <Login switch={this.handleSwitch} closeModal={this.props.closeModal}/>;
-		} else {
+		if (this.state.display === "register") {
 			register = <Register switch={this.handleSwitch} closeModal={this.props.closeModal}/>
+		} else {
+			login = <Login switch={this.handleSwitch} closeModal={this.props.closeModal}/>;
 		}
 
 
@@ -50,9 +50,15 @@ var LoginModal = React.createClass({
 	},
 
 	handleSwitch: function () {
-		this.setState({
-			display: "register"
-		})
+		if (this.state.display === "login") {
+			this.setState({
+				display: "register"
+			})
+		} else {
+			this.setState({
+				display: "login"
+			})
+		}
 	}
 });
 

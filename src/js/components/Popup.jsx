@@ -17,7 +17,7 @@ var Popup = React.createClass({
 						<button onClick={this.props.handlePopupClose} className="fa fa-times popup-close" />
 						<p>Want to know when a new episode is out?
 						<br />
-							<Link to="landing/register">Make an account</Link>
+							<Link onClick={this.props.navigateToRegister}>Make an account</Link>
 							to receive notifications!</p>
 					</div>
 			</div>
