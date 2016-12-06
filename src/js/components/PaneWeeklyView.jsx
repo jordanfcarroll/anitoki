@@ -1,6 +1,6 @@
 var React = require("react");
 
-var Weekday = require("./Weekday.jsx");
+var PaneWeekday = require("./PaneWeekday.jsx");
 
 var PaneWeeklyView = React.createClass({
 	render: function () {
@@ -27,7 +27,7 @@ var PaneWeeklyView = React.createClass({
 				})
 			}
 
-			weekdays.push(<Weekday className="weekly-day" day={days[i]} key={i} shows={shows}/>)
+			weekdays.push(<PaneWeekday className="weekly-day" day={days[i]} key={i} shows={shows}/>)
 		}
 
 

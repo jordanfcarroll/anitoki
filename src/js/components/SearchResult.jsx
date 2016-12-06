@@ -2,24 +2,6 @@ var React = require("react");
 var userStore = require("../stores/userStore.js");
 
 var SearchResult = React.createClass({
-	// Check to see if the current user is tracking this show
-	getInitialState: function () {
-		return {
-			isTracking: this.props.isTracking
-		}
-	},
-
-	// Create update listener for this show's tracking status
-	componentWillMount: function () {
-		var _this = this;
-		userStore.on("resultupdate", function () {
-			_this.setState({
-				isTracking: userStore.isTracking(_this.props.show.id)
-			})
-		})
-	},
-
-
 	render: function () {
 		var button;
 		if(this.props.isTracking) {
