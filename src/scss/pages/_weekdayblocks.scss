@@ -6,7 +6,28 @@
 	position: relative;
 	margin: 0 auto;
 	display: block;
-	width: 95%;
+	width: 90%;
+	box-sizing: border-box;
+	border: 10px solid transparent;
+	.nav-hint {
+		position: absolute;
+		top: -8px;
+		right: 26px;
+		z-index: 1;
+		h5 {
+			font-family: $font-family-para;
+			color: $dark-gray;
+			font-weight: normal;
+		}
+	}
+	.nav-hint.icon {
+		position: absolute;
+		right: -17px;
+		top: 16px;
+		// z-index: 1;
+		color: $dark-gray;
+		font-size: 1.5em;
+	}
 }
 
 .weekly-day {
@@ -20,12 +41,12 @@
 	// width: 95%;
 	overflow-y: scroll; 
 	min-height: 75vh;
-	height: 100%;
+	max-height: 80vh;
 	// margin: 0 auto;
 	// padding-left: .5em;
 	// margin: 0 .5em;
 	h2 {
-		font-size: 2em;
+		font-size: 1.75em;
 		color: $blue;
 		margin-left: 1em;
 		padding-top: .3em;

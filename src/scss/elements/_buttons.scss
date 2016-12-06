@@ -32,30 +32,35 @@ button:hover {
 }
 
 .arrow-button-wrapper {
+	height: 80%;
+	width: 100%;
+	box-sizing: border-box;
 	position: absolute;
-	right: 0;
-	top: 0;
-	width: 20%;
+	z-index: 1;
 	.forward-button,
 	.back-button {
-		border: none;
+		border: 3px solid $blue;
 		color: $blue;
-		font-size: 3em;
+		font-size: 2em;
 		background-color: $white;
-		padding: .2em .5em;
+		// padding: .2em .5em;
 		position: absolute;
-		right: 0;
+		top: 27%;
+		height: 70%;
 	}
 	.forward-button {
-		top: 0;
+		right: 6px;
+		border-left: none;
 	}
 	.back-button {
-		right: 72px;
+		left: 6px;
+		border-right: none;
 	}
-	.no-back,
-	.no-fwd {
-		background-color: $white !important;
-		color: $light-gray !important;
+	.back-button.no-back,
+	.forward-button.no-fwd {
+		border: 3px solid $light-gray;
+		background-color: $white;
+		color: $light-gray;
 	}
 }
 
