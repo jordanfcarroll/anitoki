@@ -23,6 +23,7 @@ var Weekday = React.createClass({
 
 	render: function () {
 		var _this = this;
+		var sorted;
 		var schedule;
 		var noShowsMessage;
 
@@ -35,7 +36,18 @@ var Weekday = React.createClass({
 					</div>
 				)
 		}	
-		schedule = this.props.shows.map(function (show) {
+		sorted = this.props.shows.sort(function (a, b) {
+					  if (a.airing.countdown > b.airing.countdown) {
+					    return 1;
+					  }
+					  if (a.airing.countdown < b.airing.countdown) {
+					    return -1;
+					  }
+					  // a must be equal to b
+					  return 0;
+					});
+
+		schedule = sorted.map(function (show) {
 			return <Show 
 						key={"weekdisplay" + show.id}
 						show={show}
