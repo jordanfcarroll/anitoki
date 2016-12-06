@@ -67,10 +67,9 @@ button:hover {
 .list-panel-toggle {
 	width: 100%;
 	margin: 0;
-	overflow: auto;
+	// overflow: auto;
 	background-color: $blue;
-	// position: absolute;
-	// bottom: 0;
+	height: 7vh;
 	.list-up {
 		font-size: 3em;
 		color: $white;

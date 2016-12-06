@@ -22,10 +22,9 @@
 	overflow: hidden;
 	position: relative;
 	.list-panel {
-		height: 82vh;
+		height: 81vh;
 		overflow-y: scroll;
 		transition: max-height .4s;
-		max-height: 82vh;
 		.list-week-wrapper {
 			margin-top: 8.5em;
 			.list-weekly-day{

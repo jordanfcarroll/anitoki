@@ -1,8 +1,11 @@
 nav {
+	height: 12vh;
 	margin: 0 1em;
 }
 nav > ul {
 	padding: 0;
+	margin: 0;
+	height: 100%;
 	li {
 		list-style: none;
 		a {
@@ -17,6 +20,9 @@ nav > ul {
 		width: 10em;
 		background-repeat: no-repeat;
 		display: inline-block;
+		transform: translateY(-50%);
+		position: relative;
+		top: 50%;
 	}
 	.logo:hover {
 		cursor: pointer;
@@ -44,6 +50,9 @@ nav > ul {
 		font-size: 1.6em;
 		line-height: 2em;
 		float: right;
+		transform: translateY(-50%);
+		position: relative;
+		top: 50%;
 		a {
 			text-decoration: none;
 			color: $black;
