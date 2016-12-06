@@ -1,5 +1,4 @@
 var React = require("react");
-var userStore = require("../stores/userStore");	
 
 var Showpane = React.createClass({
 
@@ -15,10 +14,12 @@ var Showpane = React.createClass({
 					<button className="follow-toggle">Follow</button>
 				</div>
 				<div className="show-info">
+					<h3>Studio</h3>
+					<p>{this.props.show.studio[0].studio_name}</p>
 					<h3>English Title</h3>
 					<p>{this.props.show.title_english}</p>
 					<h3>Synopsis</h3>
-					<p>Synopsis goes here at some point</p>
+					<p>{this.props.show.description}</p>
 				</div>
 			</div>
 		);

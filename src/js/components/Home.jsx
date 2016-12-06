@@ -35,6 +35,12 @@ var Home = React.createClass({
 			});
 		})
 
+		showStore.on("detailsupdate", function () {
+			_this.setState({
+				showDetails: showStore.getShowDetails()
+			})
+		})
+
 		// Pull user's tracked shows when updated
 		userStore.on("update", function() {
 			_this.setState({
@@ -78,7 +84,11 @@ var Home = React.createClass({
 
 		// If show has been clicked, display showpane for details
 		if (this.state.showDetails) {
-			showpane = <Showpane show={this.state.showDetails} unsetShow={this.unsetShow} />
+			var _this = this;
+
+			let details = this.state.showDetails.find((value) => (value.id === _this.state.displayingDetails));
+
+			showpane = <Showpane show={details} unsetShow={this.unsetShow} />
 		}
 
 
@@ -135,13 +145,16 @@ var Home = React.createClass({
 	setShow: function (id) {
 		// On show click, set details to be displayed in showpane
 		this.setState({
-			showDetails: showStore.getObj()[String(id)]
+			showDetails: showStore.fetchShowDetails(id),
+			displayingDetails: id
 		})
+
 	},
 
 	unsetShow: function () {
 		this.setState({
-			showDetails: null
+			showDetails: null,
+			displayingDetails: null
 		})
 	},
 

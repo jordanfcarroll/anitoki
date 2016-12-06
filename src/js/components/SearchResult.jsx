@@ -17,10 +17,6 @@ var SearchResult = React.createClass({
 			);
 	},
 
-	componentWillUnmount: function () {
-		userStore.off("resultupdate");
-	},
-
 	trackThisShow: function () {
 		this.props.onChoose(this.props.show.id);
 	},
