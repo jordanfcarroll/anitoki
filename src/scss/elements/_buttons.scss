@@ -31,38 +31,38 @@ button:hover {
 	display: block;
 }
 
-.arrow-button-wrapper {
-	height: 80%;
-	width: 100%;
-	box-sizing: border-box;
-	position: absolute;
-	z-index: 1;
-	.forward-button,
-	.back-button {
-		border: 3px solid $blue;
-		color: $blue;
-		font-size: 2em;
-		background-color: $white;
-		// padding: .2em .5em;
-		position: absolute;
-		top: 27%;
-		height: 70%;
-	}
-	.forward-button {
-		right: 6px;
-		border-left: none;
-	}
-	.back-button {
-		left: 6px;
-		border-right: none;
-	}
-	.back-button.no-back,
-	.forward-button.no-fwd {
-		border: 3px solid $light-gray;
-		background-color: $white;
-		color: $light-gray;
-	}
-}
+// .arrow-button-wrapper {
+// 	height: 80%;
+// 	width: 100%;
+// 	box-sizing: border-box;
+// 	position: absolute;
+// 	z-index: 1;
+// 	.forward-button,
+// 	.back-button {
+// 		border: 3px solid $blue;
+// 		color: $blue;
+// 		font-size: 2em;
+// 		background-color: $white;
+// 		// padding: .2em .5em;
+// 		position: absolute;
+// 		top: 27%;
+// 		height: 70%;
+// 	}
+// 	.forward-button {
+// 		right: 6px;
+// 		border-left: none;
+// 	}
+// 	.back-button {
+// 		left: 6px;
+// 		border-right: none;
+// 	}
+// 	.back-button.no-back,
+// 	.forward-button.no-fwd {
+// 		border: 3px solid $light-gray;
+// 		background-color: $white;
+// 		color: $light-gray;
+// 	}
+// }
 
 .list-panel-toggle {
 	width: 100%;
@@ -186,7 +186,8 @@ button:hover {
 	}
 }
 
-.modal-search {
+.modal-search,
+.find-shows {
 	background-color: $red;
 	margin: 0 auto;
 	display: block;
@@ -195,6 +196,10 @@ button:hover {
 	padding: 1em;
 	font-size: 1.3em;
 	border: none;
+}
+
+.find-shows {
+	padding: .5em;
 }
 
 .close-modal {
