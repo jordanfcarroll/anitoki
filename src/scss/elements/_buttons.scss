@@ -175,7 +175,7 @@ button:hover {
 }
 
 .close-show {
-	position: absolute;
+	position: fixed;
 	right: 3px;
 	top: 3px;
 	color: $blue;
