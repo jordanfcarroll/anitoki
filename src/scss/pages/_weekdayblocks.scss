@@ -67,6 +67,9 @@
 	.show-info:first-of-type {
 		border-top: none; 
 	}
+	.show-info:last-of-type {
+		padding-bottom: .75em;
+	}
 	.no-shows {
 		margin: 0 auto;
 		box-sizing: border-box;
