@@ -137,15 +137,13 @@ var Register = React.createClass({
 	hasErrors: function () {
 
 		let hasErrors = false;
+		var str = this.state.emailText;
+		var patt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		var patt =  patt.test(str);
+		console.log(patt);
 
 		// Check email field for errors
-		if(this.state.emailText.indexOf("@") === -1) {
-			this.setState({
-				emailError: "Please enter a valid email"
-			})
-			hasErrors = true;
-		}
-		if (this.state.emailText.indexOf(".") === -1) {
+		if (!patt) {
 			this.setState({
 				emailError: "Please enter a valid email"
 			})
