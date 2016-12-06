@@ -5,6 +5,7 @@ var Showpane = React.createClass({
 
 	render: function () {
 		var externalLinks;
+		var button;
 
 		if (this.props.show.external_links) {
 			externalLinks = this.props.show.external_links.map(function (value) {
@@ -16,6 +17,12 @@ var Showpane = React.createClass({
 			})
 		}
 
+		if(this.props.isTracking) {
+			button = <button className="follow-toggle unfollow" onClick={this.untrackThisShow}>Unfollow</button>
+		} else {
+			button = <button className="follow-toggle" onClick={this.trackThisShow}>Follow</button>
+		}
+
 
 
 		return (
@@ -25,7 +32,7 @@ var Showpane = React.createClass({
 				<div className="show-aag">
 					<h3>{this.props.show.title_romaji}</h3>
 					<p>Next episode: ... </p>
-					<button className="follow-toggle">Follow</button>
+					{button}
 				</div>
 				<div className="show-info">
 					<h3>English Title</h3>
@@ -46,6 +53,14 @@ var Showpane = React.createClass({
 			string = string.replace("<br>","");
 		}
 		return string;
+	},
+
+	trackThisShow: function () {
+		this.props.trackShow(this.props.show.id)
+	},
+
+	untrackThisShow: function () {
+		this.props.untrackShow(this.props.show.id)
 	}
 });
 
