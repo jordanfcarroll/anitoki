@@ -69,3 +69,12 @@ nav > ul {
 		cursor: pointer;
 	}
 }
+
+@include respond-to(small) {
+	nav > ul {
+		.logo {
+			width: 6em;
+			height: 2em;
+		}
+	}
+}
