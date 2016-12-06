@@ -4,6 +4,20 @@ var Showpane = React.createClass({
 
 
 	render: function () {
+		var externalLinks;
+
+		if (this.props.show.external_links) {
+			externalLinks = this.props.show.external_links.map(function (value) {
+				return (
+					<div>
+						<a target="_blank" href={value.url}>{value.site}</a>
+					</div>
+					);
+			})
+		}
+
+
+
 		return (
 			<div className="showpane">
 				<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
@@ -19,10 +33,19 @@ var Showpane = React.createClass({
 					<h3>Studio</h3>
 					<p>{this.props.show.studio[0].studio_name}</p>
 					<h3>Synopsis</h3>
-					<p>{this.props.show.description}</p>
+					<p>{this.parseDescription(this.props.show.description)}</p>
+					<h3>External Links</h3>
+					{externalLinks}
 				</div>
 			</div>
 		);
+	},
+
+	parseDescription: function (string) {
+		while (string.includes("<br>")) {
+			string = string.replace("<br>","");
+		}
+		return string;
 	}
 });
 
