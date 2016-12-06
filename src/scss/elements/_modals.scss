@@ -41,7 +41,7 @@
     width: 100%; 
     height: 100%; 
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
     .modal-wrapper {
         background-color: $white;
         margin: 28% auto;
@@ -61,6 +61,10 @@
             .sign-in-spn {
                 color: $red;
                 border-bottom: 2px solid $red;
+            }
+            .sign-up-spn:hover,
+            .sign-in-spn:hover {
+                cursor: pointer;
             }
         }
         .about-img {
@@ -93,6 +97,9 @@
                 color: $blue;
                 border-bottom: 2px solid $blue; 
             }
+            span:hover {
+                cursor: pointer;
+            }
         }
     }
 }
@@ -112,6 +119,16 @@
         }
         .modal-wrapper.log {
             padding-top: 1em;
+        }
+    }
+}
+
+@include respond-to(large) {
+    .modal {
+        .modal-wrapper {
+            width: 39%;
+            margin: 0 auto;
+            top: 100px;
         }
     }
 }
