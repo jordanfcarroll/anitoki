@@ -256,24 +256,37 @@ userStore.untrack = function (id) {
 }
 
 
-// userStore.sendText = function () {
+userStore.sendWelcomeText = function (phone) {
+	$.ajax({
+		url: "/api/welcometext",
+		method: "POST",
+		data: {
+			phone: phone
+		},
+		success: function (result) {
+			console.log(result);
+		}
+
+	})
+
+
+	// $.ajax({
+	// 	url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/Messages",
+	// 	method: "POST",
+	// 	data: {
+	// 		To: "+1" + currentUser.phone,
+	// 		From: "+18033355829",
+	// 		Body: "You're registered for Anitoki text notifications!"
+	// 	}
+	// })
+}
+
+// userStore.registerNumber = function () {
 // 	$.ajax({
-// 		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/Messages",
-// 		method: "POST",
-// 		data: {
-// 			To: "+18036400682",
-// 			From: "+18033355829",
-// 			Body: "This is a test message from your computer."
-// 		}
+// 		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/OutgoingCallerIds",
+// 		method: "GET"
 // 	})
 // }
-
-userStore.registerNumber = function () {
-	$.ajax({
-		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/OutgoingCallerIds",
-		method: "GET"
-	})
-}
 
 
 
@@ -326,11 +339,7 @@ userStore.getSettings = function () {
 
 userStore.updateNotificationSettings = function (obj) {
 	var _this = this;
-	console.log({
-		notifications : obj.notifications,
-		phone: obj.phone,
-		user: currentUser
-	})
+
 	$.ajax({
 		url: "/api/notifications",
 		method: "PUT",
@@ -346,6 +355,10 @@ userStore.updateNotificationSettings = function (obj) {
 				notifMessage: "Updated!",
 				showtimeMessage: "",
 				emailMessage: ""
+			}
+
+			if (result.settings.phone.length > 0) {
+				userStore.sendWelcomeText(result.settings.phone);
 			}
 
 			_this.emit("settingsupdate");
