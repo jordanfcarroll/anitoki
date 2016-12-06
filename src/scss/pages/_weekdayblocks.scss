@@ -10,23 +10,35 @@
 	box-sizing: border-box;
 	border: 10px solid transparent;
 	.nav-hint {
-		position: absolute;
-		top: -8px;
-		right: 26px;
-		z-index: 1;
+		width: 100%;
+		height: 1px;
+		margin: 0 auto;
 		h5 {
 			font-family: $font-family-para;
 			color: $dark-gray;
 			font-weight: normal;
+			margin: 0;
+			margin-top: 0.85em;
+			text-align: center;
 		}
 	}
-	.nav-hint.icon {
+	.nav-hint.icon-r {
 		position: absolute;
-		right: -17px;
-		top: 16px;
+		right: -248px;
+		top: 7px;
 		// z-index: 1;
 		color: $dark-gray;
 		font-size: 1.5em;
+	}
+	.nav-hint.icon-l {
+		position: absolute;
+		// right: -248px;
+		top: 7px;
+		right: -11px;
+		// z-index: 1;
+		color: $dark-gray;
+		font-size: 1.5em;
+		visibility: hidden;
 	}
 }
 
