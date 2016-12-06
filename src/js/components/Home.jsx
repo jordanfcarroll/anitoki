@@ -84,11 +84,20 @@ var Home = React.createClass({
 
 		// If show has been clicked, display showpane for details
 		if (this.state.showDetails) {
+			let isTracking = false;
 			var _this = this;
-
 			let details = this.state.showDetails.find((value) => (value.id === _this.state.displayingDetails));
 
-			showpane = <Showpane show={details} unsetShow={this.unsetShow} />
+			if (this.state.userShows.indexOf(details.id) >= 0) {
+				isTracking = true;
+			}
+
+			showpane = <Showpane 
+						show={details} 
+						unsetShow={this.unsetShow} 
+						isTracking={isTracking}
+						trackShow={this.track}
+						untrackShow={this.untrack}/>
 		}
 
 
@@ -170,6 +179,7 @@ var Home = React.createClass({
 	},
 
 	closeLandingModal: function () {
+		userStore.noLandingModal();
 		this.setState({
 			displayLandingModal: false
 		})
@@ -193,6 +203,14 @@ var Home = React.createClass({
 			drawerStatus: "closed",
 			displayLoginModal: "register"
 		})
+	},
+
+	track: function (id) {
+		userStore.track(id);
+	},
+
+	untrack: function (id) {
+		userStore.untrack(id);
 	}
 });
 

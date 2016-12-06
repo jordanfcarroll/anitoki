@@ -155,12 +155,10 @@ var Settings = React.createClass({
 			})
 		} else if (!this.hasPhoneErrors()) {
 
-
-
 			userStore.updateNotificationSettings({
 				notifications: this.state.selectedNotifications,
 				phone: this.parsePhone(this.state.phone)
-			});
+			}, this.clearPhoneField);
 
 		}
 	},
@@ -211,6 +209,12 @@ var Settings = React.createClass({
 
 
 		return hasErrors;
+	},
+
+	clearPhoneField: function () {
+		this.setState({
+			phone: ""
+		})
 	}
 });
 

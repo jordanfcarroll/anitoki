@@ -130,6 +130,7 @@ userStore.logIn = function (email, pw, cb) {
 			userStore.emit("update");
 
 			// Redirect to home
+			loginModal = false;
 			cb();
 
 			// Create a user session in localStorage
@@ -337,7 +338,7 @@ userStore.getSettings = function () {
 	return currentUser.settings;
 }
 
-userStore.updateNotificationSettings = function (obj) {
+userStore.updateNotificationSettings = function (obj, cb) {
 	var _this = this;
 
 	$.ajax({
@@ -361,6 +362,7 @@ userStore.updateNotificationSettings = function (obj) {
 				userStore.sendWelcomeText(result.settings.phone);
 			}
 
+			cb();
 			_this.emit("settingsupdate");
 		}
 	})
