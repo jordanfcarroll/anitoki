@@ -45,7 +45,8 @@ var WeeklyView = React.createClass({
 							day={days[i]} 
 							key={i} 
 							shows={shows}
-							showtime={this.props.showtime}/>);
+							showtime={this.props.showtime}
+							navigateToDrawer={this.props.navigateToDrawer}/>);
 		}
 
 		// Create mobile view buttons 

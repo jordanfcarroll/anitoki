@@ -1,6 +1,7 @@
 var React = require("react");
 var Show = require("./Show.jsx")
 var showStore = require("../stores/showStore");
+var userStore = require("../stores/userStore");
 
 var Weekday = React.createClass({
 	
@@ -17,6 +18,7 @@ var Weekday = React.createClass({
 				timeSinceUpdate: showStore.getTime()
 			})
 		})
+
 	},
 
 	render: function () {
@@ -29,7 +31,7 @@ var Weekday = React.createClass({
 			noShowsMessage = (
 					<div className="no-shows">
 						<h3>No Shows Found</h3>
-						<button className="find-shows">Find some now!</button>
+						<button className="find-shows" onClick={this.navigateToDrawer}>Find some now!</button>
 					</div>
 				)
 		}	
@@ -47,6 +49,10 @@ var Weekday = React.createClass({
 				{schedule}
 			</div>
 		);
+	},
+
+	navigateToDrawer: function () {
+		this.props.navigateToDrawer();
 	}
 });
 

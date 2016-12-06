@@ -106,7 +106,8 @@ var Home = React.createClass({
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}
-					showtime={this.state.settings.showtime}/>
+					showtime={this.state.settings.showtime}
+					navigateToDrawer={this.navigateToDrawer}/>
 				<div id="drawer">
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>
@@ -171,7 +172,6 @@ var Home = React.createClass({
 			displayLandingModal: false,
 			drawerStatus: "open"
 		})
-
 	},
 
 	navigateToRegister: function () {
