@@ -9,7 +9,7 @@ var Settings = React.createClass({
 		return {
 			selectedNotifications: userStore.getSettings().notifications,
 			selectedShowtimes: userStore.getSettings().showtime,
-			phone: "",
+			phone: userStore.getSettings().phone,
 			phoneError: "",
 			emailMessage: "",
 			showtimeMessage: "",
@@ -155,14 +155,13 @@ var Settings = React.createClass({
 			})
 		} else if (!this.hasPhoneErrors()) {
 
-			this.setState({
-				phone: ""
-			})
 
 
 			userStore.updateNotificationSettings({
 				notifications: this.state.selectedNotifications,
-				phone: this.parsePhone(this.state.phone)});
+				phone: this.parsePhone(this.state.phone)
+			});
+
 		}
 	},
 
@@ -200,8 +199,9 @@ var Settings = React.createClass({
 
 		let phoneHasBadChar = phone.split("")
 								.every(function (value) {
-									return (!"0123456789".indexOf(value) >= 0 ) 
+									return !("0123456789".indexOf(value) >= 0 ) 
 								});
+
 		if (phoneHasBadChar) {
 			this.setState({
 				phoneError: "Please enter a valid phone number"
