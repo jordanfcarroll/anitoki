@@ -65,15 +65,19 @@ var WeeklyView = React.createClass({
 
 		return (
 			<div id="week-view">
+				{/*<div className="arrow-button-wrapper">
+									{buttonLeft}
+									{buttonRight}
+								</div>*/}
 				<div className="weekday-wrapper">
+					<div className="nav-hint">
+						<h5>swipe</h5>
+						<i className="fa fa-angle-right nav-hint icon" />
+					</div>
 					<div id='slider' className='swipe'>
 						<div className='swipe-wrap'>
 							{weekdays}
 						</div>
-					</div>
-					<div className="arrow-button-wrapper">
-						{buttonLeft}
-						{buttonRight}
 					</div>
 				</div>
 			</div>
