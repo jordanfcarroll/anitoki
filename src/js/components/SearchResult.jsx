@@ -5,7 +5,7 @@ var SearchResult = React.createClass({
 	// Check to see if the current user is tracking this show
 	getInitialState: function () {
 		return {
-			isTracking: userStore.isTracking(this.props.show.id)
+			isTracking: this.props.isTracking
 		}
 	},
 
@@ -22,7 +22,7 @@ var SearchResult = React.createClass({
 
 	render: function () {
 		var button;
-		if(this.state.isTracking) {
+		if(this.props.isTracking) {
 			button = <button className="follow-toggle unfollow" onClick={this.untrackThisShow}>Unfollow</button>
 		} else {
 			button = <button className="follow-toggle" onClick={this.trackThisShow}>Follow</button>

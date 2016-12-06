@@ -70,7 +70,8 @@ var Home = React.createClass({
 
 		if (this.state.displayLoginModal) {
 			loginModal = <LoginModal 
-							closeModal={this.closeLoginModal}/>
+							closeModal={this.closeLoginModal}
+							display={this.state.displayLoginModal}/>
 		}
 
 
@@ -117,7 +118,8 @@ var Home = React.createClass({
 							userShows={this.state.userShows}
 							setShow={this.setShow}
 							unsetShow={this.unsetShow}
-							drawerStatus={this.state.drawerStatus} />
+							drawerStatus={this.state.drawerStatus} 
+							navigateToRegister={this.navigateToRegister}/>
 					</div>
 				</div>
 			</div>
@@ -175,7 +177,10 @@ var Home = React.createClass({
 	},
 
 	navigateToRegister: function () {
-		// Navigate to register
+		this.setState({
+			drawerStatus: "closed",
+			displayLoginModal: "register"
+		})
 	}
 });
 

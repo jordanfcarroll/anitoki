@@ -39,9 +39,11 @@ var Nav = React.createClass({
 			)
 		}
 		return (
-			<nav>
-				{links}
-			</nav>
+			<header>
+				<nav>
+					{links}
+				</nav>
+			</header>
 		);
 	},
 

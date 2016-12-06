@@ -84,13 +84,17 @@ var Searchpane = React.createClass({
 
 				// Convert filtered shows into SearchResult components
 				let results = shows.map(function (show) {
+					let isTracking = false;
+					if (_this.props.userShows.indexOf(show.id) >= 0) {
+						isTracking = true;
+					}
 					return (
 							<SearchResult 
 								key={show.id} 
 								show={show} 
 								onChoose={_this.addTracking} 
 								onDeChoose={_this.removeTracking} 
-								isTracking={userStore.isTracking(show.id)}
+								isTracking={isTracking}
 								setShow={_this.props.setShow}/>
 					)
 				})
@@ -126,7 +130,7 @@ var Searchpane = React.createClass({
 			}
 
 			if (this.state.popup && !userStore.getUser().email && this.props.drawerStatus === "open") {
-				popup = <Popup handlePopupClose={this.handlePopupClose}/>;
+				popup = <Popup handlePopupClose={this.handlePopupClose} navigateToRegister={this.props.navigateToRegister}/>;
 			}
 		}
 

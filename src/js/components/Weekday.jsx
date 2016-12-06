@@ -37,7 +37,7 @@ var Weekday = React.createClass({
 		}	
 		schedule = this.props.shows.map(function (show) {
 			return <Show 
-						key={show.id}
+						key={"weekdisplay" + show.id}
 						show={show}
 						showtime={_this.props.showtime} 
 						timeSinceUpdate={_this.state.timeSinceUpdate}/>;
