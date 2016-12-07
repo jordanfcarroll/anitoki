@@ -106,10 +106,15 @@
 
 @include respond-to(large) {
 	.weekday-wrapper {
-		width: 14%;
-		// width: 
+		.nav-hint {
+			h5 {
+				visibility: hidden;
+			}
+		}
 		.weekly-day {
 			float: left;
+			width: 14%;
+			max-height: 85vh;
 			h2 {
 				font-size: 1.25em;
 			}
