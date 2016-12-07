@@ -55,12 +55,5 @@ ReactDOM.render(jsx, document.querySelector("#app"));
 
 
 
-// window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
-// 	startSlide: 0,
-// 	speed: 400,
-// 	continuous: false,
-// 	disableScroll: false,
-// 	stopPropagation: false,
-// 	callback: function(index, elem) {},
-// 	transitionEnd: function(index, elem) {}
-// });
+
+

@@ -27,19 +27,22 @@ body {
   bottom: 0;
 }
 
-.swipe {
-  overflow: hidden;
-  visibility: hidden;
-  position: relative;
-}
-.swipe-wrap {
-  overflow: hidden;
-  position: relative;
-}
-.swipe-wrap > div {
-  float:left;
-  width:100%;
-  position: relative;
+@media (max-width: 1024px) {
+  .swipe {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+  }
+  .swipe-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+  .swipe-wrap > div {
+    float:left;
+    width:100%;
+    position: relative;
+  }
+  
 }
 
 
@@ -55,5 +58,9 @@ body {
   #app {
     max-width: 1400px;
     margin: 0 auto;
+  }
+
+  .weekly-day {
+    left: 0;
   }
 }
