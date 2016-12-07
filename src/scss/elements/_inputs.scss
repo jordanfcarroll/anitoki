@@ -134,3 +134,10 @@ label:hover {
         cursor: pointer;
     }
 }
+
+@include respond-to(large) {
+    .search-wrapper {
+        width: 50%;
+        margin-left: 12em;
+    }
+}

@@ -93,7 +93,7 @@ button:hover {
 
 .list-toggle-buttons {
 	display: block;
-	width: 100%;
+	// width: 100%;
 	overflow: auto;
 	position: fixed;
 	z-index: 1;
@@ -223,6 +223,9 @@ button:hover {
 }
 
 @include respond-to(small) {
+	.list-toggle-buttons {
+		width: 100%;
+	}
 	.follow-toggle,
 	.follow-toggle.unfollow {
 	    margin-left: 1em;
@@ -251,7 +254,35 @@ button:hover {
 		height: 40px;
 		padding: 0;
 	}
+}
+@include respond-to(large) {
+	.list-toggle-buttons {
+		width: 87.5%;
+		.airing-toggle,
+		.tracking-toggle {
+			display: inline-block;
+			font-size: 1.2em;
+		}
+		.tracking-toggle {
+			margin-right: 12em;
+		}
+	}
 	.list-panel-toggle {
 		width: 50%;
 	}
-}
+	.follow-toggle {
+		font-size: 1.25em;
+		padding: 0.5em 2.3em;
+		margin-left: 2em;
+		transition: 0.4s;
+	}
+	.follow-toggle.unfollow {
+		margin-left: 11em;
+		font-size: 1.25em;
+		padding: 0.5em 1.45em;
+		transition: 0.4s;
+	}
+	.follow-toggle:hover {
+		opacity: 0.5;
+	}
+}	
