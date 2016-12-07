@@ -14,7 +14,6 @@ var Showpane = React.createClass({
 
 	componentWillAppear: function (callback) {
     	const el = findDOMNode(this);
-    	console.log(el);
     	TweenMax.fromTo(el, .4, {x: -600, opacity: 0}, {x: 0, opacity: 1, onComplete: callback});
   	},
 
