@@ -5,7 +5,6 @@ var ReactTransitionGroup = require('react-addons-transition-group');
 
 var findDOMNode = require("react-dom").findDOMNode;
 
-
 var Showpane = React.createClass({
 	getInitialState: function () {
 		return {
@@ -16,7 +15,7 @@ var Showpane = React.createClass({
 	componentWillAppear: function (callback) {
     	const el = findDOMNode(this);
     	console.log(el);
-    	TweenMax.fromTo(el, .4, {width: 0, opacity: 0}, {width: "75%", opacity: 1, onComplete: callback});
+    	TweenMax.fromTo(el, .4, {x: -600, opacity: 0}, {x: 0, opacity: 1, onComplete: callback});
   	},
 
 
