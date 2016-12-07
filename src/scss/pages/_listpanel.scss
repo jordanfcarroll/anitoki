@@ -12,7 +12,7 @@
 	position: absolute;
 	bottom: 0;
 	.list-panel {
-		max-height: 0px;
+		height: 0px;
 		visibility: hidden;
 	}	
 } 
@@ -24,7 +24,7 @@
 	.list-panel {
 		height: 81vh;
 		overflow-y: scroll;
-		transition: max-height .4s;
+		transition: height .4s;
 		.list-week-wrapper {
 			margin-top: 8.5em;
 			.list-weekly-day{
