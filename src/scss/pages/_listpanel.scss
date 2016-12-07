@@ -52,9 +52,12 @@
 						display: inline-block;
 						width: 50%;
 						vertical-align: middle;
+						cursor: pointer;
+						color: $red;
+						text-decoration: underline;
 					}
 					h4:hover {
-						cursor: pointer;
+						text-decoration: none;
 					}
 				}
 			}

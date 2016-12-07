@@ -103,3 +103,15 @@
 		}
 	}
 }
+
+@include respond-to(large) {
+	.weekday-wrapper {
+		width: 14%;
+		// width: 
+		.weekly-day {
+			h2 {
+				font-size: 1.25em;
+			}
+		}
+	}
+}
