@@ -106,6 +106,8 @@
 
 @include respond-to(large) {
 	.weekday-wrapper {
+		width: 100%;
+		margin: 0 .2em;
 		.nav-hint {
 			h5 {
 				visibility: hidden;
@@ -115,6 +117,7 @@
 			float: left;
 			width: 14%;
 			max-height: 85vh;
+			margin: 0 .12em;
 			h2 {
 				font-size: 1.25em;
 			}
