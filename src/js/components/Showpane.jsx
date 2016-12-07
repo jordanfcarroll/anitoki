@@ -21,8 +21,9 @@ var Showpane = React.createClass({
 	render: function () {	
 		var externalLinks;
 		var button;
+		var studio;
 
-		if (this.props.show.external_links) {
+		if (this.props.show.external_links[0]) {
 			externalLinks = this.props.show.external_links.map(function (value) {
 				return (
 					<div>
@@ -30,6 +31,14 @@ var Showpane = React.createClass({
 					</div>
 					);
 			})
+		} else {
+			externalLinks = "¯\_(ツ)_/¯"
+		}
+
+		if (this.props.show.studio[0]) {
+			studio = this.props.show.studio[0].studio_name;
+		} else {
+			studio = "¯\_(ツ)_/¯"
 		}
 
 		if(this.props.isTracking) {
@@ -59,7 +68,7 @@ var Showpane = React.createClass({
 						<h3>English Title</h3>
 						<p>{this.props.show.title_english}</p>
 						<h3>Studio</h3>
-						<p>{this.props.show.studio[0].studio_name}</p>
+						<p>{studio}</p>
 						<h3>Synopsis</h3>
 						<p>{this.parseDescription(this.props.show.description)}</p>
 						<h3>External Links</h3>

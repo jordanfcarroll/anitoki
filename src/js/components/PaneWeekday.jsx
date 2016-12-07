@@ -8,7 +8,13 @@ var PaneWeekday = React.createClass({
 	render: function () {
 		var _this = this;
 		var schedule;
-		
+		var collapsed = "";
+
+		if (this.props.shows.length === 0) {
+			collapsed = " collapsed"
+		}
+
+
 		schedule = this.props.shows.map(function (show) {
 			return <Show 
 						key={"weekdisplay" + show.id}
@@ -16,7 +22,7 @@ var PaneWeekday = React.createClass({
 						showtime={_this.props.showtime} />;
 		})
 		return (
-			<div className={this.props.className}>
+			<div className={this.props.className + collapsed}>
 				<h2>{this.props.day}</h2>
 				{schedule}
 			</div>
