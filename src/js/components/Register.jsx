@@ -121,7 +121,7 @@ var Register = React.createClass({
 			passwordConfirmError: ""
 		})
 		if(!this.hasErrors()) {
-			userStore.register(this.state.emailText, this.state.passwordText, this.props.closeModal);
+			userStore.register(this.state.emailText, this.state.passwordText, this.props.closeModal, this.props.permitSlideLeave);
 		} 
 	},
 

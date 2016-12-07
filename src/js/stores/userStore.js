@@ -65,7 +65,7 @@ userStore.isAuth = function () {
 	return userStore.getUser();
 };
 
-userStore.register = function (email, pw, cb) {
+userStore.register = function (email, pw, cb, permitSlideLeave) {
 	var _this = this;
 	const localTracking = store.get("pseudo").tracking;
 
@@ -91,6 +91,7 @@ userStore.register = function (email, pw, cb) {
 			_this.emit("update");
 
 			// Redirect to home
+			permitSlideLeave();
 			cb();
 
 
@@ -136,7 +137,7 @@ userStore.updateEmail = function (email, pw, cb) {
 	})
 }
 
-userStore.logIn = function (email, pw, cb) {	
+userStore.logIn = function (email, pw, cb, permitSlideLeave) {	
 	errors = {
 		emailError: "",
 		passwordError: ""
@@ -163,6 +164,7 @@ userStore.logIn = function (email, pw, cb) {
 
 			// Redirect to home
 			loginModal = false;
+			permitSlideLeave();
 			cb();
 
 			// Create a user session in localStorage

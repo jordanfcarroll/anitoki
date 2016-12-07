@@ -13,7 +13,8 @@ var Register = require("./Register.jsx");
 var LoginModal = React.createClass({
 	getInitialState: function () {
 		return {
-			display: this.props.display
+			display: this.props.display,
+			slideLeave: false
 		}
 	},
 
@@ -29,9 +30,15 @@ var LoginModal = React.createClass({
 
 
 		if (this.state.display === "register") {
-			register = <Register switch={this.handleSwitch} closeModal={this.props.closeModal}/>
+			register = <Register 
+							switch={this.handleSwitch} 
+							closeModal={this.props.closeModal}
+							permitSlideLeave={this.permitSlideLeave}/>
 		} else {
-			login = <Login switch={this.handleSwitch} closeModal={this.props.closeModal}/>;
+			login = <Login 
+							switch={this.handleSwitch} 
+							closeModal={this.props.closeModal}
+							permitSlideLeave={this.permitSlideLeave}/>;
 		}
 
 
@@ -47,8 +54,13 @@ var LoginModal = React.createClass({
 	},
 
 	componentWillLeave: function (callback) {
-		const el = findDOMNode(this);
-    	TweenMax.fromTo(el, .3, {x: 0}, {x: 1500, onComplete: callback});
+		console.log(this.state.slideLeave);
+		if (this.state.slideLeave) {
+			const el = findDOMNode(this);
+	    	TweenMax.fromTo(el, .3, {x: 0}, {x: 1500, onComplete: callback});
+		} else {
+			callback();
+		}
 	},
 
 	handleClose: function () {
@@ -65,6 +77,12 @@ var LoginModal = React.createClass({
 				display: "login"
 			})
 		}
+	},
+
+	permitSlideLeave: function () {
+		this.setState({
+			slideLeave: true
+		})
 	}
 });
 
