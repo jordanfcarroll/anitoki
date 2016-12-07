@@ -396,7 +396,7 @@ userStore.updateNotificationSettings = function (obj, cb) {
 				userStore.sendWelcomeText(result.settings.phone);
 			}
 
-			cb();
+			// cb();
 			_this.emit("settingsupdate");
 		}
 	})
