@@ -45,10 +45,11 @@ var WeeklyView = React.createClass({
 			weekdays.push(<Weekday 
 							className={className} 
 							day={days[i]} 
-							key={i} 
+							key={i}
 							shows={shows}
 							showtime={this.props.showtime}
-							navigateToDrawer={this.props.navigateToDrawer}/>);
+							navigateToDrawer={this.props.navigateToDrawer}
+							setShow={this.props.setShow} />);
 		}
 
 		// Create mobile view buttons 

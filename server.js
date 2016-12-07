@@ -163,7 +163,7 @@ app.post("/api/getshows", function (req, res) {
 
 app.post("/api/getshowdetails", function (req, res) {
 	let id = req.body.id;
-	console.log(id)
+
 	request("https://anilist.co/api/anime/" + id + "/page?access_token=" + token,
 		function (error, response, body) {
 			let details = JSON.parse(body);
