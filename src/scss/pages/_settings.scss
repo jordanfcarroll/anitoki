@@ -34,3 +34,9 @@ body {
 
 	}
 }
+
+@include respond-to(large) {
+	.settings-wrapper {
+		width: 75%;
+	}
+}

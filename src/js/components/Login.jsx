@@ -32,12 +32,12 @@ var Login = React.createClass({
 		var passwordError;
 
 		if (this.state.emailError.length > 0) {
-			emailError = <span>{this.state.emailError}</span>;
+			emailError = <span className="error-msg">{this.state.emailError}</span>;
 			emailBorderClass = " red-border"
 		}
 
 		if (this.state.passwordError.length > 0) {
-			passwordError = <span>{this.state.passwordError}</span>;
+			passwordError = <span className="error-msg">{this.state.passwordError}</span>;
 			passwordBorderClass = " red-border"
 		}
 
@@ -46,22 +46,26 @@ var Login = React.createClass({
 			<div>
 				<h2>Login</h2>
 				<h4>Don't have an account? <span className="sign-up-spn" onClick={this.props.switch}> Sign Up </span> to track your favorite shows and receive notifications!</h4>
-				<input
-					className={"text-input email-input" + emailBorderClass} 
-					placeholder="Email"
-					onKeyDown={this.keySubmit} 
-					type="text" 
-					value={this.state.emailText} 
-					onChange={this.emailChange}/>
-				{emailError}
-				<input 
-					className={"text-input password-input" + passwordBorderClass} 
-					placeholder="Password"
-					onKeyDown={this.keySubmit} 
-					type="password" 
-					value={this.state.passwordText} 
-					onChange={this.passwordChange}/>
-				{passwordError}
+				<div className="email-wrapper">
+					<input
+						className={"text-input email-input" + emailBorderClass} 
+						placeholder="Email"
+						onKeyDown={this.keySubmit} 
+						type="text" 
+						value={this.state.emailText} 
+						onChange={this.emailChange}/>
+					{emailError}
+				</div>
+				<div className="pw-wrapper">
+					<input 
+						className={"text-input password-input" + passwordBorderClass} 
+						placeholder="Password"
+						onKeyDown={this.keySubmit} 
+						type="password" 
+						value={this.state.passwordText} 
+						onChange={this.passwordChange}/>
+					{passwordError}
+				</div>
 				<button className="submit" onClick={this.handleSubmit}>Submit</button>
 			</div>
 		);

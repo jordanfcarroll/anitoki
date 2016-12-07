@@ -58,7 +58,7 @@ var Register = React.createClass({
 					Already have an account? 
 					<span className="sign-in-spn" onClick={this.props.switch}> Sign in here! </span>
 				</h4>
-				<div className="new-email-wrapper">
+				<div className="email-wrapper">
 					<input 
 						type="text" 
 						className={"text-input email-input" + emailBorderClass} 
@@ -68,7 +68,7 @@ var Register = React.createClass({
 						value={this.state.emailText} />
 					{emailError}
 				</div>
-				<div className="new-pw-wrapper">
+				<div className="pw-wrapper">
 					<input 
 						className={"text-input password-input" + passwordBorderClass}
 						placeholder="Password"
