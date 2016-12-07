@@ -130,7 +130,9 @@ var Home = React.createClass({
 		return (
 			<div>
 				{landingModal}
-				{loginModal}
+				<ReactTransitionGroup>
+					{loginModal}
+				</ReactTransitionGroup>
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}

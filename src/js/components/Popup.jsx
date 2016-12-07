@@ -1,6 +1,5 @@
 var React = require("react");
 var Link = require("react-router").Link;
-var ReactTransitionGroup = require('react-addons-transition-group');
 var findDOMNode = require("react-dom").findDOMNode;
 var Tweenmax = require("gsap").Tweenmax;
 
