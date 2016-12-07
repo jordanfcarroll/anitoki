@@ -7,6 +7,9 @@ var Weekday = require("./Weekday.jsx");
 var Link = require("react-router").Link;
 var Popup = require("./Popup.jsx")
 
+var ReactTransitionGroup = require('react-addons-transition-group');
+
+
 var Searchpane = React.createClass({
 	getInitialState: function () {
 		return {
@@ -150,7 +153,9 @@ var Searchpane = React.createClass({
 				</div>
 				<div className="list-week-wrapper">
 					{display}
-					{popup}
+					<ReactTransitionGroup>
+						{popup}
+					</ReactTransitionGroup>
 				</div>
 			</div>
 		);

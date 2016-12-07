@@ -1,9 +1,24 @@
 var React = require("react");
 
+var Tweenmax = require("gsap").Tweenmax;
+var ReactTransitionGroup = require('react-addons-transition-group');
+
+var findDOMNode = require("react-dom").findDOMNode;
+
 var Showpane = React.createClass({
+	getInitialState: function () {
+		return {
+			class: "showpane"
+		}
+	},
+
+	componentWillAppear: function (callback) {
+    	const el = findDOMNode(this);
+    	TweenMax.fromTo(el, .4, {x: -600, opacity: 0}, {x: 0, opacity: 1, onComplete: callback});
+  	},
 
 
-	render: function () {
+	render: function () {	
 		var externalLinks;
 		var button;
 
@@ -26,8 +41,7 @@ var Showpane = React.createClass({
 
 
 		return (
-			<div className="showpane-wrapper">
-				<div className="showpane">
+				<div className={this.state.class}>
 					<div className="show-info-wrapper">
 						<div className="showpane-top-bumper"></div>
 						<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
@@ -52,7 +66,6 @@ var Showpane = React.createClass({
 						{externalLinks}
 					</div>
 				</div>
-			</div>
 		);
 	},
 

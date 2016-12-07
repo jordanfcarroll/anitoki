@@ -2,6 +2,9 @@ var React = require("react");
 var ReactRouter = require("react-router");
 var userStore = require("../stores/userStore");	
 var showStore = require("../stores/showStore");	
+var ReactTransitionGroup = require('react-addons-transition-group');
+
+
 
 var Searchpane = require("./Searchpane.jsx");
 var Showpane = require("./Showpane.jsx");
@@ -92,12 +95,18 @@ var Home = React.createClass({
 				isTracking = true;
 			}
 
-			showpane = <Showpane 
-						show={details} 
-						unsetShow={this.unsetShow} 
-						isTracking={isTracking}
-						trackShow={this.track}
-						untrackShow={this.untrack}/>
+			showpane = (	
+						<div className="showpane-wrapper">
+							<ReactTransitionGroup>
+								<Showpane 
+									show={details} 
+									unsetShow={this.unsetShow} 
+									isTracking={isTracking}
+									trackShow={this.track}
+									untrackShow={this.untrack}/>
+							</ReactTransitionGroup>
+						</div>
+						);
 		}
 
 
@@ -120,8 +129,12 @@ var Home = React.createClass({
 
 		return (
 			<div>
-				{landingModal}
-				{loginModal}
+				<ReactTransitionGroup>
+					{landingModal}
+				</ReactTransitionGroup>
+				<ReactTransitionGroup>
+					{loginModal}
+				</ReactTransitionGroup>
 				<WeeklyView 
 					shows={this.state.shows} 
 					userShows={this.state.userShows}

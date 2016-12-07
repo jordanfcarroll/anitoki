@@ -2,6 +2,9 @@ var React = require("react");
 var ReactRouter = require("react-router");
 var userStore = require("../stores/userStore.js");
 
+var findDOMNode = require("react-dom").findDOMNode;
+var Tweenmax = require("gsap").Tweenmax;
+
 var Link = require("react-router").Link;
 
 var Login = require("./Login.jsx");
@@ -10,9 +13,13 @@ var Register = require("./Register.jsx");
 var LoginModal = React.createClass({
 	getInitialState: function () {
 		return {
-			class: "modal",
 			display: this.props.display
 		}
+	},
+
+	componentWillEnter: function (callback) {
+		const el = findDOMNode(this);
+    	TweenMax.fromTo(el, .3, {x: -1500}, {x: 0, onComplete: callback});
 	},
 
 	render: function () {
@@ -29,7 +36,7 @@ var LoginModal = React.createClass({
 
 
 		return (
-			<div className={this.state.class}>
+			<div className="modal">
 				<div className="modal-wrapper log">
 					<button className="close-modal log fa fa-times" onClick={this.props.closeModal}></button>
 					{login}
@@ -39,10 +46,9 @@ var LoginModal = React.createClass({
 		);
 	},
 
-	componentDidMount: function () {
-		this.setState({
-			class: "modal fade-in"
-		})
+	componentWillLeave: function (callback) {
+		const el = findDOMNode(this);
+    	TweenMax.fromTo(el, .3, {x: 0}, {x: 1500, onComplete: callback});
 	},
 
 	handleClose: function () {

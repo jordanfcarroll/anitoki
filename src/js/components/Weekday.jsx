@@ -2,6 +2,8 @@ var React = require("react");
 var Show = require("./Show.jsx")
 var showStore = require("../stores/showStore");
 var userStore = require("../stores/userStore");
+var ReactTransitionGroup = require('react-addons-transition-group');
+
 
 var Weekday = React.createClass({
 	
@@ -47,12 +49,13 @@ var Weekday = React.createClass({
 					  return 0;
 					});
 
-		schedule = sorted.map(function (show) {
+		schedule = sorted.map(function (show,index) {
 			return <Show 
 						key={"weekdisplay" + show.id}
 						show={show}
 						showtime={_this.props.showtime} 
-						timeSinceUpdate={_this.state.timeSinceUpdate}/>;
+						timeSinceUpdate={_this.state.timeSinceUpdate}
+						number={index}/>;
 		})
 		return (
 			<div className={this.props.className}>
@@ -61,7 +64,9 @@ var Weekday = React.createClass({
 				</div>
 				<h2>{this.props.day}</h2>
 				{noShowsMessage}
-				{schedule}
+				<ReactTransitionGroup>
+					{schedule}
+				</ReactTransitionGroup>
 			</div>
 		);
 	},
