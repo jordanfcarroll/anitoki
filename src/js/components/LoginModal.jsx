@@ -20,7 +20,7 @@ var LoginModal = React.createClass({
 
 	componentWillEnter: function (callback) {
 		const el = findDOMNode(this);
-    	TweenMax.fromTo(el, .3, {x: -1500}, {x: 0, onComplete: callback});
+    	TweenMax.fromTo(el, .5, {x: -1500}, {x: 0, onComplete: callback});
 	},
 
 	render: function () {
@@ -57,7 +57,13 @@ var LoginModal = React.createClass({
 		console.log(this.state.slideLeave);
 		if (this.state.slideLeave) {
 			const el = findDOMNode(this);
-	    	TweenMax.fromTo(el, .3, {x: 0}, {x: 1500, onComplete: callback});
+	    	TweenMax.fromTo(el, .4, {
+	    		x: 0, 
+	    		background: "rgba(0,0,0,.6)"}, 
+	    		{x: 1500, 
+	    		background:"rgba(0,0,0,0)", 
+	    		delay: .4,
+	    		onComplete: callback});
 		} else {
 			callback();
 		}

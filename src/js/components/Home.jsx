@@ -2,9 +2,8 @@ var React = require("react");
 var ReactRouter = require("react-router");
 var userStore = require("../stores/userStore");	
 var showStore = require("../stores/showStore");	
+
 var ReactTransitionGroup = require('react-addons-transition-group');
-
-
 
 var Searchpane = require("./Searchpane.jsx");
 var Showpane = require("./Showpane.jsx");
