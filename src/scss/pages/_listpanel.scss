@@ -84,9 +84,9 @@
 		.weekday-wrapper {
 			margin-top: 7em;
 			background-color: $white;
-			.arrow-button-wrapper {
-				display: none;
-			}
+			// .arrow-button-wrapper {
+			// 	display: none;
+			// }
 			.weekly-day {
 				width: 75%;
 				display: block;
@@ -152,6 +152,22 @@
 		.list-panel {
 			.list-week-wrapper {
 				width: 70%;
+				#week-view {
+					.weekday-wrapper {
+						.weekly-day {
+							width: 60%;
+							margin-left: 1em;
+						}
+						.weekly-day.collapsed {
+							min-height: 2vh;
+							// background-color: $dark-gray;
+							h2 {
+								// font-size: 1em;
+								color: $light-gray
+							}
+						}
+					}
+				}
 				.list-weekly-day {
 					width: 50%;
 					margin-left: 12em;
