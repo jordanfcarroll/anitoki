@@ -80,7 +80,7 @@ var Login = React.createClass({
 	},
 
 	handleSubmit: function () {
-		userStore.logIn(this.state.emailText, this.state.passwordText, this.props.closeModal);
+		userStore.logIn(this.state.emailText, this.state.passwordText, this.props.closeModal, this.props.permitSlideLeave);
 	},
 
 	keySubmit: function (event) {

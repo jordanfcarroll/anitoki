@@ -268,7 +268,7 @@ var Settings = React.createClass({
 			userStore.updateNotificationSettings({
 				notifications: this.state.selectedNotifications,
 				phone: this.parsePhone(this.state.phone)
-			}, this.clearPhoneField);
+			});
 
 		}
 	},
@@ -321,11 +321,11 @@ var Settings = React.createClass({
 		return hasErrors;
 	},
 
-	clearPhoneField: function () {
-		this.setState({
-			phone: ""
-		})
-	}
+	// clearPhoneField: function () {
+	// 	this.setState({
+	// 		phone: ""
+	// 	})
+	// }
 });
 
 module.exports = Settings;

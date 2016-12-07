@@ -94,22 +94,27 @@ var WeeklyView = React.createClass({
 	},
 
 	componentDidMount: function () {
-		// window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
-		// 	startSlide: 0,
-		// 	speed: 400,
-		// 	continuous: false,
-		// 	disableScroll: false,
-		// 	stopPropagation: false,
-		// 	callback: function(index, elem) {},
-		// 	transitionEnd: function(index, elem) {}
-		// });
+		// Add swipe events if below breakpoint and listen for changes to kill and add appropriately
 
-
+		var bodyWidth = $("body").width();
+		if ( bodyWidth < 1024 ) {
+			window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
+					startSlide: 0,
+					speed: 400,
+					continuous: false,
+					disableScroll: false,
+					stopPropagation: false,
+					callback: function(index, elem) {},
+					transitionEnd: function(index, elem) {}
+			});
+		}
 
 		$(window).resize(function() {
+
     		var bodyWidth = $('body').width();
-    		console.log(bodyWidth);
+
    			 if ( bodyWidth < 1024 && !window.weekdaySwipe ) {
+
 	   			window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
 					startSlide: 0,
 					speed: 400,
@@ -119,11 +124,13 @@ var WeeklyView = React.createClass({
 					callback: function(index, elem) {},
 					transitionEnd: function(index, elem) {}
 				});
+
 			} else if(bodyWidth > 1024 && window.weekdaySwipe) {
+
         		window.weekdaySwipe.kill();
         		window.weekdaySwipe = null;
-    	}
-	});
+    		}
+		});
 	},
 
 	handleBack: function () {
