@@ -1,9 +1,17 @@
 var React = require("react");
 var ReactRouter = require("react-router");
 
+var findDOMNode = require("react-dom").findDOMNode;
+var Tweenmax = require("gsap").Tweenmax;
 
+console.log("show");
 
 var Show = React.createClass({
+
+	componentWillEnter: function (callback) {
+		const el = findDOMNode(this);
+    	TweenMax.fromTo(el, 2, {opacity: 0}, {opacity: 1, delay: (this.props.number * .1), onComplete: callback});
+	},
 
 	render: function () {
 		var time;
