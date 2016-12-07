@@ -55,7 +55,8 @@ var Weekday = React.createClass({
 						show={show}
 						showtime={_this.props.showtime} 
 						timeSinceUpdate={_this.state.timeSinceUpdate}
-						number={index}/>;
+						number={index}
+						setShow={_this.props.setShow} />;
 		})
 		return (
 			<div className={this.props.className}>

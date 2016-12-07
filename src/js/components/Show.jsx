@@ -27,7 +27,7 @@ var Show = React.createClass({
 
 		return (
 			<div className="show-info">
-				<p className="show-title">{this.props.show.title_english}</p>
+				<p className="show-title" onClick={this.setShow}>{this.props.show.title_english}</p>
 				{time}
 			</div>
 		);
@@ -94,6 +94,10 @@ var Show = React.createClass({
 		const timeString = daysString + hoursString + minutesString + secondsString;
 
 		return timeString;
+	},
+
+	setShow: function() {
+		this.props.setShow(this.props.show.id);
 	}
 });
 

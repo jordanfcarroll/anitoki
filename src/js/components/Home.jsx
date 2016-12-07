@@ -102,7 +102,7 @@ var Home = React.createClass({
 									unsetShow={this.unsetShow} 
 									isTracking={isTracking}
 									trackShow={this.track}
-									untrackShow={this.untrack}/>
+									untrackShow={this.untrack} />
 							</ReactTransitionGroup>
 						</div>
 						);
@@ -138,7 +138,8 @@ var Home = React.createClass({
 					shows={this.state.shows} 
 					userShows={this.state.userShows}
 					showtime={this.state.settings.showtime}
-					navigateToDrawer={this.navigateToDrawer}/>
+					navigateToDrawer={this.navigateToDrawer}
+					setShow={this.setShow} />
 				<div id="drawer">
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>
