@@ -20,7 +20,7 @@ var LoginModal = React.createClass({
 
 	componentWillEnter: function (callback) {
 		const el = findDOMNode(this);
-    	TweenMax.fromTo(el, .5, {x: -1500}, {x: 0, onComplete: callback});
+    	TweenMax.fromTo(el, .4, {x: -1500}, {x: 0, onComplete: callback});
 	},
 
 	render: function () {
