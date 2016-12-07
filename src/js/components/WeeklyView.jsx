@@ -98,8 +98,8 @@ var WeeklyView = React.createClass({
 		// Add swipe events if below breakpoint and listen for changes to kill and add appropriately
 		var _this = this;
 
-		var bodyWidth = $("body").width();
-		if ( bodyWidth < 1024 ) {
+		var width = $("body").width();
+		if ( width < 1000 ) {
 			window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
 					startSlide: 0,
 					speed: 400,
@@ -115,26 +115,29 @@ var WeeklyView = React.createClass({
 
     		var bodyWidth = $('body').width();
 
-   			 if ( bodyWidth < 1040 && !window.weekdaySwipe ) {
+    		setTimeout(function () {
+	   			 if ( bodyWidth < 1000 && !window.weekdaySwipe ) {
 
-	   			window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
-					startSlide: 0,
-					speed: 400,
-					continuous: false,
-					disableScroll: false,
-					stopPropagation: false,
-					callback: function(index, elem) {},
-					transitionEnd: function(index, elem) {}
-				});
+		   			window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
+						startSlide: 0,
+						speed: 400,
+						continuous: false,
+						disableScroll: false,
+						stopPropagation: false,
+						callback: function(index, elem) {},
+						transitionEnd: function(index, elem) {}
+					});
 
-			} else if(bodyWidth > 1040 && window.weekdaySwipe) {
+				} else if(bodyWidth > 1000 && window.weekdaySwipe) {
+					console.log("killing");
 
-        		window.weekdaySwipe.kill();
-        		window.weekdaySwipe = null;
-        		_this.setState({
-        			mobileDisplaying: 0
-        		})
-    		}
+	        		window.weekdaySwipe.kill();
+	        		window.weekdaySwipe = null;
+	        		_this.setState({
+	        			mobileDisplaying: 0
+	        		})
+	    		}    			
+    		}, 10)
 		});
 	},
 
