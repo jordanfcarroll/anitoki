@@ -104,6 +104,38 @@ userStore.register = function (email, pw, cb) {
 	})
 }
 
+userStore.updateEmail = function (email, pw, cb) {
+	var _this = this;
+
+	const encryptedPw = encrypt(pw, KEY);
+
+	$.ajax({
+		url: "/api/updateemail",
+		method: "PUT",
+		data: {
+			email: currentUser.email,
+			newEmail: email,
+			pw: encryptedPw
+		},
+		success: function (result) {
+			currentUser = result;
+			console.log(result);
+			store.clear();
+			store.set("session", currentUser.email);
+
+			_this.emit("update");
+			cb();
+
+			return currentUser;
+		},
+		error: function (result) {
+			errors.emailError = result.responseJSON.emailError;
+			errors.passwordError = result.responseJSON.passwordError;
+			_this.emit("error");
+		}
+	})
+}
+
 userStore.logIn = function (email, pw, cb) {	
 	errors = {
 		emailError: "",

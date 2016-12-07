@@ -75,6 +75,37 @@ app.post("/api/register", function (req, res) {
 
 })
 
+app.put("/api/updateemail", function (req,res) {
+	var body = req.body;
+	console.log(body);
+
+	var user = db.get("users")
+				.find({email: body.email})
+				.value();
+
+	user = db.get("users")
+		.find({ email: body.email })
+		.assign({ 
+			email: body.newEmail,
+			password: body.password
+		})
+		.value()
+
+
+	// db.get("users")
+	// 			.find({email: body.email})
+	// 			.get("email")
+	// 			.assign({
+	// 				showtime: user.settings.showtime,
+	// 				notifications: body.notifications,
+	// 				phone: body.phone
+	// 			})
+	// 			.value()
+
+	console.log(user);
+	res.json(user);
+})
+
 app.post("/api/login", function (req, res) {
 
 	const KEY = "asldkjioawejfa212jaw";

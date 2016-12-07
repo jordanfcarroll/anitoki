@@ -86,6 +86,17 @@ label:hover {
     font-family: $font-family-pmed;
 }
 
+.settings-wrapper input[type="password"] {
+    width: 75%;
+    padding: .5em;
+    font-size: 1em;
+    font-family: $font-family-pmed;
+    border: 3px solid #1b9aaa;
+    border-radius: 2px;
+    display: block;
+    margin-bottom: 1.2em;
+}
+
 .user-info-wrapper,
 .notif-wrapper input[type="text"] {
     margin-left: 1em;

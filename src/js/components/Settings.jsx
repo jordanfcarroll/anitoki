@@ -7,6 +7,12 @@ var userStore = require("../stores/userStore.js")
 var Settings = React.createClass({
 	getInitialState: function () {
 		return {
+			emailText: userStore.getUser().email,
+			passwordText: "",
+			passwordConfirmText: "",
+			emailError: "",
+			passwordError: "",
+			passwordConfirmError: "",
 			selectedNotifications: userStore.getSettings().notifications,
 			selectedShowtimes: userStore.getSettings().showtime,
 			phone: userStore.getSettings().phone,
@@ -25,6 +31,16 @@ var Settings = React.createClass({
 				showtimeMessage: userStore.getMessages().showtimeMessage,
 				notifMessage: userStore.getMessages().notifMessage
 			});
+		});
+
+		userStore.on("error", function () {
+			var errors = userStore.getErrors();
+			_this.setState({
+				emailError: errors.emailError,
+				passwordError: errors.passwordError,
+				passwordText: "",
+				passwordConfirmText: ""
+			})
 		})
 	},
 
@@ -33,6 +49,17 @@ var Settings = React.createClass({
 	render: function () {
 		// Placeholder for phone input
 		var phone;
+		var emailError;
+		var passwordError;
+
+		if (this.state.emailError.length > 0) {
+			emailError = <span className="error-msg">{this.state.emailError}</span>
+		}
+
+		if (this.state.passwordError.length > 0) {
+			passwordError = <span className="error-msg">{this.state.passwordError}</span>
+		}
+
 
 		if (this.state.selectedNotifications === "text") {
 			phone = (<input 
@@ -51,14 +78,22 @@ var Settings = React.createClass({
 						<h4>User Info</h4>
 						<input 
 							type="text"
-							placeholder="Email"/>
+							placeholder="Email"
+							onChange={this.handleEmailChange}
+							value={this.state.emailText} />
+						{emailError}
 						<input 
-							type="text"
-							placeholder="New Password"/>
+							type="password"
+							placeholder="New Password"
+							onChange={this.handlePasswordChange}
+							value={this.state.passwordText} />
+						{passwordError}
 						<input 
-							type="text"
-							placeholder="Confirm New Password"/>
-						<button className="settings-button">Save Changes</button>
+							type="password"
+							placeholder="Confirm New Password"
+							onChange={this.handlePasswordConfirmChange} 
+							value={this.state.passwordConfirmText}/>
+						<button className="settings-button" onClick={this.saveEmail}>Save Changes</button>
 						<p>{this.state.emailMessage}</p>
 					</div>
 				</div>
@@ -125,6 +160,85 @@ var Settings = React.createClass({
 		);
 	}, 
 
+	componentWillUnmount: function () {
+		userStore.off("error");
+	},
+
+	handleEmailChange: function (e) {
+		this.setState({
+			emailText: e.target.value
+		})
+	},
+
+	handlePasswordChange: function (e) {
+		this.setState({
+			passwordText: e.target.value
+		})
+	},
+
+	handlePasswordConfirmChange: function (e) {
+		this.setState({
+			passwordConfirmText: e.target.value
+		})
+	},
+
+	saveEmail: function () {
+		this.setState({
+			emailError: "",
+			passwordError: "",
+			passwordConfirmError: ""
+		})
+		if(!this.hasErrors()) {
+			userStore.updateEmail(this.state.emailText, this.state.passwordText, this.updateSuccess);
+		} 
+	},
+
+	updateSuccess: function () {
+		console.log("clearing");
+		this.setState({
+			passwordText: "",
+			passwordConfirmText: "",
+			emailMessage: "Updated!"
+		})
+	},
+
+	hasErrors: function () {
+
+		let hasErrors = false;
+		var str = this.state.emailText;
+		var patt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		var patt =  patt.test(str);
+		console.log(patt);
+
+		// Check email field for errors
+		if (!patt) {
+			this.setState({
+				emailError: "Please enter a valid email"
+			})
+			hasErrors = true;
+		}
+
+
+		// Check password fields for errors
+		if (this.state.passwordText !== this.state.passwordConfirmText) {
+			this.setState({
+				passwordError: "Passwords do not match"
+			})
+			hasErrors = true;
+		}
+
+
+		// Check that password length is appropriate
+		if (this.state.passwordText.length < 8) {
+			this.setState({
+				passwordError: "Password must contain at least 8 characters"
+			})
+			hasErrors = true;
+		}
+		
+		return hasErrors;
+	},
+
 	handleNotifChange: function (e) {
 		this.setState({
 			selectedNotifications: e.target.value
@@ -141,10 +255,6 @@ var Settings = React.createClass({
 		this.setState({
 			phone: e.target.value
 		})
-	},
-
-	handleEmailSubmit: function () {
-
 	},
 
 	saveNotifications: function () {
