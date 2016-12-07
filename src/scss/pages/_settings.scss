@@ -26,6 +26,9 @@ body {
 	.user-info-wrapper,
 	.notif-wrapper {
 		margin: 0 1em;
+		.button-update-wrapper {
+			margin-left: 1em;
+		}
 	}
 	.user-info-wrapper {
 		border-bottom: 2px solid $dark-gray; 

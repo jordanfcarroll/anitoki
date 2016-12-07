@@ -163,9 +163,12 @@ button:hover {
 	background-color: $blue;
 	border: none;
 	padding: .5em .75em;
-	display: block;
+	display: inline-block;
+	// margin-bottom: 1.2em;
+	// margin-left: 1em;
+}
+.settings-button:last-of-type {
 	margin-bottom: 1.2em;
-	margin-left: 1em;
 }
 
 .notif-wrapper {

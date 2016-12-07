@@ -93,8 +93,10 @@ var Settings = React.createClass({
 							placeholder="Confirm New Password"
 							onChange={this.handlePasswordConfirmChange} 
 							value={this.state.passwordConfirmText}/>
-						<button className="settings-button" onClick={this.saveEmail}>Save Changes</button>
-						<p>{this.state.emailMessage}</p>
+						<div className="button-update-wrapper">
+							<button className="settings-button" onClick={this.saveEmail}>Save Changes</button>
+							<span className="update-success">{this.state.emailMessage}</span>
+						</div>
 					</div>
 				</div>
 				<div className="notif-wrapper">
@@ -128,8 +130,10 @@ var Settings = React.createClass({
 					*/}
 					{phone}
 					<p>{this.state.phoneError}</p>
-					<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
-					<p>{this.state.notifMessage}</p>
+					<div className="button-update-wrapper">
+						<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
+						<span className="update-success">{this.state.notifMessage}</span>
+					</div>
 					<h5>Showtime Display</h5>
 					<div className="radio-wrapper">
 						<input 
@@ -153,8 +157,10 @@ var Settings = React.createClass({
 							checked={this.state.selectedShowtimes === "countdown"} />
 						<label htmlFor="Countdown">Countdown</label>
 					</div>
-					<button className="settings-button" onClick={this.saveShowtimes}>Save Changes</button>
-					<p>{this.state.showtimeMessage}</p>
+					<div className="button-update-wrapper">
+						<button className="settings-button" onClick={this.saveShowtimes}>Save Changes</button>
+						<span className="update-success">{this.state.showtimeMessage}</span>
+					</div>
 				</div>
 			</div>
 		);

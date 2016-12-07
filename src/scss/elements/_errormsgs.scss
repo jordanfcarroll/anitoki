@@ -9,3 +9,13 @@
 	box-sizing: border-box;
 	padding: .5em;
 }
+.update-success {
+	display: inline-block;
+	font-family: $font-family-psem;
+	color: $blue;
+	border: 3px solid $blue;
+	background-color: $white;
+	padding: .38em;
+	// margin-left: 1em;
+	// width: 82.7%;
+}
