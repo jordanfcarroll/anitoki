@@ -51,6 +51,9 @@ var Settings = React.createClass({
 		var phone;
 		var emailError;
 		var passwordError;
+		var emailMessage;
+		var notifMessage;
+		var showtimeMessage;
 
 		if (this.state.emailError.length > 0) {
 			emailError = <span className="error-msg">{this.state.emailError}</span>
@@ -69,6 +72,17 @@ var Settings = React.createClass({
 						onChange={this.onPhoneChange} />
 					);
 		}
+
+		if (this.state.emailMessage.length > 0) {
+			emailMessage = <span className="update-success">{this.state.emailMessage}</span>
+		}
+		if (this.state.notifMessage.length > 0) {
+			notifMessage = <span className="update-success">{this.state.notifMessage}</span>
+		}
+		if (this.state.showtimeMessage.length > 0) {
+			showtimeMessage = <span className="update-success">{this.state.showtimeMessage}</span>
+		}
+
 
 		return (
 			<div className="settings-wrapper">
@@ -95,7 +109,7 @@ var Settings = React.createClass({
 							value={this.state.passwordConfirmText}/>
 						<div className="button-update-wrapper">
 							<button className="settings-button" onClick={this.saveEmail}>Save Changes</button>
-							<span className="update-success">{this.state.emailMessage}</span>
+							{emailMessage}
 						</div>
 					</div>
 				</div>
@@ -132,7 +146,7 @@ var Settings = React.createClass({
 					<p>{this.state.phoneError}</p>
 					<div className="button-update-wrapper">
 						<button className="settings-button" onClick={this.saveNotifications}>Save Changes</button>
-						<span className="update-success">{this.state.notifMessage}</span>
+						{notifMessage}
 					</div>
 					<h5>Showtime Display</h5>
 					<div className="radio-wrapper">
@@ -159,7 +173,7 @@ var Settings = React.createClass({
 					</div>
 					<div className="button-update-wrapper">
 						<button className="settings-button" onClick={this.saveShowtimes}>Save Changes</button>
-						<span className="update-success">{this.state.showtimeMessage}</span>
+						{showtimeMessage}
 					</div>
 				</div>
 			</div>
