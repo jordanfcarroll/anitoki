@@ -263,6 +263,7 @@ button:hover {
 		width: 87.5%;
 		.airing-toggle,
 		.tracking-toggle {
+			padding-top: 1em;
 			display: inline-block;
 			font-size: 1.2em;
 		}
@@ -287,5 +288,9 @@ button:hover {
 	}
 	.follow-toggle:hover {
 		opacity: 0.5;
+	}
+	.find-shows {
+		font-size: 1em;
+		padding: .25em .3em;
 	}
 }	

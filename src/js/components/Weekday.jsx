@@ -33,7 +33,7 @@ var Weekday = React.createClass({
 		if (this.props.shows.length < 1) {
 			noShowsMessage = (
 					<div className="no-shows">
-						<h3>No Shows Found</h3>
+						<h3>No Followed Shows</h3>
 						<button className="find-shows" onClick={this.navigateToDrawer}>Find some now!</button>
 					</div>
 				)

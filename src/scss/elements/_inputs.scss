@@ -74,11 +74,6 @@ label:hover {
     }
 }
 
-
-// input[type="radio"] + label {
-//     float: right;
-// }
-
 .settings-wrapper input[type="text"] {
     width: 75%;
     padding: .5em;
@@ -105,6 +100,7 @@ label:hover {
 .search-wrapper {
     width: 82%;
     // margin-left: 13%;
+    display: inline-block;
     margin: 0 auto;
     position: relative; 
     clear: both;
@@ -137,7 +133,11 @@ label:hover {
 
 @include respond-to(large) {
     .search-wrapper {
-        width: 50%;
+        width: 40%;
         margin-left: 12em;
+        display: inline-block;
+        i {
+            top: 27px;
+        }
     }
 }
