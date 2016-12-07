@@ -129,7 +129,9 @@ var Home = React.createClass({
 
 		return (
 			<div>
-				{landingModal}
+				<ReactTransitionGroup>
+					{landingModal}
+				</ReactTransitionGroup>
 				<ReactTransitionGroup>
 					{loginModal}
 				</ReactTransitionGroup>
