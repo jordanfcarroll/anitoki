@@ -28,13 +28,18 @@ var LandingModal = React.createClass({
 					<button className="modal-search" onClick={this.props.navigateToDrawer}>SEARCH SHOWS</button>
 					<div className="signup-txt">
 						<p>Want to know when a new episode is out?
-						<span onClick={this.props.navigateToRegister}> Make an account </span>
+						<span onClick={this.navigateToRegister}> Make an account </span>
 						to receive notifications!</p>
 					</div>
 				</div>
 			</div>
 		);
 	},	
+
+	navigateToRegister: function () {
+		this.props.closeModal();
+		this.props.navigateToRegister();
+	},
 
 	componentWillLeave: function (callback) {
 		const el = findDOMNode(this);
