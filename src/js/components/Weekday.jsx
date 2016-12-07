@@ -58,9 +58,6 @@ var Weekday = React.createClass({
 			<div className={this.props.className}>
 				<div className="nav-hint">
 					<h5>swipe to view more days</h5>
-					{/*<i className="fa fa-angle-left nav-hint icon-l" />
-					<i className="fa fa-angle-right nav-hint icon-r" /> 
-					<span className="swipe-txt">swipe to view more days</span>*/}
 				</div>
 				<h2>{this.props.day}</h2>
 				{noShowsMessage}

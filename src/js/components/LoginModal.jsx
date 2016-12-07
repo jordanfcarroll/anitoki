@@ -50,7 +50,7 @@ var LoginModal = React.createClass({
 	},
 
 	handleSwitch: function () {
-		if (this.state.display === "login") {
+		if (this.state.display !== "register") {
 			this.setState({
 				display: "register"
 			})
