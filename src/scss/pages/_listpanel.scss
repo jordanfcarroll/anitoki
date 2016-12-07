@@ -12,9 +12,7 @@
 	z-index: 1;
 	position: fixed;
 	bottom: 0;
-	// width: 100%;
 	background-color: $white;
-	// height: 600px;
 }
 
 .drawer-body.closed {
@@ -28,7 +26,6 @@
 } 
 
 .drawer-body.open {
-	// max-height: 600px;
 	overflow: hidden;
 	position: relative;
 	.list-panel {
@@ -50,9 +47,6 @@
 					list-style: none;
 					margin-bottom: .3em;
 					padding: 10px 0;
-					// display: flex;
-					// position: relative;
-					// text-align: center;
 					h4 {
 						font-family: $font-family-gen;
 						font-weight: normal;
@@ -64,7 +58,6 @@
 						vertical-align: middle;
 						cursor: pointer;
 						color: $red;
-						// text-decoration: underline;
 					}
 					h4:hover {
 						border-bottom: 1px solid $red;
@@ -75,38 +68,7 @@
 				height: 8em;
 				width: 100%;
 			}	
-		}
-		// .list-weekly-day:nth-child(2) {
-		// 	margin-top: 8.5em !important;
-		// }
-		// .list-weekly-day{
-		// 	width: 75%;
-		// 	display: block;
-		// 	margin: 0 auto;
-		// 	border-bottom: 2px solid $dark-gray;
-		// 	h3 {
-		// 		font-size: 1.7em;
-		// 		font-family: $font-family-list-day;
-		// 	}
-		// 	.list-show-view {
-		// 		list-style: none;
-		// 		margin-bottom: .3em;
-		// 		padding: 10px 0;
-		// 		// display: flex;
-		// 		// position: relative;
-		// 		// text-align: center;
-		// 		h4 {
-		// 			font-family: $font-family-gen;
-		// 			font-weight: normal;
-		// 			font-size: 1.2em;
-		// 			margin-bottom: .2em;
-		// 			margin-top: 0;
-		// 			display: inline-block;
-		// 			width: 50%;
-		// 			vertical-align: middle;
-		// 		}
-		// 	}
-		// }	
+		}	
 	.no-results-found {
 		width: 75%;
 		display: block;
