@@ -223,6 +223,17 @@ button:hover {
 }
 
 @include respond-to(small) {
+	.follow-toggle,
+	.follow-toggle.unfollow {
+	    margin-left: 1em;
+	   	font-size: 1em;
+	}
+	.follow-toggle {
+		padding: 0.5em 1.3em;
+	}
+	.follow-toggle.unfollow {
+		padding: 0.5em .45em;
+	}
 	.showpane{
 		.follow-toggle{
 			font-size: 1em;
@@ -239,5 +250,8 @@ button:hover {
 		width: 40px;
 		height: 40px;
 		padding: 0;
+	}
+	.list-panel-toggle {
+		width: 50%;
 	}
 }
