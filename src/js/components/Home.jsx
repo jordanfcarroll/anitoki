@@ -95,12 +95,18 @@ var Home = React.createClass({
 				isTracking = true;
 			}
 
-			showpane = <Showpane 
-						show={details} 
-						unsetShow={this.unsetShow} 
-						isTracking={isTracking}
-						trackShow={this.track}
-						untrackShow={this.untrack}/>
+			showpane = (	
+						<div className="showpane-wrapper">
+							<ReactTransitionGroup>
+								<Showpane 
+									show={details} 
+									unsetShow={this.unsetShow} 
+									isTracking={isTracking}
+									trackShow={this.track}
+									untrackShow={this.untrack}/>
+							</ReactTransitionGroup>
+						</div>
+						);
 		}
 
 
@@ -133,9 +139,7 @@ var Home = React.createClass({
 				<div id="drawer">
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>
-						<ReactTransitionGroup>
-							{showpane}
-						</ReactTransitionGroup>
+						{showpane}
 						<Searchpane 
 							shows={this.state.shows} 
 							userShows={this.state.userShows}
