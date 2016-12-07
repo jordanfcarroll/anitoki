@@ -36,11 +36,17 @@ var Show = React.createClass({
 	parseTime: function (date) {
 
 		let time = new Date(date);
+		let current = new Date();
+		let timeString = "";
 
+
+		if (current.getDay() - time.getDay() > 0) {
+			timeString = "Aired!"
+			return timeString;
+		}
 
 		let amPm = " AM";
 
-		let timeString = "";
 
 		if (time.getHours() > 12) {
 			let hours = time.getHours();
