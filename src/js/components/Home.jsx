@@ -2,6 +2,9 @@ var React = require("react");
 var ReactRouter = require("react-router");
 var userStore = require("../stores/userStore");	
 var showStore = require("../stores/showStore");	
+var ReactTransitionGroup = require('react-addons-transition-group');
+
+
 
 var Searchpane = require("./Searchpane.jsx");
 var Showpane = require("./Showpane.jsx");
@@ -130,7 +133,9 @@ var Home = React.createClass({
 				<div id="drawer">
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>
-						{showpane}
+						<ReactTransitionGroup>
+							{showpane}
+						</ReactTransitionGroup>
 						<Searchpane 
 							shows={this.state.shows} 
 							userShows={this.state.userShows}

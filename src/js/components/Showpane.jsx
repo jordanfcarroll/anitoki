@@ -1,9 +1,26 @@
 var React = require("react");
+console.log(React);
+var Tweenmax = require("gsap").Tweenmax;
+var ReactTransitionGroup = require('react-addons-transition-group');
+
+var findDOMNode = require("react-dom").findDOMNode;
+console.log(ReactTransitionGroup);
 
 var Showpane = React.createClass({
+	getInitialState: function () {
+		return {
+			class: "showpane"
+		}
+	},
+
+	componentWillEnter: function (callback) {
+    	const el = findDOMNode(this);
+    	console.log(el);
+    	TweenMax.fromTo(el, 0.3, {x: -300, opacity: 0}, {x: 0, opacity: 1, onComplete: callback});
+  	},
 
 
-	render: function () {
+	render: function () {	
 		var externalLinks;
 		var button;
 
@@ -27,31 +44,31 @@ var Showpane = React.createClass({
 
 		return (
 			<div className="showpane-wrapper">
-				<div className="showpane">
-					<div className="show-info-wrapper">
-						<div className="showpane-top-bumper"></div>
-						<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
-						<img src={this.props.show.image_url_lge} />
-						<div className="show-aag">
-							<h3>{this.props.show.title_romaji}</h3>
-							<p>Next episode: </p>
-							<div>
-								<p>{this.parseTime(this.props.show.airing.time)}</p>
+					<div className={this.state.class}>
+						<div className="show-info-wrapper">
+							<div className="showpane-top-bumper"></div>
+							<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
+							<img src={this.props.show.image_url_lge} />
+							<div className="show-aag">
+								<h3>{this.props.show.title_romaji}</h3>
+								<p>Next episode: </p>
+								<div>
+									<p>{this.parseTime(this.props.show.airing.time)}</p>
+								</div>
+								{button}
 							</div>
-							{button}
+						</div>
+						<div className="show-info">
+							<h3>English Title</h3>
+							<p>{this.props.show.title_english}</p>
+							<h3>Studio</h3>
+							<p>{this.props.show.studio[0].studio_name}</p>
+							<h3>Synopsis</h3>
+							<p>{this.parseDescription(this.props.show.description)}</p>
+							<h3>External Links</h3>
+							{externalLinks}
 						</div>
 					</div>
-					<div className="show-info">
-						<h3>English Title</h3>
-						<p>{this.props.show.title_english}</p>
-						<h3>Studio</h3>
-						<p>{this.props.show.studio[0].studio_name}</p>
-						<h3>Synopsis</h3>
-						<p>{this.parseDescription(this.props.show.description)}</p>
-						<h3>External Links</h3>
-						{externalLinks}
-					</div>
-				</div>
 			</div>
 		);
 	},
