@@ -443,7 +443,4 @@ userStore.getLoginModal = function () {
 	return loginModal;
 }
 
-
-window.userStore = userStore;
-
 module.exports = userStore;

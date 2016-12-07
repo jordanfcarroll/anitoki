@@ -101,7 +101,4 @@ showStore.fetchShowDetails = function (id) {
 }
 
 
-
-window.showStore = showStore;
-
 module.exports = showStore;
