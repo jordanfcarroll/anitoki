@@ -96,6 +96,7 @@ var WeeklyView = React.createClass({
 
 	componentDidMount: function () {
 		// Add swipe events if below breakpoint and listen for changes to kill and add appropriately
+		var _this = this;
 
 		var bodyWidth = $("body").width();
 		if ( bodyWidth < 1024 ) {
@@ -114,7 +115,7 @@ var WeeklyView = React.createClass({
 
     		var bodyWidth = $('body').width();
 
-   			 if ( bodyWidth < 1024 && !window.weekdaySwipe ) {
+   			 if ( bodyWidth < 1040 && !window.weekdaySwipe ) {
 
 	   			window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
 					startSlide: 0,
@@ -126,10 +127,13 @@ var WeeklyView = React.createClass({
 					transitionEnd: function(index, elem) {}
 				});
 
-			} else if(bodyWidth > 1024 && window.weekdaySwipe) {
+			} else if(bodyWidth > 1040 && window.weekdaySwipe) {
 
         		window.weekdaySwipe.kill();
         		window.weekdaySwipe = null;
+        		_this.setState({
+        			mobileDisplaying: 0
+        		})
     		}
 		});
 	},
