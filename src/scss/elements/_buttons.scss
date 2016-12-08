@@ -21,7 +21,6 @@ button:hover {
 .list-panel-toggle {
 	width: 100%;
 	margin: 0;
-	// overflow: auto;
 	background-color: $blue;
 	height: 7vh;
 	.list-up {
@@ -36,7 +35,6 @@ button:hover {
 		color: $white;
 		font-size: 1em;
 		text-align: center;
-		// padding: 0 50%;
 		margin-top: 0;
 	}
 }
@@ -140,7 +138,6 @@ button:hover {
 	border: none;
 	background-color: $blue;
 	z-index: 10;
-	// padding-left: 7.5em;
 }
 
 .showpane{
@@ -216,8 +213,6 @@ button:hover {
 	.close-show {
 		top: 12%;
 		right: 48px;
-		// width: 40px;
-		// height: 40px;
 	}
 }
 @include respond-to(large) {
@@ -259,9 +254,7 @@ button:hover {
 		padding: .25em .3em;
 	}
 	.close-show {
-		// padding-left: 68%;
 		right: 448px;
 		top: 12%;
-		// z-index: 10;
 	}
 }	

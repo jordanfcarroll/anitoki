@@ -16,7 +16,7 @@
 @import "pages/listpanel";
 @import "pages/settings";
 @import "pages/showpane";
-// @import "pages/modal-landing";
+
 
 body {
 	min-width: 320px;
@@ -41,18 +41,8 @@ body {
     float:left;
     width:100%;
     position: relative;
-  }
-  
+  }  
 }
-
-
-// .list-panel {
-//    -webkit-transform: translateZ(0);
-//    -moz-transform: translateZ(0);
-//    -ms-transform: translateZ(0);
-//    -o-transform: translateZ(0);
-//    transform: translateZ(0);
-// }
 
 @include respond-to(large) {
   #app {

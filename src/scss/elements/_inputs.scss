@@ -23,7 +23,6 @@ input[type="text"] {
             width: 100%;
             border-radius: 0;
             box-sizing: border-box;
-            // margin-bottom: 0;
         }
         .text-input.red-border {
             border: 5px solid $red;
@@ -99,7 +98,6 @@ label:hover {
 
 .search-wrapper {
     width: 82%;
-    // margin-left: 13%;
     display: inline-block;
     margin: 0 auto;
     position: relative; 
@@ -113,11 +111,8 @@ label:hover {
         width: 100%;
         border: 3px solid $light-gray;
         border-radius: 0px;
-        // border-bottom: 2px solid $blue !important;
         padding: .5em;
         padding-left: 2em;
-        // padding-right: 0;
-        // outline: none;
         background-color: $white;
     }
     i {
@@ -128,9 +123,6 @@ label:hover {
         font-size: 1.5em;
         cursor: pointer;
     }
-    // i:hover {
-    //     cursor: pointer;
-    // }
 }
 
 @include respond-to(large) {
