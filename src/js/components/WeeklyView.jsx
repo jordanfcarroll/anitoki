@@ -79,9 +79,7 @@ var WeeklyView = React.createClass({
 				<div className="weekday-wrapper">
 					<div id='slider' className='swipe'>
 						<div className='swipe-wrap'>
-							<ReactTransitionGroup>
-								{weekdays}
-							</ReactTransitionGroup>
+							{weekdays}
 						</div>
 					</div>
 				</div>
@@ -103,10 +101,13 @@ var WeeklyView = React.createClass({
 		// Add swipe events if below breakpoint and listen for changes to kill and add appropriately
 		var _this = this;
 
+		var date = new Date();
+		var day = date.getDay();
+
 		var width = $("body").width();
 		if ( width < 1000 ) {
 			window.weekdaySwipe = new Swipe(document.getElementById('slider'), {
-					startSlide: 0,
+					startSlide: day,
 					speed: 400,
 					continuous: false,
 					disableScroll: false,
