@@ -24,10 +24,10 @@ var Showpane = React.createClass({
 		var studio;
 
 		if (this.props.show.external_links[0]) {
-			externalLinks = this.props.show.external_links.map(function (value) {
+			externalLinks = this.props.show.external_links.map(function (value,index) {
 				return (
-					<div>
-						<a target="_blank" href={value.url}>{value.site}</a>
+					<div key={"link" + index}>
+						<a target="_blank"  href={value.url}>{value.site}</a>
 					</div>
 					);
 			})
