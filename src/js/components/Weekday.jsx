@@ -4,6 +4,9 @@ var showStore = require("../stores/showStore");
 var userStore = require("../stores/userStore");
 var ReactTransitionGroup = require('react-addons-transition-group');
 
+var findDOMNode = require("react-dom").findDOMNode;
+var Tweenmax = require("gsap").Tweenmax;
+
 
 var Weekday = React.createClass({
 	
@@ -13,6 +16,11 @@ var Weekday = React.createClass({
 		}
 	},
 
+	componentWillAppear: function (callback) {
+		const el = findDOMNode(this);
+    	TweenMax.fromTo(el, .4, {opacity: 0, x: 400}, {opacity: 1, x: 0, delay: (this.props.number * .1), onComplete: callback});
+	},
+ 
 	componentWillMount: function () {
 		var _this = this;
 		showStore.on("timeupdate", function () {

@@ -6,6 +6,8 @@ var $ = require("jquery");
 
 var Swipe = require("swipe-js");
 
+var ReactTransitionGroup = require('react-addons-transition-group');
+
 var WeeklyView = React.createClass({
 	getInitialState: function () {
 		return {
@@ -44,6 +46,7 @@ var WeeklyView = React.createClass({
 			}
 			weekdays.push(<Weekday 
 							className={className} 
+							number={i}
 							day={days[i]} 
 							key={i}
 							shows={shows}
@@ -76,7 +79,9 @@ var WeeklyView = React.createClass({
 				<div className="weekday-wrapper">
 					<div id='slider' className='swipe'>
 						<div className='swipe-wrap'>
-							{weekdays}
+							<ReactTransitionGroup>
+								{weekdays}
+							</ReactTransitionGroup>
 						</div>
 					</div>
 				</div>
