@@ -24,7 +24,8 @@
 		border: 10px solid $blue;
 		box-shadow:  0px 0px 15px #888888;
 		.show-info-wrapper {
-			display: relative;
+			display: block;
+			position: relative;
 			.showpane-top-bumper {
 				padding: 1em;
 				background-color: $white;
@@ -129,6 +130,25 @@
 			img {
 				max-width: 75%;
 				max-height: 500px;
+			}
+		}
+		.show-aag {
+			h3 {
+				font-size: 1.5em;
+			}
+			p {
+				font-size: 1.5em;
+			}
+			.follow-toggle,
+			.follow-toggle.unfollow {
+				margin-left: 0;
+				font-size: 1.25em;
+			}
+		}
+		.show-info {
+			h3,
+			p {
+				font-size: 1em;
 			}
 		}
 	}

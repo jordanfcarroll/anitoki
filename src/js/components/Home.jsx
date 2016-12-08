@@ -96,6 +96,9 @@ var Home = React.createClass({
 
 			showpane = (	
 						<div className="showpane-wrapper">
+							<div className="button-wrapper">
+								<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
+							</div>
 							<ReactTransitionGroup>
 								<Showpane 
 									show={details} 
@@ -144,6 +147,7 @@ var Home = React.createClass({
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>
 						{showpane}
+						
 						<Searchpane 
 							shows={this.state.shows} 
 							userShows={this.state.userShows}

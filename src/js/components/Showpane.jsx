@@ -14,7 +14,7 @@ var Showpane = React.createClass({
 
 	componentWillAppear: function (callback) {
     	const el = findDOMNode(this);
-    	TweenMax.fromTo(el, .4, {x: -600, opacity: 0}, {x: 0, opacity: 1, onComplete: callback});
+    	TweenMax.fromTo(el, .4, {opacity: 0}, {opacity: 1, onComplete: callback});
   	},
 
 
@@ -54,6 +54,7 @@ var Showpane = React.createClass({
 					<div className="show-info-wrapper">
 						<div className="showpane-top-bumper"></div>
 						<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
+						{/*<div className="show-details-wrapper">*/}
 						<img src={this.props.show.image_url_lge} />
 						<div className="show-aag">
 							<h3>{this.props.show.title_romaji}</h3>
