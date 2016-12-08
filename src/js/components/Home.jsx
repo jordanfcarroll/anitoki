@@ -68,6 +68,29 @@ var Home = React.createClass({
 		var showpane;
 		var drawerButton;
 
+		// Only Display weeklyview after shows have been fetched
+		var weeklyView;
+
+
+		if (this.state.shows) {
+			weeklyView = (
+				<WeeklyView 
+					shows={this.state.shows} 
+					userShows={this.state.userShows}
+					showtime={this.state.settings.showtime}
+					navigateToDrawer={this.navigateToDrawer}
+					setShow={this.setShow} />
+					);
+		} else {
+			weeklyView = <div className="show-loading-message">Loading Shows...</div>
+		}
+
+
+
+
+
+
+
 		// if first visit, display landingmodal
 		if (this.state.displayLandingModal) {
 			landingModal = <LandingModal 
@@ -134,12 +157,7 @@ var Home = React.createClass({
 				<ReactTransitionGroup>
 					{loginModal}
 				</ReactTransitionGroup>
-				<WeeklyView 
-					shows={this.state.shows} 
-					userShows={this.state.userShows}
-					showtime={this.state.settings.showtime}
-					navigateToDrawer={this.navigateToDrawer}
-					setShow={this.setShow} />
+				{weeklyView}
 				<div id="drawer">
 					{drawerButton}
 					<div className={"drawer-body " + this.state.drawerStatus}>

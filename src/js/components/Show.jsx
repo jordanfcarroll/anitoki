@@ -39,11 +39,37 @@ var Show = React.createClass({
 		let current = new Date();
 		let timeString = "";
 
+		if (this.props.show.id == 21635) {
+			console.log(current.getDay());
+			console.log(time.getDay());
+			console.log(current.getHours());
+			console.log(time.getHours());
+			console.log(current.getMinutes());
+			console.log(time.getMinutes());
+		}
 
 		if (current.getDay() - time.getDay() > 0) {
-			timeString = "Aired!"
+			timeString = "Aired!";
+			return timeString;
+		} else if (current.getDay() === time.getDay() && current.getHours() - time.getHours() > 0) {
+			timeString = "Aired!";
+			return timeString;
+		} else if (current.getDay() === time.getDay() && 
+				current.getHours() === time.getHours() > 0 &&
+				current.getMinutes() - time.getMinutes() > 0) {
+			timeString = "Aired!";
 			return timeString;
 		}
+
+
+		// let showoffSet = time.getTime() - 604800000;
+		// let currentOffset = current.getTime() - 604800000;
+
+		// if (currentOffset - showoffSet > 0) {
+		// 	timeString = "Aired!";
+		// 	return timeString;
+		// }
+		
 
 		let amPm = " AM";
 
@@ -73,6 +99,7 @@ var Show = React.createClass({
 	},
 
 	parseCountdown: function (seconds) {
+
 
 		let days = Math.floor(seconds / 86400)
 		let hours = Math.floor(seconds / 3600 - days*24);
