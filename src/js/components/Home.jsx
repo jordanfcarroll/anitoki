@@ -19,6 +19,7 @@ var Home = React.createClass({
 			userShows: userStore.getTracking(),
 			showDetails: null,
 			drawerStatus: "closed",
+			drawerSide: "airing",
 			settings: userStore.getSettings(),
 			displayLandingModal: userStore.getLandingModal(),
 			displayLoginModal: false
@@ -168,7 +169,10 @@ var Home = React.createClass({
 							setShow={this.setShow}
 							unsetShow={this.unsetShow}
 							drawerStatus={this.state.drawerStatus} 
-							navigateToRegister={this.navigateToRegister}/>
+							navigateToRegister={this.navigateToRegister}
+							drawerSide={this.state.drawerSide}
+							airingDrawerSwitch={this.airingDrawerSwitch}
+							followingDrawerSwitch={this.followingDrawerSwitch}/>
 					</div>
 				</div>
 			</div>
@@ -200,9 +204,11 @@ var Home = React.createClass({
 	toggleDrawer: function () {
 		if (this.state.drawerStatus === "open") {
 			this.setState({
-				drawerStatus: "closed"
+				drawerSide: "airing",
+				drawerStatus: "closed",
 			});
 		} else {
+			// this.resetAiring();
 			this.setState({
 				drawerStatus: "open"
 			});
@@ -233,6 +239,18 @@ var Home = React.createClass({
 		this.setState({
 			drawerStatus: "closed",
 			displayLoginModal: "register"
+		})
+	},
+
+	followingDrawerSwitch: function () {
+		this.setState({
+			drawerSide: "following"
+		})
+	},
+
+	airingDrawerSwitch : function () {
+		this.setState({
+			drawerSide: "airing"
 		})
 	},
 

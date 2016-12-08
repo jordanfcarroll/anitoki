@@ -15,8 +15,6 @@ var Searchpane = React.createClass({
 		return {
 			searchText: "",
 			displayTracking: false,
-			airingButtonClass: "active-toggle",
-			trackingButtonClass: "",
 			popup: true
 		};
 	},
@@ -34,6 +32,15 @@ var Searchpane = React.createClass({
 		var button;
 		var popup;
 
+		var airingButtonClass = "";
+		var trackingButtonClass = "";
+
+		if (this.props.drawerSide === "airing") {
+			airingButtonClass = "active-toggle"
+		} else {
+			trackingButtonClass = "active-toggle"
+		}
+
 
 		const days = [
 			"Sunday",
@@ -49,7 +56,7 @@ var Searchpane = React.createClass({
 			display = <div className="show-loading-message">Loading shows...</div>;
 
 
-		} else if (this.state.displayTracking) {
+		} else if (this.props.drawerSide === "following") {
 			display = <PaneWeeklyView 
 						shows={this.props.shows} 
 						userShows={this.props.userShows} />
@@ -141,11 +148,11 @@ var Searchpane = React.createClass({
 			<div className="list-panel">
 				<div className="list-toggle-buttons">
 					<button 
-						className={"tracking-toggle " + this.state.trackingButtonClass} 
-						onClick={this.displayTracking}>Following</button>
+						className={"tracking-toggle " + trackingButtonClass} 
+						onClick={this.props.followingDrawerSwitch}>Following</button>
 					<button 
-						className={"airing-toggle " + this.state.airingButtonClass}
-						onClick={this.clearSearch}>Airing</button>
+						className={"airing-toggle " + airingButtonClass}
+						onClick={this.props.airingDrawerSwitch}>Airing</button>
 					<div className="search-wrapper">
 						{input}
 						{button}
@@ -178,15 +185,14 @@ var Searchpane = React.createClass({
 	clearSearch: function () {
 		this.setState({
 			searchText: "",
-			displayTracking: false,
 			airingButtonClass: "active-toggle",
 			trackingButtonClass: ""
 		});
 	},
 
 	displayTracking: function () {
+		this.props.followingDrawerSwitch();
 		this.setState({
-			displayTracking: true,
 			trackingButtonClass: "active-toggle",
 			airingButtonClass: ""
 		});
