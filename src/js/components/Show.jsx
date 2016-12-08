@@ -35,7 +35,11 @@ var Show = React.createClass({
 
 	parseTime: function (date) {
 
-		var timeString;
+		var timeString = "";
+		var time = new Date(date);
+		var hours;
+		var minutes;
+		var seconds;
 
 		if (this.checkHasAired(this.props.show.airing.time)) {
 			timeString = "Aired!";
@@ -45,23 +49,25 @@ var Show = React.createClass({
 
 		let amPm = " AM";
 
+		console.log(time.getHours());
+
 
 		if (time.getHours() > 12) {
-			let hours = time.getHours();
+			hours = time.getHours();
 			if (hours >= 12) {
 				amPm = " PM"
 			}
 			hours -= 12;
 			timeString += hours;
 		} else if (time.getHours() === 0) {
-			let hours = 12;
+			hours = 12;
 		} else {
-			timeString += time.getHours();
+			timeString += time.getHours();	
 		}
 
 		timeString += " : "; 
 		if (time.getMinutes() < 10) {
-			let minutes = "0" + time.getMinutes();
+			minutes = "0" + time.getMinutes();
 			timeString += minutes;
 		} else {
 			timeString += time.getMinutes(); 
