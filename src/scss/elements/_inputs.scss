@@ -107,8 +107,9 @@ label:hover {
     box-sizing: border-box;
     border-right: 36px solid transparent;
     input[type="text"].search {
-        margin-top: .7em;
-        margin-bottom: .4em;
+        margin-top: 0.7em;
+        margin-bottom: 0.4em;
+        margin-left: 1em;
         width: 100%;
         border: 3px solid $light-gray;
         border-radius: 0px;
@@ -122,13 +123,14 @@ label:hover {
     i {
         color: $dark-gray;
         position: absolute;
-        top: 16px;
-        left: 10px;
+        top: 27px;
+        left: 33px;
         font-size: 1.5em;
-    }
-    i:hover {
         cursor: pointer;
     }
+    // i:hover {
+    //     cursor: pointer;
+    // }
 }
 
 @include respond-to(large) {

@@ -95,6 +95,7 @@
 				border-bottom: 2px solid $dark-gray;
 				background-color: $white;
 				overflow: auto;
+				min-height: 0;
 				.mobile-current-displaying {
 					height: 3em !important;
 				}
@@ -105,6 +106,11 @@
 				}
 				.show-info {
 					font-family: $font-family-gen;
+					cursor: default;
+					.show-title:hover {
+						opacity: 1;
+						cursor: default;
+					}
 				}
 		}
 	}
@@ -140,6 +146,13 @@
 								margin-left: 0;
 							}
 						}
+						.weekly-day.collapsed {
+							min-height: 1vh;
+							margin-top: 0;
+							h2 {
+								color: $light-gray;
+							}
+						}
 					}
 				}
 			}
@@ -159,11 +172,14 @@
 				#week-view {
 					.weekday-wrapper {
 						.weekly-day {
-							width: 60%;
-							margin-left: 1em;
+							width: 40%;
+							margin-left: 15em;
+							margin-top: 2em;
+
 						}
 						.weekly-day.collapsed {
 							min-height: 2vh;
+							margin-top: 0;
 							// background-color: $dark-gray;
 							h2 {
 								// font-size: 1em;
