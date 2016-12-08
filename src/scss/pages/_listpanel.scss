@@ -70,9 +70,9 @@
 			}	
 		}	
 	.no-results-found {
-		width: 75%;
+		// width: 75%;
 		display: block;
-		margin: 0 auto;
+		// margin: 0 auto;
 		margin-top: 4.5em;
 		font-family: $font-family-h1;
 		color: $dark-gray;
@@ -143,6 +143,10 @@
 					}
 				}
 			}
+			.no-results-found {
+				margin: 0 auto;
+				width: 75%;
+			}
 		}
 	}
 }
@@ -182,6 +186,10 @@
 						background-color: $light-gray;
 					}
 				}
+			}
+			.no-results-found {
+				margin-left: 10em;
+				width: 25%;
 			}
 		}
 	}
