@@ -121,7 +121,7 @@ var Home = React.createClass({
 			showpane = (	
 						<div className="showpane-wrapper">
 							<div className="button-wrapper">
-								<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
+								<button className="fa fa-times close-show" onClick={this.unsetShow}></button>
 							</div>
 							<ReactTransitionGroup>
 								<Showpane 
@@ -199,6 +199,7 @@ var Home = React.createClass({
 	},
 
 	unsetShow: function () {
+		console.log("fml");
 		this.setState({
 			showDetails: null,
 			displayingDetails: null

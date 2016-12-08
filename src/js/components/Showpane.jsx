@@ -53,7 +53,7 @@ var Showpane = React.createClass({
 				<div className={this.state.class}>
 					<div className="show-info-wrapper">
 						<div className="showpane-top-bumper"></div>
-						<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>
+						{/*<button className="fa fa-times close-show" onClick={this.props.unsetShow}></button>*/}
 						{/*<div className="show-details-wrapper">*/}
 						<img src={this.props.show.image_url_lge} />
 						<div className="show-aag">
