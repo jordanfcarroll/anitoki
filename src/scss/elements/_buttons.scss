@@ -181,12 +181,12 @@ button:hover {
 	position: fixed;
 	right: 28px;
 	top: 27px;
-	color: $blue;
+	color: $white;
 	font-size: 2em;
 	border: none;
-	background-color: $white;
-	z-index: 6;
-	padding-left: 7.5em;
+	background-color: $blue;
+	z-index: 10;
+	// padding-left: 7.5em;
 }
 
 .showpane{
@@ -257,6 +257,10 @@ button:hover {
 		height: 40px;
 		padding: 0;
 	}
+	.close-show {
+		top: 10%;
+		right: 100px;
+	}
 }
 @include respond-to(large) {
 	.list-toggle-buttons {
@@ -292,5 +296,11 @@ button:hover {
 	.find-shows {
 		font-size: 1em;
 		padding: .25em .3em;
+	}
+	.close-show {
+		// padding-left: 68%;
+		right: 265px;
+		top: 12%;
+		// z-index: 10;
 	}
 }	
