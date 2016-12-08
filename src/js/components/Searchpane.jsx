@@ -46,7 +46,7 @@ var Searchpane = React.createClass({
 		];
 
 		if (!this.props.shows) {
-			display = <p>Loading shows...</p>;
+			display = <div className="show-loading-message">Loading shows...</div>;
 
 
 		} else if (this.state.displayTracking) {
