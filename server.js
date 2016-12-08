@@ -115,16 +115,20 @@ app.post("/api/login", function (req, res) {
 	var bytes = CryptoJS.AES.decrypt(query.pw.toString(), KEY);
 	var decryptedReceived = bytes.toString(CryptoJS.enc.Utf8);
 
-	var match = db.get("users").find({email: query.email}).value();
-
-	bytes = CryptoJS.AES.decrypt(match.pw.toString(), KEY);
-	var decryptedStored = bytes.toString(CryptoJS.enc.Utf8);
+	var match = db.get("users").find({email: query.email});
 
 
-	if (!match) {
+
+
+	if (!match.value()) {
 		res.status(404);
 		res.json({emailError: "Could not find email", passwordError: ""});
-	} else if (decryptedReceived === decryptedStored) {
+	} 
+
+	bytes = CryptoJS.AES.decrypt(match.value().pw.toString(), KEY);
+	var decryptedStored = bytes.toString(CryptoJS.enc.Utf8);
+
+	if (decryptedReceived === decryptedStored) {
 		res.json(match);
 	} else {
 		res.status(401);

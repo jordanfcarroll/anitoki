@@ -84,7 +84,33 @@ var Login = React.createClass({
 	},
 
 	handleSubmit: function () {
-		userStore.logIn(this.state.emailText, this.state.passwordText, this.props.closeModal, this.props.permitSlideLeave);
+		this.setState({
+			emailError: "",
+			passwordError: "",
+			passwordConfirmError: ""
+		});
+		
+		if (!this.hasErrors()) {
+			userStore.logIn(this.state.emailText, this.state.passwordText, this.props.closeModal, this.props.permitSlideLeave);
+		}
+	},
+
+	hasErrors: function () {
+		let hasErrors = false;
+
+
+		if (this.state.emailText.length === 0) {
+			hasErrors = true;
+			this.setState({
+				emailError: "Please enter an email"
+			})
+		} else if (this.state.passwordText.length === 0) {
+			hasErrors = true;
+			this.setState({
+				passwordError: "Please enter a password"
+			})
+		} 
+		return hasErrors;
 	},
 
 	keySubmit: function (event) {
