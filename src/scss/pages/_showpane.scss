@@ -9,14 +9,12 @@
     background-color: rgba(0,0,0,0.4);
 	.showpane {
 		display: block;
-		// width: 75%;
-		// height: 89%;
 		margin: auto;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
-		padding: 5vw;
+		// padding: 5vw;
 		overflow: scroll;
 		position: fixed;
 		z-index: 9;
@@ -123,9 +121,10 @@
 
 @include respond-to(large) {
 	.showpane {
-		height: 50%;
+		height: 388px;
 		position: relative;
-		width: 60%;
+		width: 35%;
+		// padding: 7vw;
 		.show-info-wrapper {
 			img {
 				max-width: 75%;

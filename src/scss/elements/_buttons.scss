@@ -259,7 +259,9 @@ button:hover {
 	}
 	.close-show {
 		top: 10%;
-		right: 100px;
+		right: 48px;
+		// width: 40px;
+		// height: 40px;
 	}
 }
 @include respond-to(large) {
@@ -299,7 +301,7 @@ button:hover {
 	}
 	.close-show {
 		// padding-left: 68%;
-		right: 265px;
+		right: 448px;
 		top: 12%;
 		// z-index: 10;
 	}
