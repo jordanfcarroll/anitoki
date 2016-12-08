@@ -19,7 +19,7 @@ var PaneWeekday = React.createClass({
 			return <Show 
 						key={"weekdisplay" + show.id}
 						show={show}
-						showtime={_this.props.showtime} />;
+						showtime="showtime" />;
 		})
 		return (
 			<div className={this.props.className + collapsed}>
