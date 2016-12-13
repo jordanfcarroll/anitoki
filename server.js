@@ -11,7 +11,7 @@ var SHA256 = require("crypto-js/sha256");
 
 var app = express();
 var db = lowdb("db.json", {storage: fileAsync});
-var port = 8000;
+var port = process.env.PORT || 8080;
 
 app.use(bodyParser());
 

@@ -12,7 +12,7 @@
     "test:watch": "npm run test -- --watch",
     "css": "node-sass src/scss/main.scss -o dist",
     "watch:css": "node-sass src/scss/main.scss -wo dist",
-    "serve": "browser-sync start --proxy 'http://localhost:3000' --files 'dist/*.css, js/*.js'"
+    "start": "webpack & node-sass src/scss/main.scss -o dist & node server.js"
   },
   "author": "",
   "license": "ISC",
