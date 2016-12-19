@@ -16,20 +16,19 @@ var port = process.env.PORT || 8080;
 app.use(bodyParser());
 
 
+// USER TEMPLATE
+
 // {
-// 	email: "Jordan",
+// 	email: "user@email.com",
 // 	pw: "123",
 // 	tracking: [],
 // 	settings: []
 // }
 
 
-// __dirname is a string that reference the current directory
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/dist"));
 app.use(express.static(__dirname + "/lib"));
-
-
 
 
 
@@ -37,7 +36,9 @@ db.defaults({
 	users: []
 }).value();
 
+
 var token;
+
 
 app.post("/api/register", function (req, res) {
 
@@ -91,34 +92,18 @@ app.put("/api/updateemail", function (req,res) {
 		})
 		.value()
 
-
-	// db.get("users")
-	// 			.find({email: body.email})
-	// 			.get("email")
-	// 			.assign({
-	// 				showtime: user.settings.showtime,
-	// 				notifications: body.notifications,
-	// 				phone: body.phone
-	// 			})
-	// 			.value()
-
 	res.json(user);
 })
 
 app.post("/api/login", function (req, res) {
 
 	const KEY = "asldkjioawejfa212jaw";
-
 	var query = req.body;
-
 
 	var bytes = CryptoJS.AES.decrypt(query.pw.toString(), KEY);
 	var decryptedReceived = bytes.toString(CryptoJS.enc.Utf8);
 
 	var match = db.get("users").find({email: query.email});
-
-
-
 
 	if (!match.value()) {
 		res.status(404);
@@ -135,6 +120,7 @@ app.post("/api/login", function (req, res) {
 		res.json({emailError: "", passwordError: "Incorrect password"});
 	}
 })
+
 
 app.post("/api/getshows", function (req, res) {
 	request.post("https://anilist.co/api/auth/access_token?grant_type=client_credentials&client_id=nehima99-gjdk3&client_secret=lRRcrrDkMtZttGF8GNn", 
@@ -159,6 +145,7 @@ app.post("/api/getshows", function (req, res) {
 	)
 })
 
+
 app.post("/api/getshowdetails", function (req, res) {
 	let id = req.body.id;
 
@@ -168,7 +155,6 @@ app.post("/api/getshowdetails", function (req, res) {
 			res.json(details);
 		})
 })
-
 
 
 app.post("/api/welcometext", function (req, res) {
@@ -185,6 +171,7 @@ app.post("/api/welcometext", function (req, res) {
 			res.json(error);
 		}})
 })
+
 
 app.put("/api/track", function(req, res) {;
 	let body = req.body;
@@ -203,6 +190,7 @@ app.put("/api/track", function(req, res) {;
 
 	res.json(user);
 })
+
 
 app.put("/api/untrack", function(req, res) {
 	let body = req.body;
@@ -224,6 +212,7 @@ app.put("/api/untrack", function(req, res) {
 	res.json(user);
 });
 
+
 app.post("/api/session", function (req, res) {
 	const body = req.body;
 	const match = db.get("users").find({email: body.email});
@@ -235,6 +224,7 @@ app.post("/api/session", function (req, res) {
 		res.json({emailError: "Could not find email", passwordError: ""});
 	}
 });
+
 
 app.put("/api/notifications", function (req, res) {
 	const body = req.body;
@@ -258,6 +248,7 @@ app.put("/api/notifications", function (req, res) {
 
 });
 
+
 app.put("/api/showtimes", function (req, res) {
 	const body = req.body;
 
@@ -279,18 +270,5 @@ app.put("/api/showtimes", function (req, res) {
 
 
 });
-
-
-
-// $.ajax({
-// 		url: "https://AC2fa44e47bb9d8dc45cea27b0101d6536: 97ad6a8ccc5e9a06a93d1807f65347ac@api.twilio.com/2010-04-01/Accounts/AC2fa44e47bb9d8dc45cea27b0101d6536/Messages",
-// 		method: "POST",
-// 		data: {
-// 			To: "+1" + currentUser.phone,
-// 			From: "+18033355829",
-// 			Body: "You're registered for Anitoki text notifications!"
-// 		}
-// 	})
-
 
 app.listen(port);

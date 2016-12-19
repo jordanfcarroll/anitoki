@@ -3,12 +3,6 @@ var React = require("react");
 var Nav = require("./Nav.jsx");
 var userStore = require("../stores/userStore.js");
 
-
-// function getActiveClass (path) {
-// 	var current = window.location.hash.slice(1);
-// 	return current === path ? "active" : "";
-// }
-
 var App = React.createClass({
 
 	// Only run once on page load
